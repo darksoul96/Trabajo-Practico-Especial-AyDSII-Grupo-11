@@ -1,5 +1,5 @@
 package gestion_ingreso;
 
-public class Ingreso {
+public class Cliente {
 
 }

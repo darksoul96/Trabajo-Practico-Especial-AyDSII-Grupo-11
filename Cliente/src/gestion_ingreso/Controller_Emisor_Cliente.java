@@ -27,7 +27,7 @@ public class Controller_Emisor_Cliente implements ActionListener{
 		
 		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI=(view.getTextoDNI());
-			System.out.println("Hola");
+			System.out.println(this.DNI);
 			try {
 				Socket socket = new Socket("localhost",5005);
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

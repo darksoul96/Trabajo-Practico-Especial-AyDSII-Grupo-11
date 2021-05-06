@@ -1,7 +1,10 @@
 package gestion_ingreso;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable{
 	String DNI;
+	String box;
 	
 	public Cliente(String dNI) {
 		super();
@@ -10,6 +13,14 @@ public class Cliente {
 
 	public String getDNI() {
 		return DNI;
+	}
+	
+	public void setBox(String box2) {
+		this.box = box2;
+	}
+	
+	public String getBox() {
+		return this.box;
 	}
 	
 	@Override

@@ -18,10 +18,6 @@ import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,6 +27,7 @@ public class VentanaCliente implements IVista {
 
 	private JFrame frame;
 	private JTextField textFieldDNI;
+	private ActionListener actionListener;
 
 	/**
 	 * Launch the application.
@@ -126,8 +123,6 @@ public class VentanaCliente implements IVista {
 		//JLabel label= new JLabel();
 		//label.setIcon(new ImageIcon(VentanaCliente.class.getResource("/vista_cliente/1715114.jpg")));
 		//panel.add(label);
-		
-		
 	}
 
 	@Override
@@ -135,4 +130,11 @@ public class VentanaCliente implements IVista {
 		// TODO Auto-generated method stub
 		return this.textFieldDNI.getText();
 	}
+	
+    @Override
+    public void setActionListener(ActionListener actionListener)
+    {
+	this.actionListener = actionListener;
+    }
+	
 }

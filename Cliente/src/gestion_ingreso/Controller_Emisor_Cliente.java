@@ -21,12 +21,15 @@ public class Controller_Emisor_Cliente implements ActionListener{
 		this.view.setVisibleVentana();
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command=e.getActionCommand();
 		
-		if (command.equalsIgnoreCase("INGRESO")) {
+		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI.equals(view.getTextoDNI());
 			System.out.println(DNI);
 			try {

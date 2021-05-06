@@ -21,17 +21,11 @@ public class Controller_Emisor_Cliente implements ActionListener{
 		this.view.setVisibleVentana();
 	}
 	
-    public void setVista(IVista vista)
-    {
-        this.view = vista;
-        this.view.setActionListener(this);
-    }
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command=e.getActionCommand();
 		
-		if (command.equalsIgnoreCase("INGRESO")) {
+		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI.equals(view.getTextoDNI());
 			System.out.println(DNI);
 			try {

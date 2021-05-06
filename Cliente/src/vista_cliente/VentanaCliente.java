@@ -22,6 +22,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class VentanaCliente implements IVista {
@@ -29,7 +31,7 @@ public class VentanaCliente implements IVista {
 	private JFrame frame;
 	private JTextField textFieldDNI;
 	private ActionListener actionListener;
-
+	private JButton btnIngresarDNI;
 
 
 	/**
@@ -94,13 +96,23 @@ public class VentanaCliente implements IVista {
 		panel_2.add(textFieldDNI);
 		textFieldDNI.setColumns(10);
 		
-		JButton btnIngresarDNI = new JButton("Ingresar");
+		btnIngresarDNI = new JButton("Ingresar");
 		btnIngresarDNI.setActionCommand("INGRESAR");
+		btnIngresarDNI.setEnabled(true);
+	
 		btnIngresarDNI.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
+	
+		
+		
+		
+		btnIngresarDNI.addActionListener(this.actionListener);
 		
 		btnIngresarDNI.setBackground(new Color(255, 127, 80));
 		btnIngresarDNI.setFont(new Font("Cambria", Font.PLAIN, 15));
@@ -121,6 +133,7 @@ public class VentanaCliente implements IVista {
     @Override
     public void setActionListener(ActionListener actionListener)
     {
+	this.btnIngresarDNI.addActionListener(actionListener);
 	this.actionListener = actionListener;
     }
 

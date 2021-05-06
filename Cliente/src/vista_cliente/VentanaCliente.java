@@ -9,23 +9,25 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import interfaces.IVista;
+
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
-<<<<<<< HEAD
+
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-=======
->>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
 
-public class VentanaCliente {
+
+public class VentanaCliente implements IVista {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField textFieldDNI;
 
 	/**
 	 * Launch the application.
@@ -99,17 +101,20 @@ public class VentanaCliente {
 		lblNewLabel_1.setBounds(29, 24, 139, 23);
 		panel_2.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBackground(new Color(230, 230, 250));
-		textField.setBounds(21, 58, 289, 34);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		textFieldDNI = new JTextField();
+		textFieldDNI.setBackground(new Color(230, 230, 250));
+		textFieldDNI.setBounds(21, 58, 289, 34);
+		panel_2.add(textFieldDNI);
+		textFieldDNI.setColumns(10);
 		
 		JButton btnIngresarDNI = new JButton("Ingresar");
+		btnIngresarDNI.setActionCommand("INGRESAR");
 		btnIngresarDNI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
+		
 		btnIngresarDNI.setBackground(new Color(255, 127, 80));
 		btnIngresarDNI.setFont(new Font("Cambria", Font.PLAIN, 15));
 		btnIngresarDNI.setBounds(171, 142, 139, 47);
@@ -120,5 +125,11 @@ public class VentanaCliente {
 		//panel.add(label);
 		
 		
+	}
+
+	@Override
+	public String getTextoDNI() {
+		// TODO Auto-generated method stub
+		return this.textFieldDNI.getText();
 	}
 }

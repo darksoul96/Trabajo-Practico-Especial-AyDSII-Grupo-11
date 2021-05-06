@@ -12,6 +12,7 @@ import vista_cliente.VentanaCliente;
 public class Controller_Emisor_Cliente implements ActionListener{
 
 	private VentanaCliente view;
+	private String DNI;
 
 	public Controller_Emisor_Cliente(VentanaCliente view) {
 		super();
@@ -20,7 +21,11 @@ public class Controller_Emisor_Cliente implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String command=e.getActionCommand();
 		
+		if (command.equalsIgnoreCase("INGRESO")) {
+			this.DNI.equals(view.getTextoDNI());
+		}
 	}
 
 }

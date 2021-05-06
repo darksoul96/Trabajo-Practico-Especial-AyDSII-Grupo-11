@@ -30,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaCliente {
 
@@ -114,11 +116,15 @@ public class VentanaCliente {
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Ingresar");
-		btnNewButton.setBackground(new Color(255, 127, 80));
-		btnNewButton.setFont(new Font("Cambria", Font.PLAIN, 15));
-		btnNewButton.setBounds(171, 142, 139, 47);
-		panel_2.add(btnNewButton);
+		JButton btnIngresarDNI = new JButton("Ingresar");
+		btnIngresarDNI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnIngresarDNI.setBackground(new Color(255, 127, 80));
+		btnIngresarDNI.setFont(new Font("Cambria", Font.PLAIN, 15));
+		btnIngresarDNI.setBounds(171, 142, 139, 47);
+		panel_2.add(btnIngresarDNI);
 	
 		//JLabel label= new JLabel();
 		//label.setIcon(new ImageIcon(VentanaCliente.class.getResource("/vista_cliente/1715114.jpg")));

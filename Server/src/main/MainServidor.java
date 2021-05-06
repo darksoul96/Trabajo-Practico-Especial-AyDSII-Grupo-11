@@ -6,5 +6,7 @@ public class MainServidor {
 
 	public static void main(String[] args) {
 		Receptor_server receptor = new Receptor_server();
+		receptor.recibir();
+		System.out.println("SERVIDOR ANDANDO");
 	}
 }

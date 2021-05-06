@@ -21,17 +21,14 @@ public class Controller_Emisor_Cliente implements ActionListener{
 		this.view.setVisibleVentana();
 	}
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command=e.getActionCommand();
 		
 		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI=(view.getTextoDNI());
-			System.out.println("Hola");
+			System.out.println("Hola"); 
 			try {
 				Socket socket = new Socket("localhost",5005);
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

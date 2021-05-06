@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Receptor_server {
 
-	private void recibir() {
+	public void recibir() {
 		new Thread() {
 			public void run() {
 				try {

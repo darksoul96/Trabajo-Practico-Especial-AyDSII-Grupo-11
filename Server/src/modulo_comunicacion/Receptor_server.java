@@ -9,20 +9,23 @@ import java.net.Socket;
 public class Receptor_server {
 
 	private void recibir() {
-		try {
-			ServerSocket serverSocket = new ServerSocket();
-			while (true) {
-				Socket socket = serverSocket.accept();
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println("TEXTO RECIBIDO");
-				out.close();
-				socket.close();
+		new Thread() {
+			public void run() {
+				try {
+					ServerSocket s = new ServerSocket(5005);
+					while(true) {
+						Socket soc = s.accept();
+						PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
+						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+						String msg = in.readLine();
+						System.out.println(msg);
+					}
+				}
+				catch(Exception e) {
+					
+				}
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
 		}
+		.start();
 	}
 }

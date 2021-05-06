@@ -28,22 +28,9 @@ public class VentanaCliente implements IVista {
 
 	private JFrame frame;
 	private JTextField textFieldDNI;
+	private ActionListener actionListener;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCliente window = new VentanaCliente();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
@@ -123,8 +110,6 @@ public class VentanaCliente implements IVista {
 		//JLabel label= new JLabel();
 		//label.setIcon(new ImageIcon(VentanaCliente.class.getResource("/vista_cliente/1715114.jpg")));
 		//panel.add(label);
-		
-		
 	}
 
 	@Override
@@ -132,4 +117,17 @@ public class VentanaCliente implements IVista {
 		// TODO Auto-generated method stub
 		return this.textFieldDNI.getText();
 	}
+	
+    @Override
+    public void setActionListener(ActionListener actionListener)
+    {
+	this.actionListener = actionListener;
+    }
+
+	@Override
+	public void setVisibleVentana() {
+		// TODO Auto-generated method stub
+		this.frame.setVisible(true);
+	}
+	
 }

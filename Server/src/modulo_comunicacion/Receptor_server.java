@@ -12,12 +12,6 @@ import gestion_ingreso.Cliente;
 
 
 
-
-
-
-
-
-
 public class Receptor_server {
 
 	public void recibir() {
@@ -31,7 +25,7 @@ public class Receptor_server {
 						//BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-						Cliente client = objectInputStream.readObject();
+						Cliente client = (Cliente) objectInputStream.readObject();
 					}
 				}
 				catch(Exception e) {

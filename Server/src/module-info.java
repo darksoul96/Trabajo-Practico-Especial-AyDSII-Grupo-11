@@ -1,2 +1,3 @@
 module server {
+	requires cliente;
 }

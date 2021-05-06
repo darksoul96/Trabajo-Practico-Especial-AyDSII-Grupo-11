@@ -1,14 +1,19 @@
 package gestion_ingreso;
 
 public class Cliente {
-	int DNI;
+	String DNI;
 	
-	public Cliente(int dNI) {
+	public Cliente(String dNI) {
 		super();
 		DNI = dNI;
 	}
 
-	public int getDNI() {
+	public String getDNI() {
 		return DNI;
+	}
+	
+	@Override
+	public String toString() {
+		return this.DNI;
 	}
 }

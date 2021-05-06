@@ -2,36 +2,25 @@ package vista_cliente;
 
 import java.awt.EventQueue;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.awt.CardLayout;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.MatteBorder;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
+<<<<<<< HEAD
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+=======
+>>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
 
 public class VentanaCliente {
 

@@ -13,8 +13,6 @@ import gestion_turnos.Servidor;
 
 public class Receptor_server {
 
-	private Servidor server;
-	
 	public void recibir() {
 		new Thread() {
 			public void run() {
@@ -22,14 +20,11 @@ public class Receptor_server {
 					ServerSocket s = new ServerSocket(5005);
 					while (true) {
 						Socket soc = s.accept();
-						// PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
-						// BufferedReader in = new BufferedReader(new
-						// InputStreamReader(soc.getInputStream()));
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						System.out.println(client.getDNI());
-						Servidor.registrarPedidoDeTurno(client);
+						Servidor.getInstance().registrarPedidoDeTurno(client.getDNI());
+						Servidor.getInstance().siso();
 					}
 				} catch (Exception e) {
 
@@ -46,7 +41,7 @@ public class Receptor_server {
 						BufferedReader in = new BufferedReader(new
 					    InputStreamReader(soc.getInputStream()));
 						String msg = in.readLine();
-						Servidor.llamarSiguiente(msg);
+						Servidor.getInstance().llamarSiguiente(msg);
 					}
 
 				} catch (Exception e) {

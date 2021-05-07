@@ -8,20 +8,21 @@ import gestion_ingreso.Controller_Emisor_Cliente;
 
 public class MainCliente {
 
+	private static String ip;
+	private static int port;
+
 	public static void main(String[] args) {
 		try {
 			File myObj = new File("NetConfig.txt");
 			Scanner myReader = new Scanner(myObj);
-			while (myReader.hasNextLine()) {
-				String data = myReader.nextLine();
-				System.out.println(data);
-			}
+			ip = myReader.nextLine();
+			port = Integer.parseInt(myReader.nextLine());
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente("localhost",5005);
+		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);
 
 	}
 

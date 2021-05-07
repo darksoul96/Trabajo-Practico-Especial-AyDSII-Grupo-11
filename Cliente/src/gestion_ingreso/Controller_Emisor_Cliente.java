@@ -60,7 +60,7 @@ public class Controller_Emisor_Cliente implements ActionListener {
 				socket.close();
 
 			} catch (Exception e1) {
-				e1.printStackTrace();
+				view.popUpNotConnected();
 			}
 		}
 

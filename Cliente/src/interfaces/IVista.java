@@ -7,6 +7,8 @@ public interface IVista {
 	public String getTextoDNI();
 
 	void setActionListener(ActionListener actionListener);
-	
+
 	public void setVisibleVentana();
+
+	public void popUpNotConnected();
 }

@@ -71,6 +71,7 @@ public class VentanaCliente implements IVista {
 		panel_1.add(lblNewLabel);
 		
 		JTextPane txtpnPorFavorIngrese = new JTextPane();
+		txtpnPorFavorIngrese.setEditable(false);
 		txtpnPorFavorIngrese.setFont(new Font("Cambria", Font.PLAIN, 14));
 		txtpnPorFavorIngrese.setBackground(new Color(255, 255, 255));
 		txtpnPorFavorIngrese.setText("Por favor ingrese su DNI, luego presionar el bot\u00F3n \"Ingresar\". \r\nSer\u00E1 llamado por pantalla en breve.");

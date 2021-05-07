@@ -210,7 +210,7 @@ public class VentanaEmpleado implements IVista {
 	@Override
 	public void setVisibleVentana() {
 		// TODO Auto-generated method stub
-		
+		this.frame.setVisible(true);
 	}
 
 	@Override

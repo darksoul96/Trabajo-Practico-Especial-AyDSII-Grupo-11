@@ -10,6 +10,9 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JPopupMenu;
+
+import interfaces.IVista;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,12 +23,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Label;
 
-public class VentanaEmpleado {
+public class VentanaEmpleado implements IVista {
 
 	private JFrame frame;
 	private JButton btnLlamar;
 	private JButton btnConsultar;
 	private JMenuItem i1, i2, i3, i4, i5;
+	private ActionListener actionListener;
 	
 	/**
 	 * Launch the application.
@@ -206,5 +210,27 @@ public class VentanaEmpleado {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+
+	
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		this.btnLlamar.addActionListener(actionListener);
+		this.btnConsultar.addActionListener(actionListener);
+		this.actionListener = actionListener;
+	}
+
+	@Override
+	public void setVisibleVentana() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void popUpNotConnected() {
+		// TODO Auto-generated method stub
+		
 	}
 }

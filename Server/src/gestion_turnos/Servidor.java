@@ -10,7 +10,7 @@ import gestion_ingreso.Cliente;
 
 public class Servidor {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
-	ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+	ArrayList<Integer> boxes = new ArrayList<Integer>();
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -42,18 +42,20 @@ public class Servidor {
 	}
 
 	public Cliente llamarSiguiente(String box) {
-		Cliente nextClient = clientes.remove();
-		nextClient.setBox(box);
+		Cliente nextClient = null;
+		if (!clientes.isEmpty()) {
+			nextClient = clientes.remove();
+			nextClient.setBox(box);
+		}
 		return nextClient;
 	}
 
-	public boolean registrarBox(Empleado empleado) {
+	public boolean registrarBox(int box) {
 		boolean exito;
-		if(!empleados.contains(empleado)) {
-			empleados.add(empleado);
+		if (!boxes.contains(box)) {
+			boxes.add(box);
 			exito = true;
-		}
-		else {
+		} else {
 			exito = false;
 		}
 		return exito;

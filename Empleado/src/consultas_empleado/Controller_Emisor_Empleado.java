@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.swing.JButton;
+
 import interfaces.IVista;
 import vista_empleado.VentanaEmpleado;
 
@@ -33,12 +35,14 @@ public class Controller_Emisor_Empleado implements ActionListener {
 		String command = e.getActionCommand();
 
 		if (command.equalsIgnoreCase("SeleccionBox")) {
-			strBox = e.getClass().getName();
+			JButton a=(JButton) e.getSource();
+			//strBox = a.getText();
+			strBox="Hola";
 			try {
 				Socket socket = new Socket("localhost", 5006);
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println(strBox+" Registrar");
+				out.println("Hola");//strBox+" Registrar");
 				out.close();
 				socket.close();
 
@@ -50,7 +54,7 @@ public class Controller_Emisor_Empleado implements ActionListener {
 				Socket socket = new Socket("localhost", 5006);
 				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println(strBox);
+				out.println("Hello");
 				out.close();
 				socket.close();
 

@@ -9,9 +9,25 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import interfaces.IVista;
+import vista_cliente.VentanaCliente;
+import vista_empleado.VentanaEmpleado;
+
 public class Controller_Emisor_Empleado implements ActionListener {
 
 	private String strBox;
+	private IVista view;
+	
+	
+
+	public Controller_Emisor_Empleado() {
+		super();		
+		this.view = new VentanaEmpleado();
+		this.view.setActionListener(this);
+		this.view.setVisibleVentana();
+	}
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

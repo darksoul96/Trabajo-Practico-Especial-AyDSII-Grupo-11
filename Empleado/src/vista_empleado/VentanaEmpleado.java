@@ -18,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Label;
 
 public class VentanaEmpleado {
 
@@ -113,6 +114,11 @@ public class VentanaEmpleado {
 		panel_3.setBackground(new Color(255, 165, 0));
 		panel_3.setBounds(23, 0, 76, 102);
 		panel_2.add(panel_3);
+		
+		Label label = new Label("Por favor seleccione un box antes de continuar");
+		label.setFont(new Font("Arial", Font.PLAIN, 15));
+		label.setBounds(134, 67, 318, 22);
+		panel_2.add(label);
 	
 		JMenuItem i1, i2, i3, i4, i5;
 		i1=new JMenuItem("Box 1");
@@ -121,6 +127,7 @@ public class VentanaEmpleado {
 				labelBox.setText("BOX 1");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				label.setText("");
 			}
 		});
 		i2=new JMenuItem("Box 2");
@@ -129,6 +136,7 @@ public class VentanaEmpleado {
 				labelBox.setText("BOX 2");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				label.setText("");
 			}
 		});
 		i3=new JMenuItem("Box 3");
@@ -137,6 +145,7 @@ public class VentanaEmpleado {
 				labelBox.setText("BOX 3");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				label.setText("");
 			}
 		});
 		i4=new JMenuItem("Box 4");
@@ -145,6 +154,7 @@ public class VentanaEmpleado {
 				labelBox.setText("BOX 4");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				label.setText("");
 			}
 		});
 		i5=new JMenuItem("Box 5");
@@ -153,6 +163,7 @@ public class VentanaEmpleado {
 				labelBox.setText("BOX 5");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				label.setText("");
 			}
 		});
 		menuBox.add(i1);

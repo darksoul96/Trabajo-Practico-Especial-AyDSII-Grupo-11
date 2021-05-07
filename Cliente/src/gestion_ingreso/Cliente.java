@@ -27,4 +27,23 @@ public class Cliente implements Serializable{
 	public String toString() {
 		return this.DNI;
 	}
+
+	@Override
+	public int hashCode() {
+		return this.DNI.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this.hashCode() == obj.hashCode()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 }

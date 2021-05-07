@@ -23,8 +23,7 @@ public class Receptor_server {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						Servidor.getInstance().registrarPedidoDeTurno(client.getDNI());
-						Servidor.getInstance().siso();
+						Servidor.getInstance().registrarPedidoDeTurno(client);
 					}
 				} catch (Exception e) {
 

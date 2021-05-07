@@ -1,12 +1,12 @@
 package gestion_turnos;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.locks.Lock;
-
 import gestion_ingreso.Cliente;
 
 public class Servidor {
-	static Queue<Cliente> clientes;
+	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -16,10 +16,10 @@ public class Servidor {
 	public static Servidor getInstance() {
 		if (instance == null) {
 			Lock lock;
-			if(instance == null) {
+			if (instance == null) {
 				instance = new Servidor();
 			}
-			
+
 		}
 		return instance;
 	}
@@ -28,9 +28,14 @@ public class Servidor {
 		return clientes.size();
 	}
 
-	public void registrarPedidoDeTurno(String cliente) {
-		//clientes.add(cliente);
-		System.out.println(cliente);
+	public void registrarPedidoDeTurno(Cliente cliente) {
+		if(!clientes.contains(cliente)) {
+			clientes.add(cliente);
+		}
+		else {
+			System.out.println("YA LO CONTENIA");
+		}
+		
 	}
 
 	public Cliente llamarSiguiente(String box) {
@@ -38,8 +43,5 @@ public class Servidor {
 		nextClient.setBox(box);
 		return nextClient;
 	}
-	
-	public void siso() {
-		System.out.println("Hola.");
-	}
+
 }

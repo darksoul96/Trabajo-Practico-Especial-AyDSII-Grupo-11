@@ -77,10 +77,6 @@ public class VentanaEmpleado implements IVista {
 		panel.add(labelBox);
 		
 		JMenu menuBox = new JMenu("Seleccionar Box");
-		menuBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		menuBox.setBackground(new Color(244, 164, 96));
 		menuBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBox.setForeground(new Color(0, 0, 0));
@@ -223,18 +219,13 @@ public class VentanaEmpleado implements IVista {
 		// TODO Auto-generated method stub
 		this.btnLlamar.addActionListener(actionListener);
 		this.btnConsultar.addActionListener(actionListener);
-		this.i1.addActionListener(actionListener);
-		this.i2.addActionListener(actionListener);
-		this.i3.addActionListener(actionListener);
-		this.i4.addActionListener(actionListener);
-		this.i5.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 
 	@Override
 	public void setVisibleVentana() {
 		// TODO Auto-generated method stub
-		this.frame.setVisible(true);
+		
 	}
 
 	@Override

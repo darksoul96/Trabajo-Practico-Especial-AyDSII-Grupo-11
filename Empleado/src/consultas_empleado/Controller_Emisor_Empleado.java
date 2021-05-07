@@ -34,12 +34,12 @@ public class Controller_Emisor_Empleado implements ActionListener {
 
 		if (command.equalsIgnoreCase("SeleccionBox")) {
 			strBox = e.getClass().getName();
-			int i = Integer.parseInt(strBox);
 			try {
 				Socket socket = new Socket("localhost", 5006);
-				OutputStream outputStream = socket.getOutputStream();
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(i);
+				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				out.println(strBox+" Registrar");
+				out.close();
 				socket.close();
 
 			} catch (Exception e1) {

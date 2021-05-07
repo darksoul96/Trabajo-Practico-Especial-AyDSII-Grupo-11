@@ -25,7 +25,8 @@ public class VentanaEmpleado {
 	private JFrame frame;
 	private JButton btnLlamar;
 	private JButton btnConsultar;
-
+	private JMenuItem i1, i2, i3, i4, i5;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -91,6 +92,7 @@ public class VentanaEmpleado {
 		panel_2.setLayout(null);
 		
 		btnLlamar = new JButton("Llamar siguiente");
+		btnLlamar.setActionCommand("LLAMAR");
 		btnLlamar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -103,6 +105,7 @@ public class VentanaEmpleado {
 		panel_2.add(btnLlamar);
 		
 		btnConsultar = new JButton("Consultar turnos restantes");
+		btnConsultar.setActionCommand("CONSULTAR");
 		btnConsultar.setEnabled(false);
 		btnConsultar.setForeground(Color.WHITE);
 		btnConsultar.setBackground(Color.DARK_GRAY);
@@ -120,8 +123,10 @@ public class VentanaEmpleado {
 		label.setBounds(134, 67, 318, 22);
 		panel_2.add(label);
 	
-		JMenuItem i1, i2, i3, i4, i5;
+		
 		i1=new JMenuItem("Box 1");
+		i1.setName("1");
+		i1.setActionCommand("SeleccionBox");
 		i1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX 1");
@@ -131,6 +136,8 @@ public class VentanaEmpleado {
 			}
 		});
 		i2=new JMenuItem("Box 2");
+		i2.setName("2");
+		i2.setActionCommand("SeleccionBox");
 		i2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX 2");
@@ -140,6 +147,8 @@ public class VentanaEmpleado {
 			}
 		});
 		i3=new JMenuItem("Box 3");
+		i3.setName("3");
+		i3.setActionCommand("SeleccionBox");
 		i3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX 3");
@@ -149,6 +158,8 @@ public class VentanaEmpleado {
 			}
 		});
 		i4=new JMenuItem("Box 4");
+		i4.setName("4");
+		i4.setActionCommand("SeleccionBox");
 		i4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX 4");
@@ -158,6 +169,8 @@ public class VentanaEmpleado {
 			}
 		});
 		i5=new JMenuItem("Box 5");
+		i5.setName("5");
+		i5.setActionCommand("SeleccionBox");
 		i5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX 5");

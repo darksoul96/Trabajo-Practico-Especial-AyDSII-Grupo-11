@@ -12,54 +12,49 @@ import java.net.Socket;
 public class Controller_Emisor_Empleado implements ActionListener {
 
 	private String strBox;
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		
+
 		if (command.equalsIgnoreCase("SeleccionBox")) {
-			strBox=e.getClass().getName();
-			int i=Integer.parseInt(strBox);
+			strBox = e.getClass().getName();
+			int i = Integer.parseInt(strBox);
 			try {
-				Socket socket = new Socket("localhost", 5005);
+				Socket socket = new Socket("localhost", 5006);
 				OutputStream outputStream = socket.getOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(new Empleado(i));
+				objectOutputStream.writeObject(i);
+				socket.close();
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} else if (command.equalsIgnoreCase("LLAMAR")) {
+			try {
+				Socket socket = new Socket("localhost", 5006);
+				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				out.println(strBox);
+				out.close();
+				socket.close();
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} else if (command.equalsIgnoreCase("CONSULTAR")) {
+			try {
+				Socket socket = new Socket("localhost", 5006);
+				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				out.println("Consultar");
+				out.close();
 				socket.close();
 
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
-		else
-			if (command.equalsIgnoreCase("LLAMAR")) {
-				try {
-					Socket socket = new Socket("localhost", 5005);
-					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-		            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		            out.println(strBox);
-					out.close();
-					socket.close();
-
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-			else
-				if (command.equalsIgnoreCase("CONSULTAR")) {
-					try {
-						Socket socket = new Socket("localhost", 5005);
-						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			            out.println("Consultar");
-						out.close();
-						socket.close();
-
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-		
 
 	}
 }

@@ -34,13 +34,13 @@ public class Receptor_server {
 			public void run() {
 				try {
 					ServerSocket s = new ServerSocket(5006);
-					while(true) {
+					while (true) {
 						Socket soc = s.accept();
 						PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
-						BufferedReader in = new BufferedReader(new
-					    InputStreamReader(soc.getInputStream()));
+						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 						String msg = in.readLine();
-						Servidor.getInstance().llamarSiguiente(msg);
+						// Servidor.getInstance().llamarSiguiente(msg);
+						System.out.println(msg);
 					}
 
 				} catch (Exception e) {

@@ -30,22 +30,7 @@ public class VentanaEmpleado implements IVista {
 	private JButton btnConsultar;
 	private JMenuItem i1, i2, i3, i4, i5;
 	private ActionListener actionListener;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaEmpleado window = new VentanaEmpleado();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.

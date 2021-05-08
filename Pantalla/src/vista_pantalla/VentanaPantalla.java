@@ -5,13 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaPantalla {
 
 	private JFrame frame;
+	private JFrame frameConfig;
 
 	/**
 	 * Launch the application.
@@ -77,5 +83,59 @@ public class VentanaPantalla {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(10, 83, 664, 414);
 		frame.getContentPane().add(textArea);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JButton btnConfig = new JButton("Configurar");
+		btnConfig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frameConfig=new JFrame();
+				frameConfig.setResizable(false);
+				frameConfig.setBounds(100, 100, 500, 300);
+				frameConfig.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frameConfig.getContentPane().setLayout(null);
+				
+				frame.setVisible(false);
+				JPanel panel22 = new JPanel();
+				panel22.setBounds(0, 0, 484, 261);
+				frameConfig.getContentPane().add(panel22);
+				panel22.setLayout(null);
+				
+				JTextField textFieldCantidad = new JTextField();
+				textFieldCantidad.setBounds(277, 60, 140, 20);
+				panel22.add(textFieldCantidad);
+				textFieldCantidad.setColumns(10);
+				
+				JTextField textFieldTamano = new JTextField();
+				textFieldTamano.setBounds(277, 123, 140, 20);
+				panel22.add(textFieldTamano);
+				textFieldTamano.setColumns(10);
+				
+				JLabel lblNewLabel = new JLabel("Cantidad de llamados");
+				lblNewLabel.setBounds(28, 63, 150, 14);
+				panel22.add(lblNewLabel);
+				
+				JLabel lblNewLabel_1 = new JLabel("Tama\u00F1o de letra");
+				lblNewLabel_1.setBounds(28, 126, 103, 14);
+				panel22.add(lblNewLabel_1);
+				
+				JButton btnLimpiar = new JButton("Limpiar Pantalla");
+				btnLimpiar.setBounds(17, 178, 161, 23);
+				panel22.add(btnLimpiar);
+				
+				JButton btnAplicar = new JButton("Aplicar");
+				btnAplicar.setBounds(207, 178, 116, 23);
+				panel22.add(btnAplicar);
+				
+				JButton btnAceptar = new JButton("Aceptar");
+				btnAceptar.setBounds(345, 178, 116, 23);
+				panel22.add(btnAceptar);
+				
+				frameConfig.setVisible(true);
+			}
+		});
+		menuBar.add(btnConfig);
 	}
 }

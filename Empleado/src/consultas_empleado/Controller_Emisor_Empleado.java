@@ -75,17 +75,17 @@ public class Controller_Emisor_Empleado implements ActionListener {
 	public void handle(OrdenResponsePackage respuesta) {
 		if (respuesta.getType() == "REGISTRAR") {
 			if (respuesta.getSucess() == true) {
-				System.out.println("Registrar True");
+				this.view.popUpSuccessRegistro();
 			} else
-				System.out.println("Registrar Failed");
+				this.view.popUpFailureRegistro();
 		} else if (respuesta.getType() == "LLAMAR") {
 			if (respuesta.getSucess() == true) {
-				System.out.println("LLAMAR True");
+				this.view.popUpLlamadaExitosa(respuesta.getInfo());
 			} else
-				System.out.println("LLAMAR Failed");
+				this.view.popUpLlamadaVacia();
 
 		} else if (respuesta.getType() == "CONSULTAR") {
-			System.out.println("CONSULTAR");
+			this.view.poUpConsultaExitosa(respuesta.getInfo());
 		}
 	}
 }

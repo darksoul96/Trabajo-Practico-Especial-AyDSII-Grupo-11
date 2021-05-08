@@ -44,28 +44,9 @@ public class Receptor_server {
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden orden = (Orden) objectInputStream.readObject();
 						OrdenResponsePackage response = packageHandler.handle(orden);
-
-						try {
-							Socket socket = new Socket(orden.getIp(), orden.getPort()); // Me intento comunicar con el
-																						// Box
-							OutputStream outputStream = socket.getOutputStream();
-							ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-							objectOutputStream.writeObject(response);
-							socket.close();
-
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
+						enviarBox(orden, response);
 						if (response.type.equals("LLAMAR")) {
-							try {
-								Socket socket = new Socket("localhost",5200);
-								OutputStream outputStream = socket.getOutputStream();
-								ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-								objectOutputStream.writeObject(Servidor.getInstance().getLastCalledClient());
-								socket.close();
-							}catch (Exception e1) {
-								e1.printStackTrace();
-							}
+							enviarPantalla(Servidor.getInstance().getLastCalledClient());
 						}
 
 					}
@@ -75,5 +56,30 @@ public class Receptor_server {
 				}
 			}
 		}.start();
+	}
+
+	public void enviarBox(Orden orden, OrdenResponsePackage response) { // Me intento comunicar con el box
+		try {
+			Socket socket = new Socket(orden.getIp(), orden.getPort());
+			OutputStream outputStream = socket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(response);
+			socket.close();
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public void enviarPantalla(Cliente cliente) {
+		try {
+			Socket socket = new Socket("localhost", 5200);
+			OutputStream outputStream = socket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(cliente);
+			socket.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 	}
 }

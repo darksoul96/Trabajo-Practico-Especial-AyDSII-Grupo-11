@@ -8,7 +8,7 @@ import gestion_ingreso.Cliente;
 
 public class Servidor {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
-	ArrayList<Integer> boxes = new ArrayList<Integer>();
+	ArrayList<String> boxes = new ArrayList<String>();
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -39,19 +39,19 @@ public class Servidor {
 
 	}
 
-	public Cliente llamarSiguiente(String box) {
+	public String llamarSiguiente(String box) {
 		Cliente nextClient = null;
 		if (!clientes.isEmpty()) {
 			nextClient = clientes.remove();
 			nextClient.setBox(box);
 		}
-		return nextClient;
+		return nextClient.getDNI();
 	}
 
-	public boolean registrarBox(int box) {
+	public boolean registrarBox(String string) {
 		boolean exito;
-		if (!boxes.contains(box)) {
-			boxes.add(box);
+		if (!boxes.contains(string)) {
+			boxes.add(string);
 			exito = true;
 		} else {
 			exito = false;

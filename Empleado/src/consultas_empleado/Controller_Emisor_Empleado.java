@@ -17,7 +17,6 @@ public class Controller_Emisor_Empleado implements ActionListener {
 
 	private String nroBox;
 	private IVista view;
-	private Orden orden;
 
 	public Controller_Emisor_Empleado() {
 		super();

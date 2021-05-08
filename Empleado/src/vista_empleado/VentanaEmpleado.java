@@ -154,6 +154,8 @@ public class VentanaEmpleado implements IVista {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX "+menuBox.getText());
 				menuBox.setText("Cambiar Box");
+				btnLlamar.setEnabled(true);
+				btnConsultar.setEnabled(true);
 			}
 		});
 		mb.add(btnValidarBox);

@@ -22,7 +22,7 @@ import ordenes.Orden;
 import ordenes.OrdenFactory;
 import vista_empleado.VentanaEmpleado;
 
-public class Controller_Emisor_Empleado implements ActionListener{
+public class ControllerComunicacionEmpleado implements ActionListener{
 
 	private String nroBox;
 	private IVista view;
@@ -31,7 +31,7 @@ public class Controller_Emisor_Empleado implements ActionListener{
 	private int serverport;
 	private int localport;
 
-	public Controller_Emisor_Empleado(int serverport, String serverip, String localip, int localport) {
+	public ControllerComunicacionEmpleado(int serverport, String serverip, String localip, int localport) {
 		super();
 		this.serverport = serverport;
 		this.serverip = serverip;

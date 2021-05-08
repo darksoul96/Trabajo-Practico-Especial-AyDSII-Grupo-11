@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import controllerComunicacion.Controller_Emisor_Empleado;
+import controllerComunicacion.ControllerComunicacionEmpleado;
 
 public class MainEmpleado {
 
@@ -27,7 +27,7 @@ public class MainEmpleado {
 			e.printStackTrace();
 		}
 		
-		Controller_Emisor_Empleado EmisorEmpleado = new Controller_Emisor_Empleado(serverport,serverip,localip,localport);
+		ControllerComunicacionEmpleado EmisorEmpleado = new ControllerComunicacionEmpleado(serverport,serverip,localip,localport);
 	}
 }
 

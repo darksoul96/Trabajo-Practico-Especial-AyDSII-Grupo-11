@@ -42,6 +42,7 @@ public class Receptor_server {
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden client = (Orden) objectInputStream.readObject();
 						System.out.println(client.executeOrder());
+						packageHandler.handle(client);
 					}
 
 				} catch (Exception e) {

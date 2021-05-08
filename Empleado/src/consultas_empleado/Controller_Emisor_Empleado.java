@@ -17,7 +17,6 @@ public class Controller_Emisor_Empleado implements ActionListener {
 
 	private String nroBox;
 	private IVista view;
-	private Orden orden;
 
 	public Controller_Emisor_Empleado() {
 		super();
@@ -45,7 +44,6 @@ public class Controller_Emisor_Empleado implements ActionListener {
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(orden);
-			System.out.println("cabixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxos");
 			socket.close();
 
 		} catch (Exception e1) {

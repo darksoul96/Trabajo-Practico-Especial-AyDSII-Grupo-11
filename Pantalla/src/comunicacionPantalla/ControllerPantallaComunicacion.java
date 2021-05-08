@@ -38,6 +38,6 @@ public class ControllerPantallaComunicacion implements ActionListener {
 	}
 	
 	public void handle(Cliente cliente) {
-		
+		this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
 	}
 }

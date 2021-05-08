@@ -21,7 +21,7 @@ public class VentanaPantalla implements IVista{
 
 	private JFrame frame;
 	private JFrame frameConfig;
-
+	private JTextArea textArea;
 
 	/**
 	 * Create the application.
@@ -68,7 +68,7 @@ public class VentanaPantalla implements IVista{
 		lblNewLabel_1.setBounds(117, 11, 128, 38);
 		panel_2.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 83, 664, 414);
 		frame.getContentPane().add(textArea);
 		
@@ -157,5 +157,11 @@ public class VentanaPantalla implements IVista{
 	public void setVisibleVentana() {
 		// TODO Auto-generated method stub
 		this.frame.setVisible(true);
+	}
+
+	@Override
+	public void escribeTurno(String dni, String box) {
+		// TODO Auto-generated method stub
+		this.textArea.append(dni+box);
 	}
 }

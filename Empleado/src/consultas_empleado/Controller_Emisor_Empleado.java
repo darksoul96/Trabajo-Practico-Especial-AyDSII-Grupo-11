@@ -79,7 +79,7 @@ public class Controller_Emisor_Empleado implements ActionListener {
 		}
 
 	}
-
+	
 	public void handle(OrdenResponsePackage respuesta) {
 		if (respuesta.getType().equals("REGISTRAR")) {
 			if (respuesta.getSucess() == true) {

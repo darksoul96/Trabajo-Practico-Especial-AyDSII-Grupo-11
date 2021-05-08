@@ -1,4 +1,4 @@
-package consultas_empleado;
+package controllerComunicacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

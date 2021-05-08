@@ -1,4 +1,4 @@
-package comunicacionServer;
+package comunicacion;
 
 import java.io.Serializable;
 

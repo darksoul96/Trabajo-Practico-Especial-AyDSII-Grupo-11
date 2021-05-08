@@ -1,4 +1,4 @@
-package comunicacionServer;
+package comunicacion;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,15 +12,15 @@ import java.net.Socket;
 
 import gestion_ingreso.Cliente;
 import ordenes.Orden;
-import server.Servidor;
+import repository.Servidor;
 
-public class Receptor_server {
+public class ComunicationServer {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
 	String ipPantalla;
 
-	public Receptor_server(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
+	public ComunicationServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;

@@ -1,8 +1,8 @@
-package comunicacionServer;
+package comunicacion;
 
 import gestion_ingreso.Cliente;
 import ordenes.Orden;
-import server.Servidor;
+import repository.Servidor;
 
 public class PackageHandler {
 

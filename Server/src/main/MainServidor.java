@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import comunicacionServer.Receptor_server;
-import server.Servidor;
+import comunicacion.ComunicationServer;
+import repository.Servidor;
 
 public class MainServidor {
 
@@ -26,7 +26,7 @@ public class MainServidor {
 			System.out.println("NetConfig.txt not found.");
 			e.printStackTrace();
 		}
-		Receptor_server receptor = new Receptor_server(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
+		ComunicationServer receptor = new ComunicationServer(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
 				ipPantalla);
 		Servidor servidor = Servidor.getInstance();
 		receptor.recibir();

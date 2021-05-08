@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import consultas_empleado.Orden;
 import gestion_ingreso.Cliente;
 import gestion_turnos.Servidor;
 
@@ -36,11 +37,10 @@ public class Receptor_server {
 					ServerSocket s = new ServerSocket(5006);
 					while (true) {
 						Socket soc = s.accept();
-						PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
-						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-						String msg = in.readLine();
-						// Servidor.getInstance().llamarSiguiente(msg);
-						System.out.println(msg);
+						InputStream inputStream = soc.getInputStream();
+						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+						Orden client = (Orden) objectInputStream.readObject();
+						System.out.println(client.executeOrder());
 					}
 
 				} catch (Exception e) {

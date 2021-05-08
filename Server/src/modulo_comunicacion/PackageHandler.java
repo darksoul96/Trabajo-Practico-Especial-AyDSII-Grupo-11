@@ -6,11 +6,12 @@ import gestion_turnos.Servidor;
 
 public class PackageHandler {
 
-	public void handle(Cliente cliente) {
+	public void handle(Cliente cliente) { // Maneja lo recibido desde empleado
 		Servidor.getInstance().registrarPedidoDeTurno(cliente);
 	}
 
-	public OrdenResponsePackage handle(Orden orden) { // Creo el tipo de respuesta que el servidor envia al Empleado
+	public OrdenResponsePackage handle(Orden orden) { // Recibo de la pantalla y creo el tipo de respuesta que el
+														// servidor envia al Empleado
 		String DNI;
 		OrdenResponsePackage response = null;
 		if (orden.executeOrder() == "REGISTRAR") {

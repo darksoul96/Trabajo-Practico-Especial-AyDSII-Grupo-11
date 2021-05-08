@@ -19,8 +19,8 @@ public interface IVista {
 	
 	public void popUpLlamadaVacia();
 	
-	public void popUpLlamadaExitosa();
+	public void popUpLlamadaExitosa(String dni);
 	
-	public void poUpConsultaExitosa();
+	public void poUpConsultaExitosa(String cantidad);
 	
 }

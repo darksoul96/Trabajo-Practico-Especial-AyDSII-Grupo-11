@@ -210,4 +210,34 @@ public class VentanaEmpleado implements IVista {
 		// TODO Auto-generated method stub
 		return this.lblNroBox.getText();
 	}
+
+	@Override
+	public void popUpSuccessRegistro() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "Box seleccionado con exito");
+	}
+
+	@Override
+	public void popUpFailureRegistro() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "No se pudo seleccionar el box");
+	}
+
+	@Override
+	public void popUpLlamadaVacia() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "No hay ningun cliente en espera");
+	}
+
+	@Override
+	public void popUpLlamadaExitosa(String dni) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "Siguiente: "+dni);
+	}
+
+	@Override
+	public void poUpConsultaExitosa(String cantidad) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "Clientes restantes: "+cantidad);
+	}
 }

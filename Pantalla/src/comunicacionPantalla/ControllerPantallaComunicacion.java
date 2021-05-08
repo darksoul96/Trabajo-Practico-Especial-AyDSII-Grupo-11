@@ -12,12 +12,13 @@ import gestion_ingreso.Cliente;
 import vista_pantalla.VentanaPantalla;
 
 public class ControllerPantallaComunicacion {
-
+	int pantallaSocket;
 	private VentanaPantalla view;
 
-	public ControllerPantallaComunicacion() {
+	public ControllerPantallaComunicacion(int pantallaSocket) {
 		this.view = new VentanaPantalla();
 		this.view.setVisibleVentana();
+		this.pantallaSocket = pantallaSocket;
 	}
 
 	public void recibir() {

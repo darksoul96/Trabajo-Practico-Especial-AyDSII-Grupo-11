@@ -15,6 +15,19 @@ import gestion_ingreso.Cliente;
 import gestion_turnos.Servidor;
 
 public class Receptor_server {
+	int portReceptorCliente;
+	int portReceptorEmpleado;
+	int portEmisorPantalla;
+	String ipPantalla;
+
+	public Receptor_server(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
+			String ipPantalla) {
+		super();
+		this.portReceptorCliente = portReceptorCliente;
+		this.portReceptorEmpleado = portReceptorEmpleado;
+		this.portEmisorPantalla = portEmisorPantalla;
+		this.ipPantalla = ipPantalla;
+	}
 
 	public void recibir() { // Abro el server para recibir
 		PackageHandler packageHandler = new PackageHandler();

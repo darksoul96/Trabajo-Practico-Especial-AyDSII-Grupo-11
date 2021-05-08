@@ -1,6 +1,8 @@
 package modulo_comunicacion;
 
-public class OrdenResponsePackage {
+import java.io.Serializable;
+
+public class OrdenResponsePackage implements Serializable {
 	Boolean sucess;
 	String type;
 	String info;

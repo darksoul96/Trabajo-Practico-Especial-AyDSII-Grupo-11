@@ -14,19 +14,23 @@ public class PackageHandler {
 														// servidor envia al Empleado
 		String DNI;
 		OrdenResponsePackage response = null;
-		if (orden.executeOrder() == "REGISTRAR") {
+		if (orden.executeOrder().equals("REGISTRAR")) {
 			if (Servidor.getInstance().registrarBox(orden.getNroBox()) == true)
 				response = new OrdenResponsePackage(true, "REGISTRAR", orden.getNroBox());
 			else {
 				response = new OrdenResponsePackage(false, "REGISTRAR", orden.getNroBox());
 			}
-		} else if (orden.executeOrder() == "LLAMAR") {
-			DNI = Servidor.getInstance().llamarSiguiente(orden.getNroBox());
+		} else if (orden.executeOrder().equals("LLAMAR")) {
+			Cliente nextClient = Servidor.getInstance().llamarSiguiente(orden.getNroBox());
+			if (nextClient != null) {
+				DNI = nextClient.getDNI();
+			} else
+				DNI = null;
 			if (DNI != null)
 				response = new OrdenResponsePackage(true, "LLAMAR", DNI);
 			else
 				response = new OrdenResponsePackage(false, "LLAMAR", DNI);
-		} else if (orden.executeOrder() == "CONSULTAR") {
+		} else if (orden.executeOrder().equals("CONSULTAR")) {
 			response = new OrdenResponsePackage(true, "CONSULTAR",
 					Integer.toString(Servidor.getInstance().consultarTurnosRestantes()));
 			return response;

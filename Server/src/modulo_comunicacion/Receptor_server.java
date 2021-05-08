@@ -47,7 +47,7 @@ public class Receptor_server {
 						System.out.println(response.getSucess());
 
 						try {
-							Socket socket = new Socket(orden.getIp(), 5100); // Me intento comunicar con el Box
+							Socket socket = new Socket(orden.getIp(), orden.getPort()); // Me intento comunicar con el Box
 							OutputStream outputStream = socket.getOutputStream();
 							ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 							objectOutputStream.writeObject(response);
@@ -66,3 +66,4 @@ public class Receptor_server {
 		}.start();
 	}
 }
+

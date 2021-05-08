@@ -220,7 +220,7 @@ public class VentanaEmpleado implements IVista {
 	@Override
 	public void popUpFailureRegistro() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "No se pudo seleccionar el box");
+		JOptionPane.showMessageDialog(null, "Box en uso, por favor seleccione uno libre");
 	}
 
 	@Override

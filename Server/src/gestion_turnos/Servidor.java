@@ -41,18 +41,17 @@ public class Servidor {
 
 	}
 
-	public String llamarSiguiente(String box) {
+	public Cliente llamarSiguiente(String box) {
 		Cliente nextClient = null;
 		if (!clientes.isEmpty()) {
 			nextClient = clientes.remove();
 			nextClient.setBox(box);
 		}
-		return nextClient.getDNI();
+		return nextClient;
 	}
 
 	public boolean registrarBox(String box) {
 		boolean exito;
-		System.out.println("ENTRE AL METODO DE REGISTRARBOX");
 		if (!boxes.contains(box)) {
 			boxes.add(box);
 			exito = true;

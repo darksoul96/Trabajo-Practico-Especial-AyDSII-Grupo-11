@@ -14,8 +14,6 @@ public class MainEmpleado {
 	private static int serverport;
 
 	public static void main(String[] args) {
-
-		Controller_Emisor_Empleado EmisorEmpleado = new Controller_Emisor_Empleado("localhost");
 		try {
 			File myObj = new File("NetConfig.txt");
 			Scanner myReader = new Scanner(myObj);
@@ -28,6 +26,8 @@ public class MainEmpleado {
 			System.out.println("NetConfig.txt not found.");
 			e.printStackTrace();
 		}
+		
+		Controller_Emisor_Empleado EmisorEmpleado = new Controller_Emisor_Empleado(serverport,serverip,localip,localport);
 	}
 }
 

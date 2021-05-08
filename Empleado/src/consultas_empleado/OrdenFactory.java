@@ -2,14 +2,14 @@ package consultas_empleado;
 
 public class OrdenFactory {
 
-	public Orden createOrden(String OrdenType, String nroBox) {
+	public Orden createOrden(String OrdenType, String nroBox, String ip, int port) {
 		Orden orden = null;
-		if (OrdenType == "SeleccionBox") {
-			orden = new Registrar(nroBox);
-		} else if (OrdenType == "LLAMAR") {
-			orden = new Llamar(nroBox);
-		} else if (OrdenType == "CONSULTAR") {
-			orden = new Registrar(nroBox);
+		if (OrdenType.equals("SeleccionBox")) {
+			orden = new Registrar(nroBox, ip, port);
+		} else if (OrdenType.equals("LLAMAR")) {
+			orden = new Llamar(nroBox, ip, port);
+		} else if (OrdenType.equals("CONSULTAR")) {
+			orden = new Consultar(nroBox, ip, port);
 		}
 		return orden;
 	}

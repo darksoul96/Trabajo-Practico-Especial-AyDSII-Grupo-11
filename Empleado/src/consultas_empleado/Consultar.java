@@ -2,8 +2,11 @@ package consultas_empleado;
 
 public class Consultar extends Orden {
 	
-	public Consultar(String nroBox) {
-		super(nroBox);
+
+
+	public Consultar(String nroBox, String ip, int port) {
+		super(nroBox, ip, port);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

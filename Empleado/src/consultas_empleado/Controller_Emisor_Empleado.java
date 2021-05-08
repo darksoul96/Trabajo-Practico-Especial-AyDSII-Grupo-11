@@ -21,11 +21,17 @@ public class Controller_Emisor_Empleado implements ActionListener {
 
 	private String nroBox;
 	private IVista view;
-	private String ip;
+	private String localip;
+	private String serverip;
+	private int serverport;
+	private int localport;
 
-	public Controller_Emisor_Empleado(String ip) {
+	public Controller_Emisor_Empleado(int serverport, String serverip, String localip, int localport) {
 		super();
-		this.ip = ip;
+		this.serverport = serverport;
+		this.serverip = serverip;
+		this.localport = localport;
+		this.localip = localip;
 		this.view = new VentanaEmpleado();
 		this.view.setActionListener(this);
 		this.view.setVisibleVentana();
@@ -39,52 +45,54 @@ public class Controller_Emisor_Empleado implements ActionListener {
 		if (command.equalsIgnoreCase("SeleccionBox")) {
 			JButton a = (JButton) e.getSource();
 			nroBox = this.view.getNroBox();
-			orden = factory.createOrden("SeleccionBox", nroBox);
+			orden = factory.createOrden("SeleccionBox", nroBox, localip, localport);
 		} else if (command.equalsIgnoreCase("LLAMAR")) {
-			orden = factory.createOrden("LLAMAR", nroBox);
+			orden = factory.createOrden("LLAMAR", nroBox, localip, localport);
 		} else if (command.equalsIgnoreCase("CONSULTAR")) {
-			orden = factory.createOrden("CONSULTAR", nroBox);
+			orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
 		}
 		try {// Se envia la orden al server
-			Socket socket = new Socket("localhost", 5006);
+			Socket socket = new Socket(serverip, serverport);
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(orden);
 			socket.close();
 
-			try { // SE ABRE UN PUERTO SERVER PARA ESCUCHAR LA RESPUESTA
-				ServerSocket s = new ServerSocket(5100);
-				while (true) {
-					Socket soc = s.accept();
-					InputStream inputStream = soc.getInputStream();
-					ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-					OrdenResponsePackage respuesta = (OrdenResponsePackage) objectInputStream.readObject();
-
-				}
-			} catch (Exception e2) {
-				this.view.popUpNotConnected();
-			}
-
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			this.view.popUpNotConnected();
+		}
+		try { // SE ABRE UN PUERTO SERVER PARA ESCUCHAR LA RESPUESTA
+			ServerSocket s = new ServerSocket(localport);
+			while (true) {
+				Socket soc = s.accept();
+				InputStream inputStream = soc.getInputStream();
+				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+				OrdenResponsePackage respuesta = (OrdenResponsePackage) objectInputStream.readObject();
+				System.out.println(respuesta.getType());
+				handle(respuesta);
+				s.close();
+
+			}
+		} catch (Exception e2) {
+			e2.getStackTrace();
 		}
 
 	}
 
 	public void handle(OrdenResponsePackage respuesta) {
-		if (respuesta.getType() == "REGISTRAR") {
+		if (respuesta.getType().equals("REGISTRAR")) {
 			if (respuesta.getSucess() == true) {
 				this.view.popUpSuccessRegistro();
 			} else
 				this.view.popUpFailureRegistro();
-		} else if (respuesta.getType() == "LLAMAR") {
+		} else if (respuesta.getType().equals("LLAMAR")) {
 			if (respuesta.getSucess() == true) {
 				this.view.popUpLlamadaExitosa(respuesta.getInfo());
 			} else
 				this.view.popUpLlamadaVacia();
 
-		} else if (respuesta.getType() == "CONSULTAR") {
+		} else if (respuesta.getType().equals("CONSULTAR")) {
 			this.view.poUpConsultaExitosa(respuesta.getInfo());
 		}
 	}

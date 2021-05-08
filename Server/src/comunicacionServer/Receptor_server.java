@@ -12,7 +12,7 @@ import java.net.Socket;
 
 import consultas_empleado.Orden;
 import gestion_ingreso.Cliente;
-import gestion_turnos.Servidor;
+import server.Servidor;
 
 public class Receptor_server {
 	int portReceptorCliente;

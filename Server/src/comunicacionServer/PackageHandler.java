@@ -2,7 +2,7 @@ package comunicacionServer;
 
 import consultas_empleado.Orden;
 import gestion_ingreso.Cliente;
-import gestion_turnos.Servidor;
+import server.Servidor;
 
 public class PackageHandler {
 

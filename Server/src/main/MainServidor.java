@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import comunicacionServer.Receptor_server;
-import gestion_turnos.Servidor;
+import server.Servidor;
 
 public class MainServidor {
 

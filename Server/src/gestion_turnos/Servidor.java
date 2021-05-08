@@ -11,6 +11,7 @@ import gestion_ingreso.Cliente;
 public class Servidor {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	Set<String> boxes = new HashSet<>();
+	Cliente lastCalledClient;
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -46,8 +47,18 @@ public class Servidor {
 		if (!clientes.isEmpty()) {
 			nextClient = clientes.remove();
 			nextClient.setBox(box);
+			this.lastCalledClient = nextClient;
 		}
 		return nextClient;
+	}
+	
+	
+	public Cliente getLastCalledClient() {
+		return lastCalledClient;
+	}
+
+	public void setLastCalledClient(Cliente lastCalledClient) {
+		this.lastCalledClient = lastCalledClient;
 	}
 
 	public boolean registrarBox(String box) {

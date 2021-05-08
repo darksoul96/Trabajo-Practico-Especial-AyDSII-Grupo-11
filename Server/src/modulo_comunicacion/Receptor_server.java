@@ -44,10 +44,10 @@ public class Receptor_server {
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden orden = (Orden) objectInputStream.readObject();
 						OrdenResponsePackage response = packageHandler.handle(orden);
-						System.out.println(response.getSucess());
 
 						try {
-							Socket socket = new Socket(orden.getIp(), orden.getPort()); // Me intento comunicar con el Box
+							Socket socket = new Socket(orden.getIp(), orden.getPort()); // Me intento comunicar con el
+																						// Box
 							OutputStream outputStream = socket.getOutputStream();
 							ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 							objectOutputStream.writeObject(response);
@@ -55,6 +55,9 @@ public class Receptor_server {
 
 						} catch (Exception e1) {
 							e1.printStackTrace();
+						}
+						if (response.type.equals("LLAMAR")) {
+							
 						}
 
 					}
@@ -66,4 +69,3 @@ public class Receptor_server {
 		}.start();
 	}
 }
-

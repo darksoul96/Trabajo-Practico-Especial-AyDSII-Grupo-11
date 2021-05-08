@@ -13,6 +13,7 @@ import gestion_ingreso.Cliente;
 import gestion_turnos.Servidor;
 
 public class Receptor_server {
+	PackageHandler packageHandler = new PackageHandler();
 
 	public void recibir() {
 		new Thread() {
@@ -24,7 +25,7 @@ public class Receptor_server {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						Servidor.getInstance().registrarPedidoDeTurno(client);
+						packageHandler.handle(client);
 					}
 				} catch (Exception e) {
 

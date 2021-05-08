@@ -10,14 +10,14 @@ public class PackageHandler {
 		Servidor.getInstance().registrarPedidoDeTurno(cliente);
 	}
 
-	public OrdenResponsePackage handle(Orden orden) {
+	public OrdenResponsePackage handle(Orden orden) { // Creo el tipo de respuesta que el servidor envia al Empleado
 		String DNI;
 		OrdenResponsePackage response = null;
-		if (orden.executeOrder() == "Registrar") {
+		if (orden.executeOrder() == "REGISTRAR") {
 			if (Servidor.getInstance().registrarBox(orden.getNroBox()) == true)
-				response = new OrdenResponsePackage(true, "Registrar", orden.getNroBox());
+				response = new OrdenResponsePackage(true, "REGISTRAR", orden.getNroBox());
 			else {
-				response = new OrdenResponsePackage(false, "Registrar", orden.getNroBox());
+				response = new OrdenResponsePackage(false, "REGISTRAR", orden.getNroBox());
 			}
 		} else if (orden.executeOrder() == "LLAMAR") {
 			DNI = Servidor.getInstance().llamarSiguiente(orden.getNroBox());

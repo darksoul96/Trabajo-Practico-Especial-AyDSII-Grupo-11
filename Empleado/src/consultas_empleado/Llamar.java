@@ -9,7 +9,7 @@ public class Llamar extends Orden {
 
 	@Override
 	public String executeOrder() {
-		return "Llamar";
+		return "LLAMAR";
 	}
 
 }

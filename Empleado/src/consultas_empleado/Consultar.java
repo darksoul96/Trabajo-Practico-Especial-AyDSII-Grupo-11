@@ -8,7 +8,7 @@ public class Consultar extends Orden {
 
 	@Override
 	public String executeOrder() {
-		return "Consultar";
+		return "CONSULTAR";
 	}
 
 }

@@ -51,9 +51,6 @@ public class Controller_Emisor_Cliente implements ActionListener {
 			this.DNI = (view.getTextoDNI());
 			try {
 				Socket socket = new Socket("localhost", 5005);
-				// PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				// BufferedReader in = new BufferedReader(new
-				// InputStreamReader(socket.getInputStream()));
 				OutputStream outputStream = socket.getOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 				objectOutputStream.writeObject(new Cliente(DNI));

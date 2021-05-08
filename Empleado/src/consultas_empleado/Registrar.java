@@ -10,7 +10,7 @@ public class Registrar extends Orden {
 	@Override
 	public String executeOrder() {
 		// TODO Auto-generated method stub
-		return "Registrar";
+		return "REGISTRAR";
 	}
 
 }

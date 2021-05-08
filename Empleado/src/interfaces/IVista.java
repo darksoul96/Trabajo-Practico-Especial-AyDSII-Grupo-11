@@ -12,4 +12,15 @@ public interface IVista {
 	public void popUpNotConnected();
 	
 	public String getNroBox();
+	
+	public void popUpSuccessRegistro();
+	
+	public void popUpFailureRegistro();
+	
+	public void popUpLlamadaVacia();
+	
+	public void popUpLlamadaExitosa();
+	
+	public void poUpConsultaExitosa();
+	
 }

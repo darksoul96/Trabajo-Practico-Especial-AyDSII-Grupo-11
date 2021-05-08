@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Label;
@@ -32,9 +34,9 @@ public class VentanaEmpleado implements IVista {
 	private JButton btnConsultar;
 	private JMenuItem i1, i2, i3, i4, i5;
 	private ActionListener actionListener;
-	private JButton btnNewButton;
+	private JButton btnValidarBox;
 	private ArrayList<JMenuItem> itemsMenu=new ArrayList<JMenuItem>();
-
+	private JLabel lblNroBox;
 	/**
 	 * Create the application.
 	 */
@@ -65,12 +67,7 @@ public class VentanaEmpleado implements IVista {
 		panel.add(labelBox);
 		
 		JMenu menuBox = new JMenu("Seleccionar Box");
-		menuBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JMenuItem a=(JMenuItem) e.getSource();
-				menuBox.setText("Hola");//a.getName());
-			}
-		});
+		
 		menuBox.setBackground(new Color(244, 164, 96));
 		menuBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBox.setForeground(new Color(0, 0, 0));
@@ -122,15 +119,23 @@ public class VentanaEmpleado implements IVista {
 		panel_2.add(label);
 	
 	
+		lblNroBox = new JLabel("");
+		lblNroBox.setVisible(false);
 		
-		for (int j=0;j<8;j++) {
+		
+		int j;
+		for (j=0;j<8;j++) {
+			
 			itemsMenu.add(new JMenuItem("Box "+(j+1)));
 			itemsMenu.get(j).setName(String.valueOf(j+1));
-			String a=itemsMenu.get(j).getName();
+			String nombre=itemsMenu.get(j).getName();
+			int nro=j+1;
 			itemsMenu.get(j).addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 			    {
-			        menuBox.setText(a);
+			        menuBox.setText(nombre);
+			        btnValidarBox.setEnabled(true);
+			        lblNroBox.setText(String.valueOf(nro));
 			    }
 			});
 			
@@ -142,14 +147,19 @@ public class VentanaEmpleado implements IVista {
 		mb.add(menuBox);
 		this.frame.setJMenuBar(mb);
 		
-		btnNewButton = new JButton("Validar Box");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnValidarBox = new JButton("Validar Box");
+		btnValidarBox.setActionCommand("SeleccionBox");
+		btnValidarBox.setEnabled(false);
+		btnValidarBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("BOX "+menuBox.getText());
+				menuBox.setText("Cambiar Box");
 			}
 		});
-		mb.add(btnNewButton);
+		mb.add(btnValidarBox);
 		
+		
+		mb.add(lblNroBox);
 		
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
@@ -177,12 +187,8 @@ public class VentanaEmpleado implements IVista {
 		// TODO Auto-generated method stub
 		this.btnLlamar.addActionListener(actionListener);
 		this.btnConsultar.addActionListener(actionListener);
+		this.btnValidarBox.addActionListener(actionListener);
 		this.actionListener = actionListener;
-		for (int i=0;i<8;i++) {
-			JMenuItem a=this.itemsMenu.get(i);
-			a.addActionListener(actionListener);
-		}
-		
 	}
 
 	@Override
@@ -194,6 +200,12 @@ public class VentanaEmpleado implements IVista {
 	@Override
 	public void popUpNotConnected() {
 		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(null, "Servidor desconectado");
+	}
+
+	@Override
+	public String getNroBox() {
+		// TODO Auto-generated method stub
+		return this.lblNroBox.getText();
 	}
 }

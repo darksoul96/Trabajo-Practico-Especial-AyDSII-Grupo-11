@@ -10,8 +10,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import consultas_empleado.Orden;
 import gestion_ingreso.Cliente;
+import ordenes.Orden;
 import server.Servidor;
 
 public class Receptor_server {

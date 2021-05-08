@@ -1,4 +1,4 @@
-package consultas_empleado;
+package ordenes;
 
 public class Consultar extends Orden {
 	

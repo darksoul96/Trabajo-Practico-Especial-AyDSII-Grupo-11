@@ -18,6 +18,8 @@ import javax.swing.JButton;
 
 import comunicacionServer.OrdenResponsePackage;
 import interfaces.IVista;
+import ordenes.Orden;
+import ordenes.OrdenFactory;
 import vista_empleado.VentanaEmpleado;
 
 public class Controller_Emisor_Empleado implements ActionListener{

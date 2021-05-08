@@ -1,4 +1,4 @@
-package consultas_empleado;
+package ordenes;
 
 import java.io.Serializable;
 

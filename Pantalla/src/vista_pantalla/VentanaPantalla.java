@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import interfaces.IVista;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -14,26 +17,11 @@ import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VentanaPantalla {
+public class VentanaPantalla implements IVista{
 
 	private JFrame frame;
 	private JFrame frameConfig;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPantalla window = new VentanaPantalla();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -157,5 +145,17 @@ public class VentanaPantalla {
 			}
 		});
 		menuBar.add(btnConfig);
+	}
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVisibleVentana() {
+		// TODO Auto-generated method stub
+		this.frame.setVisible(true);
 	}
 }

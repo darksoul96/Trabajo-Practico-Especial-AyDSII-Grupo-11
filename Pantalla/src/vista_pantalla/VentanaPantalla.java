@@ -103,19 +103,19 @@ public class VentanaPantalla {
 				frameConfig.getContentPane().add(panel22);
 				panel22.setLayout(null);
 				
-				JTextField textFieldCantidad = new JTextField();
-				textFieldCantidad.setBounds(277, 60, 140, 20);
-				panel22.add(textFieldCantidad);
-				textFieldCantidad.setColumns(10);
+				//JTextField textFieldCantidad = new JTextField();
+				//textFieldCantidad.setBounds(277, 60, 140, 20);
+				//panel22.add(textFieldCantidad);
+				//textFieldCantidad.setColumns(10);
 				
 				JTextField textFieldTamano = new JTextField();
 				textFieldTamano.setBounds(277, 123, 140, 20);
 				panel22.add(textFieldTamano);
 				textFieldTamano.setColumns(10);
 				
-				JLabel lblNewLabel = new JLabel("Cantidad de llamados");
-				lblNewLabel.setBounds(28, 63, 150, 14);
-				panel22.add(lblNewLabel);
+				//JLabel lblNewLabel = new JLabel("Cantidad de llamados");
+				//lblNewLabel.setBounds(28, 63, 150, 14);
+				//panel22.add(lblNewLabel);
 				
 				JLabel lblNewLabel_1 = new JLabel("Tama\u00F1o de letra");
 				lblNewLabel_1.setBounds(28, 126, 103, 14);
@@ -123,14 +123,34 @@ public class VentanaPantalla {
 				
 				JButton btnLimpiar = new JButton("Limpiar Pantalla");
 				btnLimpiar.setBounds(17, 178, 161, 23);
+				btnLimpiar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						textArea.setText("");
+					}
+				});
+				
 				panel22.add(btnLimpiar);
 				
 				JButton btnAplicar = new JButton("Aplicar");
 				btnAplicar.setBounds(207, 178, 116, 23);
+				btnAplicar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (textFieldTamano.getText()!="")
+							textArea.setFont(new Font("Arial Black", Font.BOLD, Integer.parseInt(textFieldTamano.getText())));
+					}
+				});
 				panel22.add(btnAplicar);
 				
 				JButton btnAceptar = new JButton("Aceptar");
 				btnAceptar.setBounds(345, 178, 116, 23);
+				btnAceptar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (textFieldTamano.getText()!="")
+							textArea.setFont(new Font("Arial Black", Font.BOLD, Integer.parseInt(textFieldTamano.getText())));
+						frameConfig.setVisible(false);
+						frame.setVisible(true);
+					}
+				});
 				panel22.add(btnAceptar);
 				
 				frameConfig.setVisible(true);

@@ -46,6 +46,7 @@ public class Receptor_server {
 						packageHandler.handle(client);
 						System.out.println(packageHandler.handle(client).getSucess());
 						System.out.println(packageHandler.handle(client).getInfo());
+						soc.close();
 					}
 
 				} catch (Exception e) {

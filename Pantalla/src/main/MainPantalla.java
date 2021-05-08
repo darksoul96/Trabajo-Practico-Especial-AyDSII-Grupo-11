@@ -2,12 +2,13 @@ package main;
 
 import java.awt.EventQueue;
 
+import comunicacionPantalla.ControllerPantallaComunicacion;
 import vista_pantalla.VentanaPantalla;
 
 public class MainPantalla {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ControllerPantallaComunicacion controller = new ControllerPantallaComunicacion();
 		
 	}
 

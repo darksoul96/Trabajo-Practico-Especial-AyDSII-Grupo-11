@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import gestion_ingreso.Cliente;
 import vista_pantalla.VentanaPantalla;
 
 public class ControllerPantallaComunicacion implements ActionListener {
@@ -28,10 +29,15 @@ public class ControllerPantallaComunicacion implements ActionListener {
 				Socket soc = s.accept();
 				InputStream inputStream = soc.getInputStream();
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-
+				Cliente cliente =  (Cliente) objectInputStream.readObject();
+				handle(cliente);
 			}
 		} catch (Exception e2) {
 			e2.getStackTrace();
 		}
+	}
+	
+	public void handle(Cliente cliente) {
+		
 	}
 }

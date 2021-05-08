@@ -84,7 +84,7 @@ public class Controller_Emisor_Empleado implements ActionListener {
 			} else
 				System.out.println("LLAMAR Failed");
 
-		}else if ( respuesta.getType() == "CONSULTAR") {
+		} else if (respuesta.getType() == "CONSULTAR") {
 			System.out.println("CONSULTAR");
 		}
 	}

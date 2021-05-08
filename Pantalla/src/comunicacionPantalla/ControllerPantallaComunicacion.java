@@ -25,7 +25,7 @@ public class ControllerPantallaComunicacion {
 		new Thread() {
 			public void run() {
 				try {
-					ServerSocket s = new ServerSocket(5200);
+					ServerSocket s = new ServerSocket(pantallaSocket);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();

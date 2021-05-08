@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import gestion_ingreso.Controller_Emisor_Cliente;
+import ingreso.Controller_Emisor_Cliente;
 
 public class MainCliente {
 

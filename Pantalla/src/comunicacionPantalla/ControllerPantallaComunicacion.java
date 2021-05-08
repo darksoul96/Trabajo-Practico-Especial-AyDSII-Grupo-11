@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import gestion_ingreso.Cliente;
+import ingreso.Cliente;
 import vista_pantalla.VentanaPantalla;
 
 public class ControllerPantallaComunicacion {

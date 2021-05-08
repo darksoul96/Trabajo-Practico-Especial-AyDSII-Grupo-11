@@ -1,6 +1,6 @@
 package comunicacion;
 
-import gestion_ingreso.Cliente;
+import ingreso.Cliente;
 import ordenes.Orden;
 import repository.Servidor;
 

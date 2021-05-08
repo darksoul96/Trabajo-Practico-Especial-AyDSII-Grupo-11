@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
-import gestion_ingreso.Cliente;
+
+import ingreso.Cliente;
 
 public class Servidor {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();

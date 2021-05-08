@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import gestion_ingreso.Cliente;
+import ingreso.Cliente;
 import ordenes.Orden;
 import repository.Servidor;
 

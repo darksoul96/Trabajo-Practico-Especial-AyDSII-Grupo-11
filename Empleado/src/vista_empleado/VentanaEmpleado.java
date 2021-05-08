@@ -37,6 +37,7 @@ public class VentanaEmpleado implements IVista {
 	private JButton btnLlamar;
 	private JButton btnConsultar;
 	private JButton btnValidarBox;
+	private JButton btnSalirBox;
 	private ArrayList<JMenuItem> itemsMenu=new ArrayList<JMenuItem>();
 	private JLabel lblNroBox;
 	private JMenu menuBox;
@@ -72,7 +73,7 @@ public class VentanaEmpleado implements IVista {
 		labelBox.setBounds(10, 200, 153, 34);
 		panel.add(labelBox);
 		
-		JButton btnSalirBox = new JButton("Cerrar Sesion");
+		btnSalirBox = new JButton("Cerrar Sesion");
 		btnSalirBox.setActionCommand("CerrarSesion");
 		btnSalirBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -206,6 +207,7 @@ public class VentanaEmpleado implements IVista {
 		this.btnLlamar.addActionListener(actionListener);
 		this.btnConsultar.addActionListener(actionListener);
 		this.btnValidarBox.addActionListener(actionListener);
+		this.btnSalirBox.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 

@@ -36,6 +36,7 @@ public class PackageHandler {
 			return response;
 		} else if (orden.executeOrder().equals("BAJA")) {
 			Servidor.getInstance().liberarBox(orden.getNroBox());
+			response = new OrdenResponsePackage(true,"BAJA", "bajaBox");
 		}
 		return response;
 

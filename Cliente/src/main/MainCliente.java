@@ -19,7 +19,7 @@ public class MainCliente {
 			port = Integer.parseInt(myReader.nextLine());
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("An error occurred.");
+			System.out.println("NetConfig.txt not found.");
 			e.printStackTrace();
 		}
 		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);

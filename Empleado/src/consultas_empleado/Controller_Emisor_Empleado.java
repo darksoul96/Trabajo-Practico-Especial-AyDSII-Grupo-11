@@ -19,7 +19,7 @@ import interfaces.IVista;
 import modulo_comunicacion.OrdenResponsePackage;
 import vista_empleado.VentanaEmpleado;
 
-public class Controller_Emisor_Empleado implements ActionListener, WindowListener{
+public class Controller_Emisor_Empleado implements ActionListener{
 
 	private String nroBox;
 	private IVista view;
@@ -52,6 +52,8 @@ public class Controller_Emisor_Empleado implements ActionListener, WindowListene
 			orden = factory.createOrden("LLAMAR", nroBox, localip, localport);
 		} else if (command.equalsIgnoreCase("CONSULTAR")) {
 			orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
+		} else if (command.equalsIgnoreCase("CerrarSesion")) {
+			orden = factory.createOrden("Baja", nroBox, localip, localport);
 		}
 		try {// Se envia la orden al server
 			Socket socket = new Socket(serverip, serverport);
@@ -99,45 +101,5 @@ public class Controller_Emisor_Empleado implements ActionListener, WindowListene
 		}
 	}
 
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

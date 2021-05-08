@@ -28,6 +28,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Label;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 public class VentanaEmpleado implements IVista {
 
@@ -39,6 +41,7 @@ public class VentanaEmpleado implements IVista {
 	private JLabel lblNroBox;
 	private JMenu menuBox;
 	private ActionListener actionListener;
+	private JLabel labelBox;
 	/**
 	 * Create the application.
 	 */
@@ -51,11 +54,7 @@ public class VentanaEmpleado implements IVista {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosed(WindowEvent e) {
-			}
-		});
+		
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 694, 484);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,15 +62,25 @@ public class VentanaEmpleado implements IVista {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(0, 0, 173, 445);
+		panel.setBounds(0, 0, 174, 445);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel labelBox = new JLabel("BOX");
+		labelBox = new JLabel("Sesion no iniciada");
 		labelBox.setForeground(Color.WHITE);
-		labelBox.setFont(new Font("Cambria", Font.PLAIN, 30));
-		labelBox.setBounds(47, 200, 88, 34);
+		labelBox.setFont(new Font("Cambria", Font.PLAIN, 18));
+		labelBox.setBounds(10, 200, 153, 34);
 		panel.add(labelBox);
+		
+		JButton btnSalirBox = new JButton("Cerrar Sesion");
+		btnSalirBox.setActionCommand("CerrarSesion");
+		btnSalirBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				labelBox.setText("Sesion no iniciada");
+			}
+		});
+		btnSalirBox.setBounds(10, 378, 153, 23);
+		panel.add(btnSalirBox);
 		
 		menuBox = new JMenu("Seleccionar Box");
 		

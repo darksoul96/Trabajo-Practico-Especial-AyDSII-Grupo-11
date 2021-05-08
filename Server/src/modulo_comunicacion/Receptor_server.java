@@ -13,9 +13,9 @@ import gestion_ingreso.Cliente;
 import gestion_turnos.Servidor;
 
 public class Receptor_server {
-	PackageHandler packageHandler = new PackageHandler();
 
 	public void recibir() {
+		PackageHandler packageHandler = new PackageHandler();
 		new Thread() {
 			public void run() {
 				try {
@@ -41,12 +41,9 @@ public class Receptor_server {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden client = (Orden) objectInputStream.readObject();
-						System.out.println(client.executeOrder());
-						System.out.println(client.getNroBox());
-						packageHandler.handle(client);
-						System.out.println(packageHandler.handle(client).getSucess());
-						System.out.println(packageHandler.handle(client).getInfo());
-						soc.close();
+						OrdenResponsePackage response = packageHandler.handle(client);
+						System.out.println(response.getSucess());
+
 					}
 
 				} catch (Exception e) {

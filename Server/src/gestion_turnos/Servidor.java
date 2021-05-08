@@ -1,14 +1,16 @@
 package gestion_turnos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import gestion_ingreso.Cliente;
 
 public class Servidor {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
-	ArrayList<String> boxes = new ArrayList<String>();
+	Set<String> boxes = new HashSet<>();
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -48,10 +50,11 @@ public class Servidor {
 		return nextClient.getDNI();
 	}
 
-	public boolean registrarBox(String string) {
+	public boolean registrarBox(String box) {
 		boolean exito;
-		if (!boxes.contains(string)) {
-			boxes.add(string);
+		System.out.println("ENTRE AL METODO DE REGISTRARBOX");
+		if (!boxes.contains(box)) {
+			boxes.add(box);
 			exito = true;
 		} else {
 			exito = false;

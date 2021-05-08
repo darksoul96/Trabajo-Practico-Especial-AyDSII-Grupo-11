@@ -1,4 +1,4 @@
-package modulo_comunicacion;
+package comunicacionServer;
 
 import consultas_empleado.Orden;
 import gestion_ingreso.Cliente;

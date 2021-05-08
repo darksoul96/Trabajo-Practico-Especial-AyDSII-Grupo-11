@@ -15,8 +15,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.swing.JButton;
+
+import comunicacionServer.OrdenResponsePackage;
 import interfaces.IVista;
-import modulo_comunicacion.OrdenResponsePackage;
 import vista_empleado.VentanaEmpleado;
 
 public class Controller_Emisor_Empleado implements ActionListener{

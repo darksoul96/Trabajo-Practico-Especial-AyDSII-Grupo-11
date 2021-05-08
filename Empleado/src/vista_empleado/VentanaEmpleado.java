@@ -26,17 +26,19 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Label;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class VentanaEmpleado implements IVista {
 
 	private JFrame frame;
 	private JButton btnLlamar;
 	private JButton btnConsultar;
-	private JMenuItem i1, i2, i3, i4, i5;
-	private ActionListener actionListener;
 	private JButton btnValidarBox;
 	private ArrayList<JMenuItem> itemsMenu=new ArrayList<JMenuItem>();
 	private JLabel lblNroBox;
+	private JMenu menuBox;
+	private ActionListener actionListener;
 	/**
 	 * Create the application.
 	 */
@@ -49,6 +51,11 @@ public class VentanaEmpleado implements IVista {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+			}
+		});
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 694, 484);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +73,7 @@ public class VentanaEmpleado implements IVista {
 		labelBox.setBounds(47, 200, 88, 34);
 		panel.add(labelBox);
 		
-		JMenu menuBox = new JMenu("Seleccionar Box");
+		menuBox = new JMenu("Seleccionar Box");
 		
 		menuBox.setBackground(new Color(244, 164, 96));
 		menuBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
@@ -215,12 +222,15 @@ public class VentanaEmpleado implements IVista {
 	public void popUpSuccessRegistro() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Box seleccionado con exito");
+		this.menuBox.setEnabled(false);
 	}
 
 	@Override
 	public void popUpFailureRegistro() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Box en uso, por favor seleccione uno libre");
+		this.btnLlamar.setEnabled(false);
+		this.btnConsultar.setEnabled(false);
 	}
 
 	@Override

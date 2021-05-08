@@ -2,6 +2,8 @@ package consultas_empleado;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,7 +19,7 @@ import interfaces.IVista;
 import modulo_comunicacion.OrdenResponsePackage;
 import vista_empleado.VentanaEmpleado;
 
-public class Controller_Emisor_Empleado implements ActionListener {
+public class Controller_Emisor_Empleado implements ActionListener, WindowListener{
 
 	private String nroBox;
 	private IVista view;
@@ -95,5 +97,47 @@ public class Controller_Emisor_Empleado implements ActionListener {
 		} else if (respuesta.getType().equals("CONSULTAR")) {
 			this.view.poUpConsultaExitosa(respuesta.getInfo());
 		}
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -70,7 +70,11 @@ public class Servidor {
 			exito = false;
 		}
 		return exito;
-
+	}
+	
+	public void liberarBox(String box) {
+		if (boxes.contains(box))
+			boxes.remove(box);
 	}
 
 }

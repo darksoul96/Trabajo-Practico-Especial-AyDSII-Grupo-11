@@ -57,7 +57,8 @@ public class Receptor_server {
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden orden = (Orden) objectInputStream.readObject();
 						OrdenResponsePackage response = packageHandler.handle(orden);
-						enviarBox(orden, response);
+						if (!response.type.equals("Baja"))
+							enviarBox(orden, response);
 						if (response.type.equals("LLAMAR")) {
 							enviarPantalla(Servidor.getInstance().getLastCalledClient());
 						}

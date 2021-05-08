@@ -16,12 +16,16 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 public class VentanaPantalla implements IVista{
 
 	private JFrame frame;
 	private JFrame frameConfig;
-	private JTextArea textArea;
+	private JTextPane textPane;
+	private JTextPane textPane2;
 
 	/**
 	 * Create the application.
@@ -68,9 +72,20 @@ public class VentanaPantalla implements IVista{
 		lblNewLabel_1.setBounds(117, 11, 128, 38);
 		panel_2.add(lblNewLabel_1);
 		
-		textArea = new JTextArea();
-		textArea.setBounds(10, 83, 664, 414);
-		frame.getContentPane().add(textArea);
+		textPane = new JTextPane();
+		textPane.setBounds(10, 83, 323, 389);
+		frame.getContentPane().add(textPane);
+		
+		textPane2 = new JTextPane();
+		textPane2.setBounds(351, 83, 323, 389);
+		frame.getContentPane().add(textPane2);
+		
+		
+		SimpleAttributeSet atributos = new SimpleAttributeSet();
+		StyleConstants.setAlignment(atributos, StyleConstants.ALIGN_CENTER);
+		textPane.setParagraphAttributes(atributos, true);
+		textPane2.setParagraphAttributes(atributos, true);
+
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -113,7 +128,8 @@ public class VentanaPantalla implements IVista{
 				btnLimpiar.setBounds(17, 178, 161, 23);
 				btnLimpiar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						textArea.setText("");
+						textPane.setText("");
+						textPane2.setText("");
 					}
 				});
 				
@@ -123,8 +139,11 @@ public class VentanaPantalla implements IVista{
 				btnAplicar.setBounds(207, 178, 116, 23);
 				btnAplicar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (textFieldTamano.getText()!="")
-							textArea.setFont(new Font("Arial Black", Font.PLAIN, Integer.parseInt(textFieldTamano.getText())));
+						int tamano=Integer.parseInt(textFieldTamano.getText());
+						if (textFieldTamano.getText()!="" && tamano<45) {
+							textPane.setFont(new Font("Arial", Font.PLAIN, tamano));
+							textPane2.setFont(new Font("Arial", Font.PLAIN, tamano));
+						}
 					}
 				});
 				panel22.add(btnAplicar);
@@ -133,8 +152,12 @@ public class VentanaPantalla implements IVista{
 				btnAceptar.setBounds(345, 178, 116, 23);
 				btnAceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (textFieldTamano.getText()!="")
-							textArea.setFont(new Font("Arial Black", Font.PLAIN, Integer.parseInt(textFieldTamano.getText())));
+						int tamano=Integer.parseInt(textFieldTamano.getText());
+						if (textFieldTamano.getText()!="" && tamano<45) {
+							textPane.setFont(new Font("Arial", Font.PLAIN, tamano));
+							textPane2.setFont(new Font("Arial", Font.PLAIN, tamano));
+						}
+							
 						frameConfig.setVisible(false);
 						frame.setVisible(true);
 					}
@@ -162,6 +185,7 @@ public class VentanaPantalla implements IVista{
 	@Override
 	public void escribeTurno(String dni, String box) {
 		// TODO Auto-generated method stub
-		this.textArea.append(dni+"\t\t\t\t"+box+"\n");
+		this.textPane.setText(this.textPane.getText()+dni);
+		this.textPane2.setText(this.textPane2.getText()+box);
 	}
 }

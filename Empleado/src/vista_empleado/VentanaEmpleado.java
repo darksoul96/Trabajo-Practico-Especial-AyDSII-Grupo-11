@@ -16,6 +16,8 @@ import interfaces.IVista;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -30,7 +32,8 @@ public class VentanaEmpleado implements IVista {
 	private JButton btnConsultar;
 	private JMenuItem i1, i2, i3, i4, i5;
 	private ActionListener actionListener;
-
+	private JButton btnNewButton;
+	private ArrayList<JMenuItem> itemsMenu=new ArrayList<JMenuItem>();
 
 	/**
 	 * Create the application.
@@ -62,6 +65,12 @@ public class VentanaEmpleado implements IVista {
 		panel.add(labelBox);
 		
 		JMenu menuBox = new JMenu("Seleccionar Box");
+		menuBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JMenuItem a=(JMenuItem) e.getSource();
+				menuBox.setText("Hola");//a.getName());
+			}
+		});
 		menuBox.setBackground(new Color(244, 164, 96));
 		menuBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBox.setForeground(new Color(0, 0, 0));
@@ -112,70 +121,34 @@ public class VentanaEmpleado implements IVista {
 		label.setBounds(134, 67, 318, 22);
 		panel_2.add(label);
 	
+	
 		
-		i1=new JMenuItem("Box 1");
-		i1.setName("1");
-		i1.setActionCommand("SeleccionBox");
-		i1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX 1");
-				btnLlamar.setEnabled(true);
-				btnConsultar.setEnabled(true);
-				label.setText("");
-			}
-		});
-		i2=new JMenuItem("Box 2");
-		i2.setName("2");
-		i2.setActionCommand("SeleccionBox");
-		i2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX 2");
-				btnLlamar.setEnabled(true);
-				btnConsultar.setEnabled(true);
-				label.setText("");
-			}
-		});
-		i3=new JMenuItem("Box 3");
-		i3.setName("3");
-		i3.setActionCommand("SeleccionBox");
-		i3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX 3");
-				btnLlamar.setEnabled(true);
-				btnConsultar.setEnabled(true);
-				label.setText("");
-			}
-		});
-		i4=new JMenuItem("Box 4");
-		i4.setName("4");
-		i4.setActionCommand("SeleccionBox");
-		i4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX 4");
-				btnLlamar.setEnabled(true);
-				btnConsultar.setEnabled(true);
-				label.setText("");
-			}
-		});
-		i5=new JMenuItem("Box 5");
-		i5.setName("5");
-		i5.setActionCommand("SeleccionBox");
-		i5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX 5");
-				btnLlamar.setEnabled(true);
-				btnConsultar.setEnabled(true);
-				label.setText("");
-			}
-		});
-		menuBox.add(i1);
-		menuBox.add(i2);
-		menuBox.add(i3);
-		menuBox.add(i4);
-		menuBox.add(i5);
+		for (int j=0;j<8;j++) {
+			itemsMenu.add(new JMenuItem("Box "+(j+1)));
+			itemsMenu.get(j).setName(String.valueOf(j+1));
+			String a=itemsMenu.get(j).getName();
+			itemsMenu.get(j).addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e)
+			    {
+			        menuBox.setText(a);
+			    }
+			});
+			
+			
+			menuBox.add(itemsMenu.get(j));
+		}
+	
 		JMenuBar mb=new JMenuBar(); 
 		mb.add(menuBox);
 		this.frame.setJMenuBar(mb);
+		
+		btnNewButton = new JButton("Validar Box");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				labelBox.setText("BOX "+menuBox.getText());
+			}
+		});
+		mb.add(btnNewButton);
 		
 		
 	}
@@ -205,6 +178,11 @@ public class VentanaEmpleado implements IVista {
 		this.btnLlamar.addActionListener(actionListener);
 		this.btnConsultar.addActionListener(actionListener);
 		this.actionListener = actionListener;
+		for (int i=0;i<8;i++) {
+			JMenuItem a=this.itemsMenu.get(i);
+			a.addActionListener(actionListener);
+		}
+		
 	}
 
 	@Override

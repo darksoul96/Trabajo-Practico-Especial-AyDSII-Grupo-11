@@ -9,6 +9,7 @@ public class MainPantalla {
 
 	public static void main(String[] args) {
 		ControllerPantallaComunicacion controller = new ControllerPantallaComunicacion();
+		controller.recibir();
 		
 	}
 

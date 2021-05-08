@@ -34,7 +34,7 @@ public class PackageHandler {
 			response = new OrdenResponsePackage(true, "CONSULTAR",
 					Integer.toString(Servidor.getInstance().consultarTurnosRestantes()));
 			return response;
-		} else if (orden.executeOrder().equals("Baja")) {
+		} else if (orden.executeOrder().equals("BAJA")) {
 			Servidor.getInstance().liberarBox(orden.getNroBox());
 		}
 		return response;

@@ -10,7 +10,7 @@ public class OrdenFactory {
 			orden = new Llamar(nroBox, ip, port);
 		} else if (OrdenType.equals("CONSULTAR")) {
 			orden = new Consultar(nroBox, ip, port);
-		} else if (OrdenType.equals("Baja"))
+		} else if (OrdenType.equals("BAJA"))
 			orden = new Baja(nroBox, ip, port);
 		return orden;
 	}

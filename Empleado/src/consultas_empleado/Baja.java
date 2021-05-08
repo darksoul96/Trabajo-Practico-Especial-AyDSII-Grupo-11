@@ -10,7 +10,7 @@ public class Baja extends Orden {
 	@Override
 	public String executeOrder() {
 		// TODO Auto-generated method stub
-		return "Baja";
+		return "BAJA";
 	}
 
 }

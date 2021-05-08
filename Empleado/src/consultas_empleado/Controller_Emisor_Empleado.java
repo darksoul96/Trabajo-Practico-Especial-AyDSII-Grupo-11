@@ -53,7 +53,7 @@ public class Controller_Emisor_Empleado implements ActionListener{
 		} else if (command.equalsIgnoreCase("CONSULTAR")) {
 			orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
 		} else if (command.equalsIgnoreCase("CerrarSesion")) {
-			orden = factory.createOrden("Baja", nroBox, localip, localport);
+			orden = factory.createOrden("BAJA", nroBox, localip, localport);
 		}
 		try {// Se envia la orden al server
 			Socket socket = new Socket(serverip, serverport);

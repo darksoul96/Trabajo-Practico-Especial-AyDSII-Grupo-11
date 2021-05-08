@@ -10,4 +10,6 @@ public interface IVista {
 	public void setVisibleVentana();
 
 	public void popUpNotConnected();
+	
+	public String getNroBox();
 }

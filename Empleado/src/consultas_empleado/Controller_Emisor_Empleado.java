@@ -32,7 +32,7 @@ public class Controller_Emisor_Empleado implements ActionListener {
 		String command = e.getActionCommand();
 		if (command.equalsIgnoreCase("SeleccionBox")) {
 			JButton a = (JButton) e.getSource();
-			nroBox = a.getText();
+			nroBox = this.view.getNroBox();
 			orden = factory.createOrden("SeleccionBox", nroBox);
 		} else if (command.equalsIgnoreCase("LLAMAR")) {
 			orden = factory.createOrden("LLAMAR", nroBox);
@@ -48,6 +48,7 @@ public class Controller_Emisor_Empleado implements ActionListener {
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			this.view.popUpNotConnected();
 		}
 
 	}

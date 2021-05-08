@@ -57,7 +57,15 @@ public class Receptor_server {
 							e1.printStackTrace();
 						}
 						if (response.type.equals("LLAMAR")) {
-							
+							try {
+								Socket socket = new Socket("localhost",5200);
+								OutputStream outputStream = socket.getOutputStream();
+								ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+								objectOutputStream.writeObject(Servidor.getInstance().getLastCalledClient());
+								socket.close();
+							}catch (Exception e1) {
+								e1.printStackTrace();
+							}
 						}
 
 					}

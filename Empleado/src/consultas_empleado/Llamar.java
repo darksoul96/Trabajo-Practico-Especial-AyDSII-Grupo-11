@@ -1,8 +1,8 @@
 package consultas_empleado;
 
-public class LLamar extends Orden {
+public class Llamar extends Orden {
 
-	public LLamar(int nroBox) {
+	public Llamar(String nroBox) {
 		super(nroBox);
 		// TODO Auto-generated constructor stub
 	}

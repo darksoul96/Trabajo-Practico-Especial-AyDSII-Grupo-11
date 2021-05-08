@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 public abstract class Orden implements Serializable {
 
-	int nroBox;
+	String nroBox;
 
-	public Orden(int nroBox) {
+	public Orden(String nroBox) {
 		super();
 		this.nroBox = nroBox;
 	}
 
-	public int getNroBox() {
+	public String getNroBox() {
 		return nroBox;
 	}
 
-	public void setNroBox(int nroBox) {
+	public void setNroBox(String nroBox) {
 		this.nroBox = nroBox;
 	}
 

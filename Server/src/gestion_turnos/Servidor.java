@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.locks.Lock;
-
-import consultas_empleado.Empleado;
 import gestion_ingreso.Cliente;
 
 public class Servidor {

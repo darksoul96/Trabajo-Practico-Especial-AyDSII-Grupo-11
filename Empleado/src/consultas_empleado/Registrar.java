@@ -2,7 +2,7 @@ package consultas_empleado;
 
 public class Registrar extends Orden {
 
-	public Registrar(int nroBox) {
+	public Registrar(String nroBox) {
 		super(nroBox);
 		// TODO Auto-generated constructor stub
 	}

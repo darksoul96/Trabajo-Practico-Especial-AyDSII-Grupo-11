@@ -2,7 +2,7 @@ package consultas_empleado;
 
 public class Consultar extends Orden {
 	
-	public Consultar(int nroBox) {
+	public Consultar(String nroBox) {
 		super(nroBox);
 	}
 

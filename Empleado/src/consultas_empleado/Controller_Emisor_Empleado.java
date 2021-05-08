@@ -10,69 +10,46 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import javax.swing.JButton;
-
 import interfaces.IVista;
 import vista_empleado.VentanaEmpleado;
 
 public class Controller_Emisor_Empleado implements ActionListener {
 
-	private String strBox;
+	private String nroBox;
 	private IVista view;
-	
-	
+	private Orden orden;
 
 	public Controller_Emisor_Empleado() {
-		super();		
+		super();
 		this.view = new VentanaEmpleado();
 		this.view.setActionListener(this);
 		this.view.setVisibleVentana();
 	}
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		OrdenFactory factory = new OrdenFactory();
+		Orden orden = null;
 		String command = e.getActionCommand();
-
 		if (command.equalsIgnoreCase("SeleccionBox")) {
-			JButton a=(JButton) e.getSource();
-			//strBox = a.getText();
-			strBox="Hola";
-			try {
-				Socket socket = new Socket("localhost", 5006);
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println("Hola");//strBox+" Registrar");
-				out.close();
-				socket.close();
-
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			JButton a = (JButton) e.getSource();
+			nroBox = a.getText();
+			orden = factory.createOrden("SeleccionBox", nroBox);
 		} else if (command.equalsIgnoreCase("LLAMAR")) {
-			try {
-				Socket socket = new Socket("localhost", 5006);
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println("Hello");
-				out.close();
-				socket.close();
-
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			orden = factory.createOrden("LLAMAR", nroBox);
 		} else if (command.equalsIgnoreCase("CONSULTAR")) {
-			try {
-				Socket socket = new Socket("localhost", 5006);
-				PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				out.println("Consultar");
-				out.close();
-				socket.close();
+			orden = factory.createOrden("CONSULTAR", nroBox);
+		}
+		try {
+			Socket socket = new Socket("localhost", 5006);
+			OutputStream outputStream = socket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(orden);
+			System.out.println("cabixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxos");
+			socket.close();
 
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 	}

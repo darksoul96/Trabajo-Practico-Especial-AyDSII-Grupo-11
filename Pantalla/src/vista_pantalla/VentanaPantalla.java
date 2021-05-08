@@ -124,7 +124,7 @@ public class VentanaPantalla implements IVista{
 				btnAplicar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (textFieldTamano.getText()!="")
-							textArea.setFont(new Font("Arial Black", Font.BOLD, Integer.parseInt(textFieldTamano.getText())));
+							textArea.setFont(new Font("Arial Black", Font.PLAIN, Integer.parseInt(textFieldTamano.getText())));
 					}
 				});
 				panel22.add(btnAplicar);
@@ -134,7 +134,7 @@ public class VentanaPantalla implements IVista{
 				btnAceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (textFieldTamano.getText()!="")
-							textArea.setFont(new Font("Arial Black", Font.BOLD, Integer.parseInt(textFieldTamano.getText())));
+							textArea.setFont(new Font("Arial Black", Font.PLAIN, Integer.parseInt(textFieldTamano.getText())));
 						frameConfig.setVisible(false);
 						frame.setVisible(true);
 					}
@@ -162,6 +162,6 @@ public class VentanaPantalla implements IVista{
 	@Override
 	public void escribeTurno(String dni, String box) {
 		// TODO Auto-generated method stub
-		this.textArea.append(dni+box);
+		this.textArea.append(dni+"\t\t\t\t"+box+"\n");
 	}
 }

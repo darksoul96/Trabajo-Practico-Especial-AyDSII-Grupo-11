@@ -74,10 +74,15 @@ public class VentanaEmpleado implements IVista {
 		panel.add(labelBox);
 		
 		btnSalirBox = new JButton("Cerrar Sesion");
+		btnSalirBox.setEnabled(false);
 		btnSalirBox.setActionCommand("CerrarSesion");
 		btnSalirBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				labelBox.setText("Sesion no iniciada");
+				menuBox.setEnabled(true);
+				btnLlamar.setEnabled(false);
+				btnConsultar.setEnabled(false);
+				btnSalirBox.setEnabled(false);
 			}
 		});
 		btnSalirBox.setBounds(10, 378, 153, 23);
@@ -173,6 +178,7 @@ public class VentanaEmpleado implements IVista {
 				menuBox.setText("Cambiar Box");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
+				btnSalirBox.setEnabled(true);
 			}
 		});
 		mb.add(btnValidarBox);

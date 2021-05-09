@@ -185,7 +185,7 @@ public class VentanaPantalla implements IVista{
 	@Override
 	public void escribeTurno(String dni, String box) {
 		// TODO Auto-generated method stub
-		this.textPane.setText(this.textPane.getText()+dni);
-		this.textPane2.setText(this.textPane2.getText()+box);
+		this.textPane.setText(this.textPane.getText()+dni+"\n");
+		this.textPane2.setText(this.textPane2.getText()+box+"\n");
 	}
 }

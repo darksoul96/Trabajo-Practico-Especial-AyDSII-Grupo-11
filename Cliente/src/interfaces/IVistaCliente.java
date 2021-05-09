@@ -2,7 +2,7 @@ package interfaces;
 
 import java.awt.event.ActionListener;
 
-public interface IVista {
+public interface IVistaCliente {
 
 	public String getTextoDNI();
 

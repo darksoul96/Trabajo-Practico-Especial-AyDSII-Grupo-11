@@ -10,12 +10,12 @@ import java.io.PrintWriter;
 import java.net.*;
 
 import interfaces.ComunicacionCliente;
-import interfaces.IVista;
+import interfaces.IVistaCliente;
 import vista_cliente.VentanaCliente;
 
 public class Controller_Emisor_Cliente implements ActionListener,ComunicacionCliente {
 
-	private IVista view;
+	private IVistaCliente view;
 	private String DNI;
 	private String ip;
 	private int port;

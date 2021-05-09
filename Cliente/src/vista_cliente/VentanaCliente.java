@@ -11,7 +11,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 
-import interfaces.IVista;
+import interfaces.IVistaCliente;
 
 import java.awt.Font;
 import javax.swing.JTextPane;
@@ -28,7 +28,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 
-public class VentanaCliente implements IVista {
+public class VentanaCliente implements IVistaCliente {
 
 	private JFrame frame;
 	private JFormattedTextField textFieldDNI;

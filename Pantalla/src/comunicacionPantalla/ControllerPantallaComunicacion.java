@@ -10,9 +10,10 @@ import java.net.Socket;
 
 import ingreso.Cliente;
 import interfaces.ComunicacionPantalla;
+import interfaces.Exhibicion;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerPantallaComunicacion implements ComunicacionPantalla{
+public class ControllerPantallaComunicacion implements ComunicacionPantalla, Exhibicion{
 	int pantallaSocket;
 	private VentanaPantalla view;
 
@@ -32,7 +33,7 @@ public class ControllerPantallaComunicacion implements ComunicacionPantalla{
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						handle(client);
+						mostrarPantalla(client);
 					}
 
 				} catch (Exception e) {
@@ -42,7 +43,8 @@ public class ControllerPantallaComunicacion implements ComunicacionPantalla{
 		}.start();
 	}
 
-	public void handle(Cliente cliente) {
+	public void mostrarPantalla(Cliente cliente) {
 		this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
 	}
+
 }

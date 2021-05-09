@@ -15,7 +15,7 @@ public class MainEmpleado {
 
 	public static void main(String[] args) {
 		try {
-			File myObj = new File("NetConfig.txt");
+			File myObj = new File("NetConfigEmpleado.txt");
 			Scanner myReader = new Scanner(myObj);
 			serverip = myReader.nextLine();
 			serverport = Integer.parseInt(myReader.nextLine());
@@ -23,7 +23,7 @@ public class MainEmpleado {
 			localport = Integer.parseInt(myReader.nextLine());
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("NetConfig.txt not found.");
+			System.out.println("NetConfigEmpleado.txt not found.");
 			e.printStackTrace();
 		}
 		

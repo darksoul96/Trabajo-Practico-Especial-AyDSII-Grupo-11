@@ -14,13 +14,13 @@ public class MainCliente {
 
 	public static void main(String[] args) {
 		try {
-			File myObj = new File("NetConfig.txt");
+			File myObj = new File("NetConfigCliente.txt");
 			Scanner myReader = new Scanner(myObj);
 			ip = myReader.nextLine();
 			port = Integer.parseInt(myReader.nextLine());
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("NetConfig.txt not found.");
+			System.out.println("NetConfigCliente.txt not found.");
 			e.printStackTrace();
 		}
 		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);

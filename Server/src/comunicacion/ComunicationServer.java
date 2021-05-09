@@ -34,7 +34,7 @@ public class ComunicationServer {
 		new Thread() {
 			public void run() { // Puerto para recibir peticiones desde la Estacion Cliente
 				try {
-					ServerSocket s = new ServerSocket(5005);
+					ServerSocket s = new ServerSocket(portReceptorCliente);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();
@@ -50,7 +50,7 @@ public class ComunicationServer {
 		new Thread() {
 			public void run() { // Abro puerto para recibir peticiones desde los Boxes
 				try {
-					ServerSocket s = new ServerSocket(5006);
+					ServerSocket s = new ServerSocket(portReceptorEmpleado);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();

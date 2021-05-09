@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import ingreso.Controller_Emisor_Cliente;
@@ -25,6 +26,7 @@ public class MainCliente {
 		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);
 		emisor.crearVentana();
 
+		
 	}
 
 }

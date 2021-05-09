@@ -14,12 +14,14 @@ import ingreso.Cliente;
 import interfaces.ComunicacionServer;
 import ordenes.Orden;
 import repository.Servidor;
+import vista.VentanaServer;
 
 public class ServerCommunication implements ComunicacionServer {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
 	String ipPantalla;
+	VentanaServer ventanaServer;
 
 	public ServerCommunication(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla) {
@@ -30,6 +32,11 @@ public class ServerCommunication implements ComunicacionServer {
 		this.ipPantalla = ipPantalla;
 	}
 
+	
+	public void ejecutarVentana() {
+		ventanaServer=new VentanaServer();
+		this.ventanaServer.setVisibleVentana();
+	}
 	@Override
 	public void recibir() { // Abro el server para recibir
 		PackageHandler packageHandler = new PackageHandler();

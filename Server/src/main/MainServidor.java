@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import comunicacion.ServerCommunication;
@@ -28,7 +29,10 @@ public class MainServidor {
 		}
 		ServerCommunication receptor = new ServerCommunication(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
 				ipPantalla);
+		receptor.ejecutarVentana();
 		receptor.recibir();
 		System.out.println("SERVIDOR ANDANDO");
+		
+		
 	}
 }

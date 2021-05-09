@@ -83,6 +83,7 @@ public class VentanaEmpleado implements IVistaEmpleado {
 				btnLlamar.setEnabled(false);
 				btnConsultar.setEnabled(false);
 				btnSalirBox.setEnabled(false);
+				btnValidarBox.setEnabled(true);
 			}
 		});
 		btnSalirBox.setBounds(10, 378, 153, 23);
@@ -179,6 +180,8 @@ public class VentanaEmpleado implements IVistaEmpleado {
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
 				btnSalirBox.setEnabled(true);
+				if(lblNroBox.getText().equals(""))
+					labelBox.setText("Sesion no iniciada");
 			}
 		});
 		mb.add(btnValidarBox);
@@ -240,6 +243,7 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Box seleccionado con exito");
 		this.menuBox.setEnabled(false);
+		this.btnValidarBox.setEnabled(false);
 	}
 
 	@Override
@@ -248,6 +252,8 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		JOptionPane.showMessageDialog(null, "Box en uso, por favor seleccione uno libre");
 		this.btnLlamar.setEnabled(false);
 		this.btnConsultar.setEnabled(false);
+		this.lblNroBox.setText("");
+		labelBox.setText("Sesion no iniciada");
 	}
 
 	@Override

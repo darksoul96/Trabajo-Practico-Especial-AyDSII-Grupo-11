@@ -32,6 +32,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 	private int serverport;
 	private int localport;
 	private boolean serverOnline = true;
+	private boolean registrado;
 
 	public ControllerComunicacionEmpleado(int serverport, String serverip, String localip, int localport) {
 		super();
@@ -39,6 +40,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		this.serverip = serverip;
 		this.localport = localport;
 		this.localip = localip;
+		this.registrado = false;
 
 	}
 
@@ -54,17 +56,20 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		Orden orden = null;
 		String command = e.getActionCommand();
 		if (command.equalsIgnoreCase("SeleccionBox")) {
-			nroBox = this.view.getNroBox();
-			orden = factory.createOrden("SeleccionBox", nroBox, localip, localport);
-		} else if (command.equalsIgnoreCase("LLAMAR")) {
-			orden = factory.createOrden("LLAMAR", nroBox, localip, localport);
-		} else if (command.equalsIgnoreCase("CONSULTAR")) {
-			orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
-		} else if (command.equalsIgnoreCase("CerrarSesion")) {
-			orden = factory.createOrden("BAJA", nroBox, localip, localport);
+			orden = factory.createOrden("SeleccionBox", view.getNroBox(), localip, localport);
+		} else if (this.registrado) {
+			if (command.equalsIgnoreCase("LLAMAR")) {
+				orden = factory.createOrden("LLAMAR", nroBox, localip, localport);
+			} else if (command.equalsIgnoreCase("CONSULTAR")) {
+				orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
+			} else if (command.equalsIgnoreCase("CerrarSesion")) {
+				orden = factory.createOrden("BAJA", nroBox, localip, localport);
+				this.registrado = false;
+			}
 		}
-		enviar(orden);
-		if (this.serverOnline) {
+		if(orden!=null)
+			enviar(orden);
+		if (this.serverOnline && orden!=null) {
 			OrdenResponsePackage respuesta = recibir();
 			handle(respuesta);
 		}
@@ -108,6 +113,8 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 	public void handle(OrdenResponsePackage respuesta) {
 		if (respuesta.getType().equals("REGISTRAR")) {
 			if (respuesta.getSucess() == true) {
+				this.nroBox = respuesta.getInfo();
+				this.registrado = true;
 				this.view.popUpSuccessRegistro();
 			} else
 				this.view.popUpFailureRegistro();

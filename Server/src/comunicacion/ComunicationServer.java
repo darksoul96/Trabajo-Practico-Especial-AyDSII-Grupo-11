@@ -9,12 +9,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import ingreso.Cliente;
+import interfaces.Comunicacion;
+import interfaces.Notificacion;
 import ordenes.Orden;
 import repository.Servidor;
 
-public class ComunicationServer {
+public class ComunicationServer implements Comunicacion {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;

@@ -8,8 +8,10 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
 import ingreso.Cliente;
+import interfaces.Notificacion;
+import interfaces.Registro;
 
-public class Servidor {
+public class Servidor implements Registro, Notificacion {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;
@@ -37,10 +39,7 @@ public class Servidor {
 	public void registrarPedidoDeTurno(Cliente cliente) {
 		if (!clientes.contains(cliente)) {
 			clientes.add(cliente);
-		} else {
-			System.out.println("YA LO CONTENIA");
-		}
-
+		} 
 	}
 
 	public Cliente llamarSiguiente(String box) {

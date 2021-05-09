@@ -2,13 +2,13 @@ package ordenes;
 
 import java.io.Serializable;
 
-public abstract class Orden implements Serializable {
+public abstract class Orden implements Serializable, OrdenEmpleado {
 
 	String nroBox;
 	String ip;
 	int port;
 
-	public Orden(String nroBox, String ip,int port) {
+	public Orden(String nroBox, String ip, int port) {
 		super();
 		this.nroBox = nroBox;
 		this.ip = ip;
@@ -30,7 +30,7 @@ public abstract class Orden implements Serializable {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
+
 	public int getPort() {
 		return port;
 	}

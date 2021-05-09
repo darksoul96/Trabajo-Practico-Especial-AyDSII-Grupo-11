@@ -17,12 +17,13 @@ import java.net.Socket;
 import javax.swing.JButton;
 
 import comunicacion.OrdenResponsePackage;
+import interfaces.ComunicacionEmpleado;
 import interfaces.IVista;
 import ordenes.Orden;
 import ordenes.OrdenFactory;
 import vista_empleado.VentanaEmpleado;
 
-public class ControllerComunicacionEmpleado implements ActionListener{
+public class ControllerComunicacionEmpleado implements ActionListener, ComunicacionEmpleado {
 
 	private String nroBox;
 	private IVista view;
@@ -58,6 +59,13 @@ public class ControllerComunicacionEmpleado implements ActionListener{
 		} else if (command.equalsIgnoreCase("CerrarSesion")) {
 			orden = factory.createOrden("BAJA", nroBox, localip, localport);
 		}
+		enviar(orden);
+		OrdenResponsePackage respuesta = recibir();
+		handle(respuesta);
+	}
+	
+	@Override
+	public void enviar(Orden orden) {
 		try {// Se envia la orden al server
 			Socket socket = new Socket(serverip, serverport);
 			OutputStream outputStream = socket.getOutputStream();
@@ -69,24 +77,27 @@ public class ControllerComunicacionEmpleado implements ActionListener{
 			e1.printStackTrace();
 			this.view.popUpNotConnected();
 		}
+	}
+
+	@Override
+	public OrdenResponsePackage recibir() {
+		OrdenResponsePackage respuesta = null;
 		try { // SE ABRE UN PUERTO SERVER PARA ESCUCHAR LA RESPUESTA
 			ServerSocket s = new ServerSocket(localport);
 			while (true) {
 				Socket soc = s.accept();
 				InputStream inputStream = soc.getInputStream();
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-				OrdenResponsePackage respuesta = (OrdenResponsePackage) objectInputStream.readObject();
-				System.out.println(respuesta.getType());
-				handle(respuesta);
+				respuesta = (OrdenResponsePackage) objectInputStream.readObject();
 				s.close();
 
 			}
 		} catch (Exception e2) {
 			e2.getStackTrace();
 		}
-
+		return respuesta;
 	}
-	
+
 	public void handle(OrdenResponsePackage respuesta) {
 		if (respuesta.getType().equals("REGISTRAR")) {
 			if (respuesta.getSucess() == true) {
@@ -104,5 +115,4 @@ public class ControllerComunicacionEmpleado implements ActionListener{
 		}
 	}
 
-	
 }

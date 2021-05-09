@@ -14,13 +14,13 @@ import ingreso.Cliente;
 import ordenes.Orden;
 import repository.Servidor;
 
-public class ComunicationServer {
+public class ServerCommunication {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
 	String ipPantalla;
 
-	public ComunicationServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
+	public ServerCommunication(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;

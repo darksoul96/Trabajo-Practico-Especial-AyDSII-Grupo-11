@@ -9,10 +9,11 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.*;
 
+import interfaces.ComunicacionCliente;
 import interfaces.IVista;
 import vista_cliente.VentanaCliente;
 
-public class Controller_Emisor_Cliente implements ActionListener {
+public class Controller_Emisor_Cliente implements ActionListener,ComunicacionCliente {
 
 	private IVista view;
 	private String DNI;
@@ -49,18 +50,22 @@ public class Controller_Emisor_Cliente implements ActionListener {
 
 		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI = (view.getTextoDNI());
-			try {
-				Socket socket = new Socket("localhost", 5005);
-				OutputStream outputStream = socket.getOutputStream();
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(new Cliente(DNI));
-				socket.close();
-
-			} catch (Exception e1) {
-				view.popUpNotConnected();
-			}
+			enviarCliente(new Cliente(DNI));
 		}
 
+	}
+
+	public void enviarCliente(Cliente cliente) {
+		try {
+			Socket socket = new Socket("localhost", 5005);
+			OutputStream outputStream = socket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(new Cliente(DNI));
+			socket.close();
+
+		} catch (Exception e1) {
+			view.popUpNotConnected();
+		}
 	}
 
 }

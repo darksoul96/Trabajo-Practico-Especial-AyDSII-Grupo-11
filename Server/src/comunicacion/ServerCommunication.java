@@ -30,6 +30,7 @@ public class ServerCommunication implements ComunicacionServer {
 		this.ipPantalla = ipPantalla;
 	}
 
+	@Override
 	public void recibir() { // Abro el server para recibir
 		PackageHandler packageHandler = new PackageHandler();
 		new Thread() {
@@ -72,6 +73,7 @@ public class ServerCommunication implements ComunicacionServer {
 		}.start();
 	}
 
+	@Override
 	public void enviarBox(Orden orden, OrdenResponsePackage response) { // Me intento comunicar con el box
 		try {
 			Socket socket = new Socket(orden.getIp(), orden.getPort());
@@ -85,6 +87,7 @@ public class ServerCommunication implements ComunicacionServer {
 		}
 	}
 
+	@Override
 	public void enviarPantalla(Cliente cliente) {
 		try {
 			Socket socket = new Socket("localhost", 5200);

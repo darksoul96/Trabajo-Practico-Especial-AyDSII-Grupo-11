@@ -8,7 +8,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import interfaces.IVista;
+import interfaces.IVistaPantalla;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -32,7 +32,7 @@ import java.awt.event.ContainerEvent;
 
 
 
-public class VentanaPantalla implements IVista{
+public class VentanaPantalla implements IVistaPantalla{
 
 	private JFrame frame;
 	private JFrame frameConfig;

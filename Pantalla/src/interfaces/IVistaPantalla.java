@@ -2,7 +2,7 @@ package interfaces;
 
 import java.awt.event.ActionListener;
 
-public interface IVista {
+public interface IVistaPantalla {
 
 	
 	public void setActionListener(ActionListener actionListener);

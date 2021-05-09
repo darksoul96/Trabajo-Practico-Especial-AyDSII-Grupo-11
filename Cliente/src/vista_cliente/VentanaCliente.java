@@ -229,6 +229,15 @@ public class VentanaCliente implements IVista {
 		btn0.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn0.setBounds(82, 273, 42, 23);
 		panel_1.add(btn0);
+		
+		JButton btnBorrarDNI = new JButton("Borrar");
+		btnBorrarDNI.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldDNI.setText(String.valueOf(0));
+			}
+		});
+		btnBorrarDNI.setBounds(61, 299, 89, 23);
+		panel_1.add(btnBorrarDNI);
 
 		// JLabel label= new JLabel();
 		// label.setIcon(new
@@ -245,6 +254,7 @@ public class VentanaCliente implements IVista {
 	@Override
 	public void setActionListener(ActionListener actionListener) {
 		this.btnIngresarDNI.addActionListener(actionListener);
+		this.textFieldDNI.addActionListener(actionListener);
 		this.actionListener = actionListener;
 	}
 

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -13,12 +14,19 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat.Style;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
+
+
 
 public class VentanaPantalla implements IVista{
 
@@ -39,6 +47,7 @@ public class VentanaPantalla implements IVista{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 700, 547);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -74,18 +83,23 @@ public class VentanaPantalla implements IVista{
 		
 		textPane = new JTextPane();
 		textPane.setBounds(10, 83, 323, 389);
-		frame.getContentPane().add(textPane);
 		
+
 		textPane2 = new JTextPane();
 		textPane2.setBounds(351, 83, 323, 389);
-		frame.getContentPane().add(textPane2);
 		
 		
 		SimpleAttributeSet atributos = new SimpleAttributeSet();
 		StyleConstants.setAlignment(atributos, StyleConstants.ALIGN_CENTER);
+		StyleConstants.setFontSize(atributos, 15);
 		textPane.setParagraphAttributes(atributos, true);
 		textPane2.setParagraphAttributes(atributos, true);
-
+		
+		
+		frame.getContentPane().add(textPane);
+		frame.getContentPane().add(textPane2);
+		
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -106,19 +120,10 @@ public class VentanaPantalla implements IVista{
 				frameConfig.getContentPane().add(panel22);
 				panel22.setLayout(null);
 				
-				//JTextField textFieldCantidad = new JTextField();
-				//textFieldCantidad.setBounds(277, 60, 140, 20);
-				//panel22.add(textFieldCantidad);
-				//textFieldCantidad.setColumns(10);
-				
 				JTextField textFieldTamano = new JTextField();
 				textFieldTamano.setBounds(277, 123, 140, 20);
 				panel22.add(textFieldTamano);
 				textFieldTamano.setColumns(10);
-				
-				//JLabel lblNewLabel = new JLabel("Cantidad de llamados");
-				//lblNewLabel.setBounds(28, 63, 150, 14);
-				//panel22.add(lblNewLabel);
 				
 				JLabel lblNewLabel_1 = new JLabel("Tama\u00F1o de letra");
 				lblNewLabel_1.setBounds(28, 126, 103, 14);
@@ -135,14 +140,42 @@ public class VentanaPantalla implements IVista{
 				
 				panel22.add(btnLimpiar);
 				
+				
+				JRadioButton bold=new JRadioButton();
+				JRadioButton plain=new JRadioButton();
+				
+				bold.setText("Bold");
+				bold.setSelected(false);
+				bold.setBounds(28, 20, 103, 14);
+				bold.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						StyleConstants.setBold(atributos, true);
+						plain.setSelected(false);
+					}
+				});
+				frameConfig.add(bold);
+				plain.setText("Plain Text");
+				plain.setSelected(false);
+				plain.setBounds(28, 40, 103, 14);
+				plain.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						StyleConstants.setBold(atributos, false);
+						bold.setSelected(false);
+					}
+				});
+				frameConfig.add(plain);
+				
 				JButton btnAplicar = new JButton("Aplicar");
 				btnAplicar.setBounds(207, 178, 116, 23);
 				btnAplicar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						int tamano=Integer.parseInt(textFieldTamano.getText());
-						if (textFieldTamano.getText()!="" && tamano<45) {
-							textPane.setFont(new Font("Arial", Font.PLAIN, tamano));
-							textPane2.setFont(new Font("Arial", Font.PLAIN, tamano));
+						if (!textFieldTamano.getText().equals("")) {
+							int tamano=Integer.parseInt(textFieldTamano.getText());
+							if (textFieldTamano.getText()!="" && tamano<45) {
+								StyleConstants.setFontSize(atributos, tamano);
+								textPane.setParagraphAttributes(atributos, true);
+								textPane2.setParagraphAttributes(atributos, true);
+							}
 						}
 					}
 				});
@@ -152,12 +185,15 @@ public class VentanaPantalla implements IVista{
 				btnAceptar.setBounds(345, 178, 116, 23);
 				btnAceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						int tamano=Integer.parseInt(textFieldTamano.getText());
-						if (textFieldTamano.getText()!="" && tamano<45) {
-							textPane.setFont(new Font("Arial", Font.PLAIN, tamano));
-							textPane2.setFont(new Font("Arial", Font.PLAIN, tamano));
+						if (!textFieldTamano.getText().equals("")) {
+							int tamano=Integer.parseInt(textFieldTamano.getText());
+							if (textFieldTamano.getText()!="" && tamano<45) {
+								StyleConstants.setFontSize(atributos, tamano);
+								textPane.setParagraphAttributes(atributos, true);
+								textPane2.setParagraphAttributes(atributos, true);
+							}
 						}
-							
+						
 						frameConfig.setVisible(false);
 						frame.setVisible(true);
 					}

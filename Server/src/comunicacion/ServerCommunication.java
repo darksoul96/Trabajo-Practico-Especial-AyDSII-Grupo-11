@@ -11,10 +11,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import ingreso.Cliente;
+import interfaces.ComunicacionServer;
 import ordenes.Orden;
 import repository.Servidor;
 
-public class ServerCommunication {
+public class ServerCommunication implements ComunicacionServer {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
@@ -34,7 +35,7 @@ public class ServerCommunication {
 		new Thread() {
 			public void run() { // Puerto para recibir peticiones desde la Estacion Cliente
 				try {
-					ServerSocket s = new ServerSocket(5005);
+					ServerSocket s = new ServerSocket(portReceptorCliente);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();
@@ -50,7 +51,7 @@ public class ServerCommunication {
 		new Thread() {
 			public void run() { // Abro puerto para recibir peticiones desde los Boxes
 				try {
-					ServerSocket s = new ServerSocket(5006);
+					ServerSocket s = new ServerSocket(portReceptorEmpleado);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();

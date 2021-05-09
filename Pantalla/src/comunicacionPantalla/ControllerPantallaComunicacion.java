@@ -9,9 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import ingreso.Cliente;
+import interfaces.ComunicacionPantalla;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerPantallaComunicacion {
+public class ControllerPantallaComunicacion implements ComunicacionPantalla{
 	int pantallaSocket;
 	private VentanaPantalla view;
 

@@ -4,7 +4,7 @@ import comunicacion.OrdenResponsePackage;
 import ingreso.Cliente;
 import ordenes.Orden;
 
-public interface Comunicacion {
+public interface ComunicacionServer {
 
 	public void recibir();
 

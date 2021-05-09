@@ -23,11 +23,15 @@ public class Controller_Emisor_Cliente implements ActionListener,ComunicacionCli
 	public Controller_Emisor_Cliente(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
-		this.view = new VentanaCliente();
-		this.view.setActionListener(this);
-		this.view.setVisibleVentana();
+
 	}
 
+	public void crearVentana() {
+		this.view = new VentanaCliente();
+		this.view.setVisibleVentana();
+		this.view.setActionListener(this);
+	}
+	
 	public String getIp() {
 		return ip;
 	}

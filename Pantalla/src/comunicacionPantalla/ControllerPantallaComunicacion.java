@@ -18,11 +18,14 @@ public class ControllerPantallaComunicacion implements ComunicacionPantalla, Exh
 	private VentanaPantalla view;
 
 	public ControllerPantallaComunicacion(int pantallaSocket) {
-		this.view = new VentanaPantalla();
-		this.view.setVisibleVentana();
 		this.pantallaSocket = pantallaSocket;
 	}
 
+	public void crearVentana() {
+		this.view = new VentanaPantalla();
+		this.view.setVisibleVentana();
+	}
+	
 	@Override
 	public void recibir() {
 		new Thread() {

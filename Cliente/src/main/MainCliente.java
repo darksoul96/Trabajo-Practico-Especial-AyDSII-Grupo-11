@@ -23,6 +23,7 @@ public class MainCliente {
 			e.printStackTrace();
 		}
 		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);
+		emisor.crearVentana();
 
 	}
 

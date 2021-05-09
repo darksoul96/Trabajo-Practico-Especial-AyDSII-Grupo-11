@@ -38,9 +38,13 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		this.serverip = serverip;
 		this.localport = localport;
 		this.localip = localip;
+		
+	}
+	
+	public void crearVentana() {
 		this.view = new VentanaEmpleado();
-		this.view.setActionListener(this);
 		this.view.setVisibleVentana();
+		this.view.setActionListener(this);
 	}
 
 	@Override
@@ -49,7 +53,6 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		Orden orden = null;
 		String command = e.getActionCommand();
 		if (command.equalsIgnoreCase("SeleccionBox")) {
-			JButton a = (JButton) e.getSource();
 			nroBox = this.view.getNroBox();
 			orden = factory.createOrden("SeleccionBox", nroBox, localip, localport);
 		} else if (command.equalsIgnoreCase("LLAMAR")) {

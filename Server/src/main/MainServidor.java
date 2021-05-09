@@ -28,7 +28,6 @@ public class MainServidor {
 		}
 		ServerCommunication receptor = new ServerCommunication(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
 				ipPantalla);
-		Servidor servidor = Servidor.getInstance();
 		receptor.recibir();
 		System.out.println("SERVIDOR ANDANDO");
 	}

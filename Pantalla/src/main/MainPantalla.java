@@ -22,6 +22,7 @@ public class MainPantalla {
 			e.printStackTrace();
 		}
 		ControllerPantallaComunicacion controller = new ControllerPantallaComunicacion(pantallaSocket);
+		controller.crearVentana();
 		controller.recibir();
 		
 	}

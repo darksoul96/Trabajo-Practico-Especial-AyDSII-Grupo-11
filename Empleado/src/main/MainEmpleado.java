@@ -27,7 +27,9 @@ public class MainEmpleado {
 			e.printStackTrace();
 		}
 		
-		ControllerComunicacionEmpleado EmisorEmpleado = new ControllerComunicacionEmpleado(serverport,serverip,localip,localport);
+		ControllerComunicacionEmpleado controllerEmpleado = new ControllerComunicacionEmpleado(serverport,serverip,localip,localport);
+		controllerEmpleado.crearVentana();
+		
 	}
 }
 

@@ -23,6 +23,7 @@ public class ControllerPantallaComunicacion implements ComunicacionPantalla, Exh
 		this.pantallaSocket = pantallaSocket;
 	}
 
+	@Override
 	public void recibir() {
 		new Thread() {
 			public void run() {
@@ -43,6 +44,7 @@ public class ControllerPantallaComunicacion implements ComunicacionPantalla, Exh
 		}.start();
 	}
 
+	@Override
 	public void mostrarPantalla(Cliente cliente) {
 		this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
 	}

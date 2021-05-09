@@ -25,6 +25,10 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.Utilities;
+
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 
 
@@ -34,6 +38,7 @@ public class VentanaPantalla implements IVista{
 	private JFrame frameConfig;
 	private JTextPane textPane;
 	private JTextPane textPane2;
+	private JButton btnConfig;
 
 	/**
 	 * Create the application.
@@ -81,30 +86,18 @@ public class VentanaPantalla implements IVista{
 		lblNewLabel_1.setBounds(117, 11, 128, 38);
 		panel_2.add(lblNewLabel_1);
 		
-		textPane = new JTextPane();
-		textPane.setBounds(10, 83, 323, 389);
-		
-
-		textPane2 = new JTextPane();
-		textPane2.setBounds(351, 83, 323, 389);
-		
-		
-		SimpleAttributeSet atributos = new SimpleAttributeSet();
-		StyleConstants.setAlignment(atributos, StyleConstants.ALIGN_CENTER);
-		StyleConstants.setFontSize(atributos, 15);
-		textPane.setParagraphAttributes(atributos, true);
-		textPane2.setParagraphAttributes(atributos, true);
-		
-		
-		frame.getContentPane().add(textPane);
-		frame.getContentPane().add(textPane2);
 		
 		
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
+		btnConfig = new JButton("Configurar");
 		
-		JButton btnConfig = new JButton("Configurar");
+		SimpleAttributeSet atributos = new SimpleAttributeSet();
+		StyleConstants.setAlignment(atributos, StyleConstants.ALIGN_CENTER);
+		StyleConstants.setFontSize(atributos, 15);
+		
+		
 		btnConfig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -145,15 +138,15 @@ public class VentanaPantalla implements IVista{
 				JRadioButton plain=new JRadioButton();
 				
 				bold.setText("Bold");
-				bold.setSelected(false);
 				bold.setBounds(28, 20, 103, 14);
+				bold.setSelected(false);
 				bold.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						StyleConstants.setBold(atributos, true);
 						plain.setSelected(false);
 					}
 				});
-				frameConfig.add(bold);
+				
 				plain.setText("Plain Text");
 				plain.setSelected(false);
 				plain.setBounds(28, 40, 103, 14);
@@ -163,8 +156,8 @@ public class VentanaPantalla implements IVista{
 						bold.setSelected(false);
 					}
 				});
-				frameConfig.add(plain);
-				
+				frameConfig.getContentPane().add(plain);
+				frameConfig.getContentPane().add(bold);
 				JButton btnAplicar = new JButton("Aplicar");
 				btnAplicar.setBounds(207, 178, 116, 23);
 				btnAplicar.addActionListener(new ActionListener() {
@@ -204,6 +197,27 @@ public class VentanaPantalla implements IVista{
 			}
 		});
 		menuBar.add(btnConfig);
+		textPane = new JTextPane();
+		
+		textPane.setBounds(10, 83, 323, 389);
+		
+
+		textPane2 = new JTextPane();
+		textPane2.setBounds(351, 83, 323, 389);
+		
+		
+		
+		textPane.setParagraphAttributes(atributos, true);
+		textPane2.setParagraphAttributes(atributos, true);
+		
+		frame.getContentPane().add(textPane);
+		frame.getContentPane().add(textPane2);
+		
+		
+		
+		
+		
+		
 	}
 
 	@Override
@@ -221,7 +235,29 @@ public class VentanaPantalla implements IVista{
 	@Override
 	public void escribeTurno(String dni, String box) {
 		// TODO Auto-generated method stub
-		this.textPane.setText(this.textPane.getText()+dni+"\n");
-		this.textPane2.setText(this.textPane2.getText()+box+"\n");
+		int totalCaracteres = textPane.getText().length(); 
+		int cantidadLineas = (totalCaracteres == 0) ? 1 : 0;
+
+		try {
+		   int offset = totalCaracteres; 
+		   while (offset > 0) {
+		      offset = Utilities.getRowStart(textPane, offset) - 1;
+		      cantidadLineas++;
+		   }
+		} catch (BadLocationException e) {
+		    e.printStackTrace();
+		}
+		if (cantidadLineas>6) {
+			this.textPane.setText("");
+			this.textPane2.setText("");
+			this.textPane.setText(this.textPane.getText()+dni+"\n");
+			this.textPane2.setText(this.textPane2.getText()+box+"\n");
+		}
+		else {
+			this.textPane.setText(this.textPane.getText()+dni+"\n");
+			this.textPane2.setText(this.textPane2.getText()+box+"\n");
+		}
+		
+		this.btnConfig.setEnabled(false);
 	}
 }

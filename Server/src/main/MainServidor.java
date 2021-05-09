@@ -16,7 +16,7 @@ public class MainServidor {
 		int portEmisorPantalla = 0;
 		String ipPantalla = null;
 		try {
-			File myObj = new File("NetConfig.txt");
+			File myObj = new File("NetConfigServidor.txt");
 			Scanner myReader = new Scanner(myObj);
 			portReceptorCliente = Integer.parseInt(myReader.nextLine());
 			portReceptorEmpleado = Integer.parseInt(myReader.nextLine());
@@ -24,7 +24,7 @@ public class MainServidor {
 			ipPantalla = myReader.nextLine();
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("NetConfig.txt not found.");
+			System.out.println("NetConfigServidor.txt not found.");
 			e.printStackTrace();
 		}
 		ServerCommunication receptor = new ServerCommunication(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,

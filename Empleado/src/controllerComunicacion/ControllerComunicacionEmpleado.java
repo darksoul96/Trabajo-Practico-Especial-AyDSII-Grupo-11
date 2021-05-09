@@ -31,6 +31,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 	private String serverip;
 	private int serverport;
 	private int localport;
+	private boolean serverOnline = true;
 
 	public ControllerComunicacionEmpleado(int serverport, String serverip, String localip, int localport) {
 		super();
@@ -38,9 +39,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		this.serverip = serverip;
 		this.localport = localport;
 		this.localip = localip;
-		
+
 	}
-	
+
 	public void crearVentana() {
 		this.view = new VentanaEmpleado();
 		this.view.setVisibleVentana();
@@ -63,10 +64,13 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 			orden = factory.createOrden("BAJA", nroBox, localip, localport);
 		}
 		enviar(orden);
-		OrdenResponsePackage respuesta = recibir();
-		handle(respuesta);
+		if (this.serverOnline) {
+			OrdenResponsePackage respuesta = recibir();
+			handle(respuesta);
+		}
+
 	}
-	
+
 	@Override
 	public void enviar(Orden orden) {
 		try {// Se envia la orden al server
@@ -77,7 +81,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 			socket.close();
 
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			this.serverOnline = false;
 			this.view.popUpNotConnected();
 		}
 	}

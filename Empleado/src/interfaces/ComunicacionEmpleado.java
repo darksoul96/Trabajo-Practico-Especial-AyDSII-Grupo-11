@@ -1,4 +1,4 @@
-package controllerComunicacion;
+package interfaces;
 
 import comunicacion.OrdenResponsePackage;
 import ordenes.Orden;

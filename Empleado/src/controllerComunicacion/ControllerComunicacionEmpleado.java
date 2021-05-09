@@ -17,6 +17,7 @@ import java.net.Socket;
 import javax.swing.JButton;
 
 import comunicacion.OrdenResponsePackage;
+import interfaces.ComunicacionEmpleado;
 import interfaces.IVista;
 import ordenes.Orden;
 import ordenes.OrdenFactory;

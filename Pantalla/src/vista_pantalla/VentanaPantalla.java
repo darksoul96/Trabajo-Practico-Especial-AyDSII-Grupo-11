@@ -95,7 +95,7 @@ public class VentanaPantalla implements IVista{
 		
 		SimpleAttributeSet atributos = new SimpleAttributeSet();
 		StyleConstants.setAlignment(atributos, StyleConstants.ALIGN_CENTER);
-		StyleConstants.setFontSize(atributos, 15);
+		StyleConstants.setFontSize(atributos, 30);
 		
 		
 		btnConfig.addActionListener(new ActionListener() {
@@ -213,11 +213,6 @@ public class VentanaPantalla implements IVista{
 		frame.getContentPane().add(textPane);
 		frame.getContentPane().add(textPane2);
 		
-		
-		
-		
-		
-		
 	}
 
 	@Override
@@ -247,7 +242,7 @@ public class VentanaPantalla implements IVista{
 		} catch (BadLocationException e) {
 		    e.printStackTrace();
 		}
-		if (cantidadLineas>6) {
+		if (cantidadLineas>8) {
 			this.textPane.setText("");
 			this.textPane2.setText("");
 			this.textPane.setText(this.textPane.getText()+dni+"\n");

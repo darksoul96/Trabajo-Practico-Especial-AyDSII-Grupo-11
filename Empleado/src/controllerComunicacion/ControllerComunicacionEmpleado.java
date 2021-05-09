@@ -58,6 +58,13 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		} else if (command.equalsIgnoreCase("CerrarSesion")) {
 			orden = factory.createOrden("BAJA", nroBox, localip, localport);
 		}
+		enviar(orden);
+		OrdenResponsePackage respuesta = recibir();
+		handle(respuesta);
+	}
+	
+	@Override
+	public void enviar(Orden orden) {
 		try {// Se envia la orden al server
 			Socket socket = new Socket(serverip, serverport);
 			OutputStream outputStream = socket.getOutputStream();
@@ -69,10 +76,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 			e1.printStackTrace();
 			this.view.popUpNotConnected();
 		}
-		OrdenResponsePackage respuesta = recibir();
-		handle(respuesta);
 	}
 
+	@Override
 	public OrdenResponsePackage recibir() {
 		OrdenResponsePackage respuesta = null;
 		try { // SE ABRE UN PUERTO SERVER PARA ESCUCHAR LA RESPUESTA

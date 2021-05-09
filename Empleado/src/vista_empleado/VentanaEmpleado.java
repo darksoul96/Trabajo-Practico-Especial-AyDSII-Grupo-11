@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JPopupMenu;
 
-import interfaces.IVista;
+import interfaces.IVistaEmpleado;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -31,7 +31,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 
-public class VentanaEmpleado implements IVista {
+public class VentanaEmpleado implements IVistaEmpleado {
 
 	private JFrame frame;
 	private JButton btnLlamar;

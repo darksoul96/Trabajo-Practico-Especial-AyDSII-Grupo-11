@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 import comunicacion.OrdenResponsePackage;
 import interfaces.ComunicacionEmpleado;
-import interfaces.IVista;
+import interfaces.IVistaEmpleado;
 import ordenes.Orden;
 import ordenes.OrdenFactory;
 import vista_empleado.VentanaEmpleado;
@@ -26,7 +26,7 @@ import vista_empleado.VentanaEmpleado;
 public class ControllerComunicacionEmpleado implements ActionListener, ComunicacionEmpleado {
 
 	private String nroBox;
-	private IVista view;
+	private IVistaEmpleado view;
 	private String localip;
 	private String serverip;
 	private int serverport;

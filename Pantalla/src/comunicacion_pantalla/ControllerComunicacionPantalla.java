@@ -13,11 +13,11 @@ import interfaces.ComunicacionPantalla;
 import interfaces.Exhibicion;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerPantallaComunicacion implements ComunicacionPantalla, Exhibicion{
+public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exhibicion{
 	int pantallaSocket;
 	private VentanaPantalla view;
 
-	public ControllerPantallaComunicacion(int pantallaSocket) {
+	public ControllerComunicacionPantalla(int pantallaSocket) {
 		this.pantallaSocket = pantallaSocket;
 	}
 

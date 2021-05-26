@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import comunicacion_pantalla.ControllerPantallaComunicacion;
+import comunicacion_pantalla.ControllerComunicacionPantalla;
 import vista_pantalla.VentanaPantalla;
 
 public class MainPantalla {
@@ -21,7 +21,7 @@ public class MainPantalla {
 			System.out.println("NetConfigPantalla.txt not found.");
 			e.printStackTrace();
 		}
-		ControllerPantallaComunicacion controller = new ControllerPantallaComunicacion(pantallaSocket);
+		ControllerComunicacionPantalla controller = new ControllerComunicacionPantalla(pantallaSocket);
 		controller.crearVentana();
 		controller.recibir();
 		

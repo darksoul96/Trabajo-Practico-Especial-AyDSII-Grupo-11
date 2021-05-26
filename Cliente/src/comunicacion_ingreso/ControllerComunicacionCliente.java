@@ -13,14 +13,14 @@ import interfaces.ComunicacionCliente;
 import interfaces.IVistaCliente;
 import ui_cliente.VentanaCliente;
 
-public class Controller_Emisor_Cliente implements ActionListener,ComunicacionCliente {
+public class ControllerComunicacionCliente implements ActionListener,ComunicacionCliente {
 
 	private IVistaCliente view;
 	private String DNI;
 	private String ip;
 	private int port;
 
-	public Controller_Emisor_Cliente(String ip, int port) {
+	public ControllerComunicacionCliente(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
 

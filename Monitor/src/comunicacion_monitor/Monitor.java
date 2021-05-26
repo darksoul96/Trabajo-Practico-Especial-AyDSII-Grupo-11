@@ -22,12 +22,6 @@ public class Monitor implements Disponibilidad {
 	}
 
 	@Override
-	public void ping() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean primaryServerOnline() {
 		// TODO Auto-generated method stub
 		return false;
@@ -37,6 +31,12 @@ public class Monitor implements Disponibilidad {
 	public boolean secondaryServerOnline() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void ping() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

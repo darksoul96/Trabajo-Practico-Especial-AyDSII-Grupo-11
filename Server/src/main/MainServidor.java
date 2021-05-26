@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import comunicacion_server.ServerCommunication;
+import comunicacion_server.ControllerComunicacionServer;
 import repository.Servidor;
 
 public class MainServidor {
@@ -27,7 +27,7 @@ public class MainServidor {
 			System.out.println("NetConfigServidor.txt not found.");
 			e.printStackTrace();
 		}
-		ServerCommunication receptor = new ServerCommunication(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
+		ControllerComunicacionServer receptor = new ControllerComunicacionServer(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
 				ipPantalla);
 		receptor.recibir();
 		receptor.ejecutarVentana();

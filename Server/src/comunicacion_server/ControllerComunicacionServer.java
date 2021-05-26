@@ -16,14 +16,14 @@ import ordenes.Orden;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
-public class ServerCommunication implements ComunicacionServer {
+public class ControllerComunicacionServer implements ComunicacionServer {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
 	String ipPantalla;
 	VentanaServer ventanaServer;
 
-	public ServerCommunication(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
+	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;

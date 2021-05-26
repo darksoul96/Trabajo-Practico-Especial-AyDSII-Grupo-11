@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import comunicacion_ingreso.Controller_Emisor_Cliente;
+import comunicacion_ingreso.ControllerComunicacionCliente;
 
 public class MainCliente {
 
@@ -23,7 +23,7 @@ public class MainCliente {
 			System.out.println("NetConfigCliente.txt not found.");
 			e.printStackTrace();
 		}
-		Controller_Emisor_Cliente emisor = new Controller_Emisor_Cliente(ip, port);
+		ControllerComunicacionCliente emisor = new ControllerComunicacionCliente(ip, port);
 		emisor.crearVentana();
 
 		

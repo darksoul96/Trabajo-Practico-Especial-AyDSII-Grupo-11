@@ -1,7 +1,7 @@
 package interfaces;
 
-import comunicacion.OrdenResponsePackage;
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
+import comunicacion_server.OrdenResponsePackage;
 import ordenes.Orden;
 
 public interface ComunicacionServer {

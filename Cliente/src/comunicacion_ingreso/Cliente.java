@@ -1,4 +1,4 @@
-package ingreso;
+package comunicacion_ingreso;
 
 import java.io.Serializable;
 

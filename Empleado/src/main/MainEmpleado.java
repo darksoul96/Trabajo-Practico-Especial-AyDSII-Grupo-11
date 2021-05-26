@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import controllerComunicacion.ControllerComunicacionEmpleado;
+import comunicacion_empleado.ControllerComunicacionEmpleado;
 
 public class MainEmpleado {
 

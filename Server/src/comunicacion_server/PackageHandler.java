@@ -1,6 +1,6 @@
-package comunicacion;
+package comunicacion_server;
 
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
 import ordenes.Orden;
 import repository.Servidor;
 

@@ -1,6 +1,6 @@
 package interfaces;
 
-import comunicacion.OrdenResponsePackage;
+import comunicacion_server.OrdenResponsePackage;
 import ordenes.Orden;
 
 public interface ComunicacionEmpleado {

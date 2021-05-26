@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import comunicacionPantalla.ControllerPantallaComunicacion;
+import comunicacion_pantalla.ControllerPantallaComunicacion;
 import vista_pantalla.VentanaPantalla;
 
 public class MainPantalla {

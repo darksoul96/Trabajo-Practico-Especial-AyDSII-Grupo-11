@@ -1,4 +1,4 @@
-package controllerComunicacion;
+package comunicacion_empleado;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,12 +16,12 @@ import java.net.Socket;
 
 import javax.swing.JButton;
 
-import comunicacion.OrdenResponsePackage;
+import comunicacion_server.OrdenResponsePackage;
 import interfaces.ComunicacionEmpleado;
 import interfaces.IVistaEmpleado;
 import ordenes.Orden;
 import ordenes.OrdenFactory;
-import vista_empleado.VentanaEmpleado;
+import ui_empleado.VentanaEmpleado;
 
 public class ControllerComunicacionEmpleado implements ActionListener, ComunicacionEmpleado {
 

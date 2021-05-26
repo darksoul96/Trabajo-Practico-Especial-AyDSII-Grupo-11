@@ -1,4 +1,4 @@
-package vista_empleado;
+package ui_empleado;
 
 import java.awt.EventQueue;
 

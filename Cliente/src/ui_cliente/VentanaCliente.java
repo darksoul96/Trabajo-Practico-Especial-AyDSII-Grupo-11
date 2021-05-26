@@ -1,4 +1,4 @@
-package vista_cliente;
+package ui_cliente;
 
 import java.awt.EventQueue;
 

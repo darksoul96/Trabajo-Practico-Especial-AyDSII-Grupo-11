@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import comunicacion.ServerCommunication;
+import comunicacion_server.ServerCommunication;
 import repository.Servidor;
 
 public class MainServidor {

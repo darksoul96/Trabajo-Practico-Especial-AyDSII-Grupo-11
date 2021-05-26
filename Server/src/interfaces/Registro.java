@@ -1,6 +1,6 @@
 package interfaces;
 
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
 
 public interface Registro {
 

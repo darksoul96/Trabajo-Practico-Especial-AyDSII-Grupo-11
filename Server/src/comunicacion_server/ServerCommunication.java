@@ -1,4 +1,4 @@
-package comunicacion;
+package comunicacion_server;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -10,11 +10,11 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionServer;
 import ordenes.Orden;
 import repository.Servidor;
-import vista.VentanaServer;
+import ui_server.VentanaServer;
 
 public class ServerCommunication implements ComunicacionServer {
 	int portReceptorCliente;

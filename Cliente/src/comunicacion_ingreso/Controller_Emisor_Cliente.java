@@ -1,4 +1,4 @@
-package ingreso;
+package comunicacion_ingreso;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import java.net.*;
 
 import interfaces.ComunicacionCliente;
 import interfaces.IVistaCliente;
-import vista_cliente.VentanaCliente;
+import ui_cliente.VentanaCliente;
 
 public class Controller_Emisor_Cliente implements ActionListener,ComunicacionCliente {
 

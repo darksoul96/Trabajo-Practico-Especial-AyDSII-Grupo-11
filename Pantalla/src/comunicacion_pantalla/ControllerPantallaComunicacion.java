@@ -1,4 +1,4 @@
-package comunicacionPantalla;
+package comunicacion_pantalla;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionPantalla;
 import interfaces.Exhibicion;
 import vista_pantalla.VentanaPantalla;

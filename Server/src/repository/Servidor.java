@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
-import ingreso.Cliente;
+import comunicacion_ingreso.Cliente;
 import interfaces.Notificacion;
 import interfaces.Registro;
 

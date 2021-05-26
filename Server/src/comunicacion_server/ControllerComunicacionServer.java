@@ -97,7 +97,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	@Override
 	public void enviarPantalla(Cliente cliente) {
 		try {
-			Socket socket = new Socket("localhost", 5200);
+			Socket socket = new Socket("localhost", portEmisorPantalla);
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(cliente);

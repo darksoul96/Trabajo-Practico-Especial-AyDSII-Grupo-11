@@ -10,14 +10,16 @@ public class MainEmpleado {
 
 	private static String localip;
 	private static int localport;
-	private static String serverip;
+	private static String serverip1;
+	private static String serverip2;
 	private static int serverport;
 
 	public static void main(String[] args) {
 		try {
 			File myObj = new File("NetConfigEmpleado.txt");
 			Scanner myReader = new Scanner(myObj);
-			serverip = myReader.nextLine();
+			serverip1 = myReader.nextLine();
+			serverip2 = myReader.nextLine();
 			serverport = Integer.parseInt(myReader.nextLine());
 			localip = myReader.nextLine();
 			localport = Integer.parseInt(myReader.nextLine());
@@ -27,7 +29,7 @@ public class MainEmpleado {
 			e.printStackTrace();
 		}
 		
-		ControllerComunicacionEmpleado controllerEmpleado = new ControllerComunicacionEmpleado(serverport,serverip,localip,localport);
+		ControllerComunicacionEmpleado controllerEmpleado = new ControllerComunicacionEmpleado(serverport,serverip1,serverip2,localip,localport);
 		controllerEmpleado.crearVentana();
 		
 	}

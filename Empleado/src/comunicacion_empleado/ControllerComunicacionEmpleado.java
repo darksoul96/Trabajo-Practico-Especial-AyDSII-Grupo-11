@@ -123,6 +123,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		}
 		if (noPudoConectar) {
 			this.serverOnline = false;
+			this.view.setServerOffline();
 			this.view.popUpNotConnected();
 		}
 	}

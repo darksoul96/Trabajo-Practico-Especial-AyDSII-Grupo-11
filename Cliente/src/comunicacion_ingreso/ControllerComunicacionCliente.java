@@ -88,8 +88,7 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 				socket.close();
 
 			} catch (Exception e1) {
-				System.out.println("hola");
-				view.MuestraPopUpReintentar();
+				view.MuestraPopUpReintentar();		
 				try {
 					TimeUnit.SECONDS.sleep(reconnectTime);
 				} catch (InterruptedException e) {

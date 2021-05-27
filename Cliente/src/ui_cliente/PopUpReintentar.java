@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 
@@ -26,6 +27,7 @@ public class PopUpReintentar extends JDialog{
 	 * Create the application.
 	 */
 	public PopUpReintentar() {
+		JOptionPane.showConfirmDialog(rootPane, messageReintento);
 		initialize();
 	}
 	

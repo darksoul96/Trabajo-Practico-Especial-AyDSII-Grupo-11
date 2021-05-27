@@ -9,21 +9,23 @@ import comunicacion_ingreso.ControllerComunicacionCliente;
 
 public class MainCliente {
 
-	private static String ip;
+	private static String ip1;
+	private static String ip2;
 	private static int port;
 
 	public static void main(String[] args) {
 		try {
 			File myObj = new File("NetConfigCliente.txt");
 			Scanner myReader = new Scanner(myObj);
-			ip = myReader.nextLine();
+			ip1 = myReader.nextLine();
+			ip2 = myReader.nextLine();
 			port = Integer.parseInt(myReader.nextLine());
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("NetConfigCliente.txt not found.");
 			e.printStackTrace();
 		}
-		ControllerComunicacionCliente emisor = new ControllerComunicacionCliente(ip, port);
+		ControllerComunicacionCliente emisor = new ControllerComunicacionCliente(ip1,ip2, port);
 		emisor.crearVentana();
 
 		

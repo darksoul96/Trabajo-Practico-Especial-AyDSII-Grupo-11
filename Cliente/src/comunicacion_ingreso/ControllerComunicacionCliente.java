@@ -13,15 +13,17 @@ import interfaces.ComunicacionCliente;
 import interfaces.IVistaCliente;
 import ui_cliente.VentanaCliente;
 
-public class ControllerComunicacionCliente implements ActionListener,ComunicacionCliente {
+public class ControllerComunicacionCliente implements ActionListener, ComunicacionCliente {
 
 	private IVistaCliente view;
 	private String DNI;
-	private String ip;
+	private String ip1;
+	private String ip2;
 	private int port;
 
-	public ControllerComunicacionCliente(String ip, int port) {
-		this.ip = ip;
+	public ControllerComunicacionCliente(String ip1, String ip2, int port) {
+		this.ip1 = ip1;
+		this.ip2 = ip2;
 		this.port = port;
 
 	}
@@ -31,13 +33,21 @@ public class ControllerComunicacionCliente implements ActionListener,Comunicacio
 		this.view.setVisibleVentana();
 		this.view.setActionListener(this);
 	}
-	
-	public String getIp() {
-		return ip;
+
+	public String getIp1() {
+		return ip1;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public String getIp2() {
+		return ip2;
+	}
+
+	public void setIp2(String ip2) {
+		this.ip2 = ip2;
+	}
+
+	public void setIp(String ip1) {
+		this.ip1 = ip1;
 	}
 
 	public int getPort() {

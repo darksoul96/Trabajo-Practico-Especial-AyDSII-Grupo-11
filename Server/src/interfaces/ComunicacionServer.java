@@ -11,4 +11,6 @@ public interface ComunicacionServer {
 	public void enviarBox(Orden orden, OrdenResponsePackage response);
 
 	public void enviarPantalla(Cliente cliente);
+	
+	public boolean conectarServers();
 }

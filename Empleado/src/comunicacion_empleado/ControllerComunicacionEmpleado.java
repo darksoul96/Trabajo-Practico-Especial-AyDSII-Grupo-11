@@ -94,7 +94,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 	@Override
 	public OrdenResponsePackage recibir() {
 		OrdenResponsePackage respuesta = null;
-		try { // SE ABRE UN PUERTO SERVER PARA ESCUCHAR LA RESPUESTA
+		try { // SE ABRE UN PUERTO PARA ESCUCHAR LA RESPUESTA DEL SERVER
 			ServerSocket s = new ServerSocket(localport);
 			while (true) {
 				Socket soc = s.accept();

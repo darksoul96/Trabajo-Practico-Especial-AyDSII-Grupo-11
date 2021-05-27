@@ -32,11 +32,11 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 		this.ipPantalla = ipPantalla;
 	}
 
-	
 	public void ejecutarVentana() {
-		ventanaServer=new VentanaServer();
+		ventanaServer = new VentanaServer();
 		this.ventanaServer.setVisibleVentana();
 	}
+
 	@Override
 	public void recibir() { // Abro el server para recibir
 		PackageHandler packageHandler = new PackageHandler();
@@ -105,5 +105,17 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean conectarServers() {
+		try {
+			Socket socket = new Socket("localhost", 5000);
+			OutputStream outputStream = socket.getOutputStream();
+		} catch (Exception e1) {
+			Servidor.getInstance().setPrimary();
+			recibir();
+		}
+		return false;
 	}
 }

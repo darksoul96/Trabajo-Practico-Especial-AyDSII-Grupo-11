@@ -10,11 +10,13 @@ import java.util.concurrent.locks.Lock;
 import comunicacion_ingreso.Cliente;
 import interfaces.Notificacion;
 import interfaces.Registro;
+import interfaces.Resincronizacion;
 
-public class Servidor implements Registro, Notificacion {
+public class Servidor implements Registro, Notificacion, Resincronizacion {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;
+	boolean primary = false;
 	private static Servidor instance = null;
 
 	private Servidor() {
@@ -39,7 +41,7 @@ public class Servidor implements Registro, Notificacion {
 	public void registrarPedidoDeTurno(Cliente cliente) {
 		if (!clientes.contains(cliente)) {
 			clientes.add(cliente);
-		} 
+		}
 	}
 
 	public Cliente llamarSiguiente(String box) {
@@ -51,8 +53,7 @@ public class Servidor implements Registro, Notificacion {
 		}
 		return nextClient;
 	}
-	
-	
+
 	public Cliente getLastCalledClient() {
 		return lastCalledClient;
 	}
@@ -71,10 +72,27 @@ public class Servidor implements Registro, Notificacion {
 		}
 		return exito;
 	}
-	
+
 	public void liberarBox(String box) {
 		if (boxes.contains(box))
 			boxes.remove(box);
+	}
+
+	@Override
+	public boolean isPrimary() {
+		return primary;
+	}
+
+	@Override
+	public void setPrimary() {
+		this.primary = true;
+
+	}
+
+	@Override
+	public void setSecondary() {
+		this.primary = false;
+		
 	}
 
 }

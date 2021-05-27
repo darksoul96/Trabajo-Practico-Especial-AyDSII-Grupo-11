@@ -58,6 +58,20 @@ public class BackupPackage implements Serializable {
 	public Cliente getLastCalledClient() {
 		return lastCalledClient;
 	}
+
+	public void setClientes(Queue<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public void setBoxes(Set<String> boxes) {
+		this.boxes = boxes;
+	}
+
+	public void setLastCalledClient(Cliente lastCalledClient) {
+		this.lastCalledClient = lastCalledClient;
+	}
+	
+	
 	
 	
 

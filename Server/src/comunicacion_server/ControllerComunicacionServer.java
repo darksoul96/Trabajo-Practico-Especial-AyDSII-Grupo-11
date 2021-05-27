@@ -89,6 +89,9 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 					while (true) {
 						Socket soc = s.accept();
 						clientSecondaryServerSocket = soc;
+						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+						if(in.readLine().equals("connected"))
+							backup();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -133,6 +136,8 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 					Socket socket = new Socket("localhost", 5000);
 					Servidor.getInstance().setSecondary();
 					System.out.println("Soy Secundario");
+					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					out.println("connected");
 					while (true) {
 						InputStream inputStream = socket.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -163,6 +168,8 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 		}
 	}
 
+	
+	
 	@Override
 	public void backup(Cliente cliente) {
 		if (clientSecondaryServerSocket != null) {
@@ -180,5 +187,16 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 			backup.setOrden(orden);
 			enviarServerSecundario(clientSecondaryServerSocket, backup);
 		}
+	}
+
+	@Override
+	public void backup() {
+		if (clientSecondaryServerSocket !=null) {
+			BackupPackage backup = new BackupPackage();
+			backup.setClientes(Servidor.getInstance().getClientes());
+			backup.setBoxes(Servidor.getInstance().getBoxes());
+			backup.setLastCalledClient(Servidor.getInstance().getLastCalledClient());
+		}
+		
 	}
 }

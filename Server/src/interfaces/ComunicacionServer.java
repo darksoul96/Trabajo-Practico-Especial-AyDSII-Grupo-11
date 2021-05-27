@@ -23,4 +23,6 @@ public interface ComunicacionServer {
 	public void backup(Cliente cliente);
 	
 	public void backup(Orden orden);
+	
+	public void backup();
 }

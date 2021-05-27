@@ -8,7 +8,6 @@ public class PackageHandler {
 
 	public void handle(BackupPackage backup) { // Maneja lo recibido desde el server principal
 		if (backup.getPackageType() != null) {
-			System.out.println("Backup no es null");
 			if (backup.getPackageType().equals("CLIENTE")) {
 				handle(backup.getCliente());
 			} else {

@@ -144,7 +144,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						BackupPackage backup = (BackupPackage) objectInputStream.readObject();
 						PackageHandler packageHandler = new PackageHandler();
 						packageHandler.handle(backup);
-						System.out.println("Lei el objeto");
+						System.out.println("Me llego msj del server");
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -192,9 +192,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	public void backup() {
 		if (clientSecondaryServerSocket != null) {
 			BackupPackage backup = new BackupPackage();
-			backup.setClientes(Servidor.getInstance().getClientes());
-			backup.setBoxes(Servidor.getInstance().getBoxes());
-			backup.setLastCalledClient(Servidor.getInstance().getLastCalledClient());
+			backup.sincronizarServer(Servidor.getInstance().getClientes(), Servidor.getInstance().getBoxes(), Servidor.getInstance().getLastCalledClient());
 			enviarServerSecundario(clientSecondaryServerSocket, backup);
 		}
 

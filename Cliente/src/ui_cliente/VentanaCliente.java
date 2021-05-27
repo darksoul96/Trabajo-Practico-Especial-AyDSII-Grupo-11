@@ -34,6 +34,7 @@ public class VentanaCliente implements IVistaCliente {
 	private JFormattedTextField textFieldDNI;
 	private ActionListener actionListener;
 	private JButton btnIngresarDNI;
+	private PopUpReintentar popReintento;
 
 	/**
 	 * Create the application.
@@ -268,6 +269,12 @@ public class VentanaCliente implements IVistaCliente {
 	public void popUpNotConnected() {
 		JOptionPane.showMessageDialog(null, "Servidor desconectado");
 
+	}
+
+	@Override
+	public void MuestraPopUpReintentar() {
+		// TODO Auto-generated method stub
+		popReintento=new PopUpReintentar();
 	}
 
 }

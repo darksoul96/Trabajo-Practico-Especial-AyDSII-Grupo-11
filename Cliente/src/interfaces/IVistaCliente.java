@@ -11,4 +11,6 @@ public interface IVistaCliente {
 	public void setVisibleVentana();
 
 	public void popUpNotConnected();
+	
+	public void MuestraPopUpReintentar();
 }

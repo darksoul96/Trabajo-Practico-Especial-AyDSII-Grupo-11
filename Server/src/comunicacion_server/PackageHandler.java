@@ -6,11 +6,21 @@ import repository.Servidor;
 
 public class PackageHandler {
 
+	public void handle(BackupPackage backup) {			// Maneja lo recibido desde el server principal
+		if (backup.getPackageType().equals("CLIENTE")) {
+			handle(backup.getCliente());
+		} else {
+			if (backup.getPackageType().equals("ORDEN")) {
+				handle(backup.getOrden());
+			}
+		}
+	}
+
 	public void handle(Cliente cliente) { // Maneja lo recibido desde empleado
 		Servidor.getInstance().registrarPedidoDeTurno(cliente);
 	}
 
-	public OrdenResponsePackage handle(Orden orden) { // Recibo de la pantalla y creo el tipo de respuesta que el
+	public OrdenResponsePackage handle(Orden orden) { // Recibo del Box y creo el tipo de respuesta que el
 														// servidor envia al Empleado
 		String DNI;
 		OrdenResponsePackage response = null;
@@ -36,7 +46,7 @@ public class PackageHandler {
 			return response;
 		} else if (orden.executeOrder().equals("BAJA")) {
 			Servidor.getInstance().liberarBox(orden.getNroBox());
-			response = new OrdenResponsePackage(true,"BAJA", "bajaBox");
+			response = new OrdenResponsePackage(true, "BAJA", "bajaBox");
 		}
 		return response;
 

@@ -95,4 +95,10 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 		
 	}
 
+	@Override
+	public void sincronizar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

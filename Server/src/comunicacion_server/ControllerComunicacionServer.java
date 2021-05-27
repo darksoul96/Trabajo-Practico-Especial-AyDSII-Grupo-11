@@ -20,8 +20,10 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
+	int portServerSecundario;
 	String ipPantalla;
 	VentanaServer ventanaServer;
+	Socket clientSecondaryServerSocket;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla) {
@@ -38,7 +40,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	}
 
 	@Override
-	public void recibir() { // Abro el server para recibir
+	public void recibir() { // Abro el server para recibir peticiones de Cliente y Empleado
 		PackageHandler packageHandler = new PackageHandler();
 		new Thread() {
 			public void run() { // Puerto para recibir peticiones desde la Estacion Cliente
@@ -49,6 +51,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
+						backup(client);
 						packageHandler.handle(client);
 					}
 				} catch (Exception e) {
@@ -57,7 +60,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 			}
 		}.start();
 		new Thread() {
-			public void run() { // Abro puerto para recibir peticiones desde los Boxes
+			public void run() { // Puerto para recibir peticiones desde los Boxes
 				try {
 					ServerSocket s = new ServerSocket(portReceptorEmpleado);
 					while (true) {
@@ -65,6 +68,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Orden orden = (Orden) objectInputStream.readObject();
+						backup(orden);
 						OrdenResponsePackage response = packageHandler.handle(orden);
 						enviarBox(orden, response);
 						if (response.type.equals("LLAMAR")) {
@@ -78,10 +82,23 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 				}
 			}
 		}.start();
+		new Thread() {
+			public void run() { // Puerto para conectar Server Primario y Secundario
+				try {
+					ServerSocket s = new ServerSocket(5000);
+					while (true) {
+						Socket soc = s.accept();
+						clientSecondaryServerSocket = soc;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 
 	@Override
-	public void enviarBox(Orden orden, OrdenResponsePackage response) { // Me intento comunicar con el box
+	public void enviarBox(Orden orden, OrdenResponsePackage response) { // Comunicar con un box
 		try {
 			Socket socket = new Socket(orden.getIp(), orden.getPort());
 			OutputStream outputStream = socket.getOutputStream();
@@ -95,7 +112,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	}
 
 	@Override
-	public void enviarPantalla(Cliente cliente) {
+	public void enviarPantalla(Cliente cliente) { // Envio a la pantalla
 		try {
 			Socket socket = new Socket("localhost", portEmisorPantalla);
 			OutputStream outputStream = socket.getOutputStream();
@@ -108,14 +125,57 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	}
 
 	@Override
-	public boolean conectarServers() {
+	public void conectarServers() { // Conectarme al server ppal, si no puede, es porque no hay principal
+		new Thread() {
+			public void run() {
+				try {
+					Socket socket = new Socket("localhost", 5000);
+					Servidor.getInstance().setSecondary();
+					System.out.println("Soy Secundario");
+					InputStream inputStream = socket.getInputStream();
+					ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+					BackupPackage backup = (BackupPackage) objectInputStream.readObject();
+					System.out.println("Lei el objeto");
+					PackageHandler packageHandler = new PackageHandler();
+					packageHandler.handle(backup);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					System.out.println("Soy Primario");
+					Servidor.getInstance().setPrimary();
+					recibir();
+				}
+			}
+		}.start();
+
+	}
+
+	@Override
+	public void enviarServerSecundario(Socket socket, BackupPackage backup) {
 		try {
-			Socket socket = new Socket("localhost", 5000);
 			OutputStream outputStream = socket.getOutputStream();
-		} catch (Exception e1) {
-			Servidor.getInstance().setPrimary();
-			recibir();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			objectOutputStream.writeObject(backup);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return false;
+	}
+
+	@Override
+	public void backup(Cliente cliente) {
+		if (clientSecondaryServerSocket != null) {
+			BackupPackage backup = new BackupPackage();
+			backup.setCliente(cliente);
+			enviarServerSecundario(clientSecondaryServerSocket, backup);
+		}
+
+	}
+
+	@Override
+	public void backup(Orden orden) {
+		if (clientSecondaryServerSocket != null) {
+			BackupPackage backup = new BackupPackage();
+			backup.setOrden(orden);
+			enviarServerSecundario(clientSecondaryServerSocket, backup);
+		}
 	}
 }

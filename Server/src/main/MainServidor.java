@@ -29,7 +29,7 @@ public class MainServidor {
 		}
 		ControllerComunicacionServer receptor = new ControllerComunicacionServer(portReceptorCliente, portReceptorEmpleado, portEmisorPantalla,
 				ipPantalla);
-		receptor.recibir();
+		receptor.conectarServers();
 		receptor.ejecutarVentana();
 		
 		System.out.println("SERVIDOR ANDANDO");

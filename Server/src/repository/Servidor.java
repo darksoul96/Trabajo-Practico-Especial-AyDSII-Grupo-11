@@ -15,6 +15,7 @@ import interfaces.Resincronizacion;
 public class Servidor implements Registro, Notificacion, Resincronizacion {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	Set<String> boxes = new HashSet<>();
+	Cliente lastCalledClient;
 	boolean primary = false;
 	private static Servidor instance = null;
 
@@ -32,14 +33,18 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 		}
 		return instance;
 	}
+	
+	
 
 	public Queue<Cliente> getClientes() {
 		return clientes;
 	}
 
+
 	public Set<String> getBoxes() {
 		return boxes;
 	}
+
 
 	public int consultarTurnosRestantes() {
 		return clientes.size();
@@ -56,8 +61,17 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 		if (!clientes.isEmpty()) {
 			nextClient = clientes.remove();
 			nextClient.setBox(box);
+			this.lastCalledClient = nextClient;
 		}
 		return nextClient;
+	}
+
+	public Cliente getLastCalledClient() {
+		return lastCalledClient;
+	}
+
+	public void setLastCalledClient(Cliente lastCalledClient) {
+		this.lastCalledClient = lastCalledClient;
 	}
 
 	public boolean registrarBox(String box) {
@@ -90,13 +104,13 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 	@Override
 	public void setSecondary() {
 		this.primary = false;
-
+		
 	}
 
 	@Override
 	public void sincronizar() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

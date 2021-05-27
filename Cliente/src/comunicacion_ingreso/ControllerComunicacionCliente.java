@@ -71,7 +71,7 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 
 	public void enviarCliente(Cliente cliente) {
 		try {
-			Socket socket = new Socket("localhost", 5005);
+			Socket socket = new Socket(ip1, 5005);
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(new Cliente(DNI));

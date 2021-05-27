@@ -129,17 +129,19 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 		new Thread() {
 			public void run() {
 				try {
+
 					Socket socket = new Socket("localhost", 5000);
 					Servidor.getInstance().setSecondary();
 					System.out.println("Soy Secundario");
-					InputStream inputStream = socket.getInputStream();
-					ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-					BackupPackage backup = (BackupPackage) objectInputStream.readObject();
-					System.out.println("Lei el objeto");
-					PackageHandler packageHandler = new PackageHandler();
-					packageHandler.handle(backup);
+					while (true) {
+						InputStream inputStream = socket.getInputStream();
+						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+						BackupPackage backup = (BackupPackage) objectInputStream.readObject();
+						PackageHandler packageHandler = new PackageHandler();
+						packageHandler.handle(backup);
+						System.out.println("Lei el objeto");
+					}
 				} catch (Exception e1) {
-					e1.printStackTrace();
 					System.out.println("Soy Primario");
 					Servidor.getInstance().setPrimary();
 					recibir();
@@ -155,6 +157,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(backup);
+			System.out.println("Envie desde el ppal");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

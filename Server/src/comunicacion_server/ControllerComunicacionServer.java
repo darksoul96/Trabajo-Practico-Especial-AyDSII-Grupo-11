@@ -90,7 +90,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						Socket soc = s.accept();
 						clientSecondaryServerSocket = soc;
 						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-						if(in.readLine().equals("connected"))
+						if (in.readLine().equals("connected"))
 							backup();
 					}
 				} catch (Exception e) {
@@ -147,9 +147,10 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						System.out.println("Lei el objeto");
 					}
 				} catch (Exception e1) {
-					System.out.println("Soy Primario");
+					e1.printStackTrace();
 					Servidor.getInstance().setPrimary();
 					recibir();
+					System.out.println("Soy Primario");
 				}
 			}
 		}.start();
@@ -168,8 +169,6 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 		}
 	}
 
-	
-	
 	@Override
 	public void backup(Cliente cliente) {
 		if (clientSecondaryServerSocket != null) {
@@ -191,12 +190,13 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 
 	@Override
 	public void backup() {
-		if (clientSecondaryServerSocket !=null) {
+		if (clientSecondaryServerSocket != null) {
 			BackupPackage backup = new BackupPackage();
 			backup.setClientes(Servidor.getInstance().getClientes());
 			backup.setBoxes(Servidor.getInstance().getBoxes());
 			backup.setLastCalledClient(Servidor.getInstance().getLastCalledClient());
+			enviarServerSecundario(clientSecondaryServerSocket, backup);
 		}
-		
+
 	}
 }

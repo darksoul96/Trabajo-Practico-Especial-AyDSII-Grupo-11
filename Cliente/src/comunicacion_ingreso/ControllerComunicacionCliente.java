@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import interfaces.ComunicacionCliente;
 import interfaces.IVistaCliente;
+import ui_cliente.PopUpReintentar;
 import ui_cliente.VentanaCliente;
 
 public class ControllerComunicacionCliente implements ActionListener, ComunicacionCliente {
@@ -87,9 +88,9 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 				socket.close();
 
 			} catch (Exception e1) {
-
+				System.out.println("hola");
+				view.MuestraPopUpReintentar();
 				try {
-					System.out.println("Reintenando");
 					TimeUnit.SECONDS.sleep(reconnectTime);
 				} catch (InterruptedException e) {
 					e.printStackTrace();

@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 
@@ -28,19 +29,24 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 	private String nroBox;
 	private IVistaEmpleado view;
 	private String localip;
-	private String serverip;
+	private String serverip1;
+	private String serverip2;
+	private String ipServerOnline;
 	private int serverport;
 	private int localport;
 	private boolean serverOnline = true;
 	private boolean registrado;
 
-	public ControllerComunicacionEmpleado(int serverport, String serverip, String localip, int localport) {
+	public ControllerComunicacionEmpleado(int serverport, String serverip1, String serverip2, String localip,
+			int localport) {
 		super();
 		this.serverport = serverport;
-		this.serverip = serverip;
+		this.serverip1 = serverip1;
+		this.serverip2 = serverip2;
 		this.localport = localport;
 		this.localip = localip;
 		this.registrado = false;
+		this.ipServerOnline = serverip1;
 
 	}
 
@@ -67,9 +73,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 				this.registrado = false;
 			}
 		}
-		if(orden!=null)
+		if (orden != null)
 			enviar(orden);
-		if (this.serverOnline && orden!=null) {
+		if (this.serverOnline && orden != null) {
 			OrdenResponsePackage respuesta = recibir();
 			handle(respuesta);
 		}
@@ -78,14 +84,44 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 
 	@Override
 	public void enviar(Orden orden) {
-		try {// Se envia la orden al server
-			Socket socket = new Socket(serverip, serverport);
-			OutputStream outputStream = socket.getOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(orden);
-			socket.close();
+		int reconnectTime = 2;
+		int serversLeftToTest = 2;
+		boolean noPudoConectar = true;
+		while (serversLeftToTest != 0 && noPudoConectar) {
+			try { // Se envia la orden al server
+				Socket socket = new Socket(ipServerOnline, serverport);
+				OutputStream outputStream = socket.getOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				objectOutputStream.writeObject(orden);
+				noPudoConectar = false;
+				this.serverOnline=true;
+				System.out.println("Le mando mensajito al servidor");
+				socket.close();
 
-		} catch (Exception e1) {
+			} catch (Exception e1) {
+				try {
+					System.out.println("Reintenando");
+					TimeUnit.SECONDS.sleep(reconnectTime);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				reconnectTime += 2;
+				if (reconnectTime >= 8) {
+					if (this.ipServerOnline.equals(serverip1)) {
+						this.ipServerOnline = serverip2;
+						reconnectTime = 2;
+					} else {
+						if (this.ipServerOnline.equals(serverip2)) {
+							this.ipServerOnline = serverip1;
+							reconnectTime = 2;
+						}
+					}
+					serversLeftToTest--;
+				}
+			}
+
+		}
+		if (noPudoConectar) {
 			this.serverOnline = false;
 			this.view.popUpNotConnected();
 		}

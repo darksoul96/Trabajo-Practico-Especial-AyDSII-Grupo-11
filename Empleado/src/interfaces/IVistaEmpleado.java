@@ -23,4 +23,6 @@ public interface IVistaEmpleado {
 	
 	public void poUpConsultaExitosa(String cantidad);
 	
+	public void setServerOffline();
+	
 }

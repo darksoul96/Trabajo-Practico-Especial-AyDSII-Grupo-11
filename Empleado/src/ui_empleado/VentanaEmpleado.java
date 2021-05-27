@@ -38,11 +38,12 @@ public class VentanaEmpleado implements IVistaEmpleado {
 	private JButton btnConsultar;
 	private JButton btnValidarBox;
 	private JButton btnSalirBox;
-	private ArrayList<JMenuItem> itemsMenu=new ArrayList<JMenuItem>();
+	private ArrayList<JMenuItem> itemsMenu = new ArrayList<JMenuItem>();
 	private JLabel lblNroBox;
 	private JMenu menuBox;
 	private ActionListener actionListener;
 	private JLabel labelBox;
+
 	/**
 	 * Create the application.
 	 */
@@ -55,24 +56,24 @@ public class VentanaEmpleado implements IVistaEmpleado {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		
+
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 694, 484);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBounds(0, 0, 174, 445);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		labelBox = new JLabel("Sesion no iniciada");
 		labelBox.setForeground(Color.WHITE);
 		labelBox.setFont(new Font("Cambria", Font.PLAIN, 18));
 		labelBox.setBounds(10, 200, 153, 34);
 		panel.add(labelBox);
-		
+
 		btnSalirBox = new JButton("Cerrar Sesion");
 		btnSalirBox.setEnabled(false);
 		btnSalirBox.setActionCommand("CerrarSesion");
@@ -88,27 +89,26 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		});
 		btnSalirBox.setBounds(10, 378, 153, 23);
 		panel.add(btnSalirBox);
-		
+
 		menuBox = new JMenu("Seleccionar Box");
-		
+
 		menuBox.setBackground(new Color(244, 164, 96));
 		menuBox.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBox.setForeground(new Color(0, 0, 0));
 		menuBox.setBounds(32, 317, 115, 26);
-		
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 165, 0));
 		panel_1.setBounds(172, 0, 516, 14);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(172, 11, 516, 434);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		btnLlamar = new JButton("Llamar siguiente");
 		btnLlamar.setActionCommand("LLAMAR");
 		btnLlamar.addActionListener(new ActionListener() {
@@ -121,7 +121,7 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		btnLlamar.setFont(new Font("Cambria", Font.BOLD, 25));
 		btnLlamar.setBounds(128, 148, 263, 73);
 		panel_2.add(btnLlamar);
-		
+
 		btnConsultar = new JButton("Consultar turnos restantes");
 		btnConsultar.setActionCommand("CONSULTAR");
 		btnConsultar.setEnabled(false);
@@ -130,66 +130,62 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		btnConsultar.setFont(new Font("Cambria", Font.BOLD, 18));
 		btnConsultar.setBounds(128, 265, 263, 73);
 		panel_2.add(btnConsultar);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 165, 0));
 		panel_3.setBounds(23, 0, 76, 102);
 		panel_2.add(panel_3);
-		
+
 		Label label = new Label("Por favor seleccione un box antes de continuar");
 		label.setFont(new Font("Arial", Font.PLAIN, 15));
 		label.setBounds(134, 67, 318, 22);
 		panel_2.add(label);
-	
-	
+
 		lblNroBox = new JLabel("");
 		lblNroBox.setVisible(false);
-		
-		
+
 		int j;
-		for (j=0;j<8;j++) {
-			
-			itemsMenu.add(new JMenuItem("Box "+(j+1)));
-			itemsMenu.get(j).setName(String.valueOf(j+1));
-			String nombre=itemsMenu.get(j).getName();
-			int nro=j+1;
-			itemsMenu.get(j).addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e)
-			    {
-			        menuBox.setText(nombre);
-			        btnValidarBox.setEnabled(true);
-			        lblNroBox.setText(String.valueOf(nro));
-			    }
+		for (j = 0; j < 8; j++) {
+
+			itemsMenu.add(new JMenuItem("Box " + (j + 1)));
+			itemsMenu.get(j).setName(String.valueOf(j + 1));
+			String nombre = itemsMenu.get(j).getName();
+			int nro = j + 1;
+			itemsMenu.get(j).addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					menuBox.setText(nombre);
+					btnValidarBox.setEnabled(true);
+					lblNroBox.setText(String.valueOf(nro));
+				}
 			});
-			
-			
+
 			menuBox.add(itemsMenu.get(j));
 		}
-	
-		JMenuBar mb=new JMenuBar(); 
+
+		JMenuBar mb = new JMenuBar();
 		mb.add(menuBox);
 		this.frame.setJMenuBar(mb);
-		
+
 		btnValidarBox = new JButton("Validar Box");
 		btnValidarBox.setActionCommand("SeleccionBox");
 		btnValidarBox.setEnabled(false);
 		btnValidarBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				labelBox.setText("BOX "+menuBox.getText());
+				labelBox.setText("BOX " + menuBox.getText());
 				menuBox.setText("Cambiar Box");
 				btnLlamar.setEnabled(true);
 				btnConsultar.setEnabled(true);
 				btnSalirBox.setEnabled(true);
-				if(lblNroBox.getText().equals(""))
+				if (lblNroBox.getText().equals(""))
 					labelBox.setText("Sesion no iniciada");
 			}
 		});
 		mb.add(btnValidarBox);
-		
-		
+
 		mb.add(lblNroBox);
-		
+
 	}
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -197,18 +193,27 @@ public class VentanaEmpleado implements IVistaEmpleado {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
 	}
 
-	
+	public void setServerOffline() {
+		labelBox.setText("Sesion no iniciada");
+		menuBox.setEnabled(true);
+		btnLlamar.setEnabled(false);
+		btnConsultar.setEnabled(false);
+		btnSalirBox.setEnabled(false);
+		btnValidarBox.setEnabled(true);
+	}
 
 	@Override
 	public void setActionListener(ActionListener actionListener) {
@@ -265,12 +270,12 @@ public class VentanaEmpleado implements IVistaEmpleado {
 	@Override
 	public void popUpLlamadaExitosa(String dni) {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "Siguiente: "+dni);
+		JOptionPane.showMessageDialog(null, "Siguiente: " + dni);
 	}
 
 	@Override
 	public void poUpConsultaExitosa(String cantidad) {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "Clientes restantes: "+cantidad);
+		JOptionPane.showMessageDialog(null, "Clientes restantes: " + cantidad);
 	}
 }

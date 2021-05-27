@@ -33,18 +33,14 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 		}
 		return instance;
 	}
-	
-	
 
 	public Queue<Cliente> getClientes() {
 		return clientes;
 	}
 
-
 	public Set<String> getBoxes() {
 		return boxes;
 	}
-
 
 	public int consultarTurnosRestantes() {
 		return clientes.size();
@@ -104,13 +100,15 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 	@Override
 	public void setSecondary() {
 		this.primary = false;
-		
+
 	}
 
 	@Override
-	public void sincronizar() {
-		// TODO Auto-generated method stub
-		
+	public void sincronizar(Cliente lastCalledClient, Set<String> boxes, Queue<Cliente> clientes) {
+		this.lastCalledClient = lastCalledClient;
+		this.boxes = boxes;
+		this.clientes = clientes;
+
 	}
 
 }

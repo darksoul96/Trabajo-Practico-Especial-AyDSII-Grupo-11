@@ -47,4 +47,18 @@ public class BackupPackage implements Serializable {
 		return this.packageType;
 	}
 
+	public Queue<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public Set<String> getBoxes() {
+		return boxes;
+	}
+
+	public Cliente getLastCalledClient() {
+		return lastCalledClient;
+	}
+	
+	
+
 }

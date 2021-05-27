@@ -6,12 +6,17 @@ import repository.Servidor;
 
 public class PackageHandler {
 
-	public void handle(BackupPackage backup) {			// Maneja lo recibido desde el server principal
+	public void handle(BackupPackage backup) { // Maneja lo recibido desde el server principal
 		if (backup.getPackageType().equals("CLIENTE")) {
 			handle(backup.getCliente());
 		} else {
 			if (backup.getPackageType().equals("ORDEN")) {
 				handle(backup.getOrden());
+			} else {
+				if (backup.getPackageType().equals("SINCRONIZAR")) {
+					Servidor.getInstance().sincronizar(backup.getLastCalledClient(), backup.getBoxes(),
+							backup.getClientes());
+				}
 			}
 		}
 	}

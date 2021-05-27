@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.*;
+import java.util.concurrent.TimeUnit;
 
 import interfaces.ComunicacionCliente;
 import interfaces.IVistaCliente;
@@ -19,12 +20,14 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 	private String DNI;
 	private String ip1;
 	private String ip2;
+	private String ipServerOnline;
 	private int port;
 
 	public ControllerComunicacionCliente(String ip1, String ip2, int port) {
 		this.ip1 = ip1;
 		this.ip2 = ip2;
 		this.port = port;
+		this.ipServerOnline = ip1;
 
 	}
 
@@ -70,16 +73,46 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 	}
 
 	public void enviarCliente(Cliente cliente) {
-		try {
-			Socket socket = new Socket(ip1, 5005);
-			OutputStream outputStream = socket.getOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-			objectOutputStream.writeObject(new Cliente(DNI));
-			socket.close();
+		int reconnectTime = 2;
+		int serversLeftToTest = 2;
+		boolean noPudoConectar = true;
+		while (serversLeftToTest != 0 && noPudoConectar) {
+			try {
+				Socket socket = new Socket(ipServerOnline, 5005);
+				OutputStream outputStream = socket.getOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				objectOutputStream.writeObject(new Cliente(DNI));
+				System.out.println("Me conecte al servidor");
+				noPudoConectar = false;
+				socket.close();
 
-		} catch (Exception e1) {
+			} catch (Exception e1) {
+
+				try {
+					System.out.println("Reintenando");
+					TimeUnit.SECONDS.sleep(reconnectTime);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				reconnectTime += 2;
+				if (reconnectTime >= 8) {
+					if (this.ipServerOnline.equals(ip1)) {
+						this.ipServerOnline = ip2;
+						reconnectTime = 2;
+					} else {
+						if (this.ipServerOnline.equals(ip2)) {
+							this.ipServerOnline = ip1;
+							reconnectTime = 2;
+						}
+					}
+					serversLeftToTest--;
+				}
+			}
+		}
+		if(noPudoConectar) {
 			view.popUpNotConnected();
 		}
+
 	}
 
 }

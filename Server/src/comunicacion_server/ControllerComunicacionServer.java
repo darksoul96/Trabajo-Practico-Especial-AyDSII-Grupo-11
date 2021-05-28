@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionServer;
@@ -149,15 +150,14 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 						packageHandler.handle(backup);
 						System.out.println("Me llego msj del server");
 					}
-				} catch (ConnectException e1) {
-					e1.printStackTrace();
+				} catch (SocketException e1) {
 					ventanaServer.setPrimario();
 					Servidor.getInstance().setPrimary();
 					recibir();
 					System.out.println("Soy Primario");
 				}
 				catch (Exception e2) {
-					
+					e2.printStackTrace();
 				}
 			}
 		}.start();

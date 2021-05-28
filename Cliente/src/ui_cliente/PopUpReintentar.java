@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.AbstractAction;
@@ -17,17 +19,19 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ProgressMonitor;
+import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 
-public class PopUpReintentar extends JDialog{
+public class PopUpReintentar {
 
 	private String messageReintento="Reintentando.";
 	/**
 	 * Create the application.
 	 */
 	public PopUpReintentar() {
-		JOptionPane.showConfirmDialog(rootPane, messageReintento);
 		initialize();
 	}
 	
@@ -36,85 +40,55 @@ public class PopUpReintentar extends JDialog{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();// size of the screen
-	    setLocation(scrSize.width/2 - 112, scrSize.height/2 -60);
+		EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception ex) {
+                }
 
-	    setSize(225,120);
-	    setLayout(null);
-	    setUndecorated(true);
-	    setLayout(new GridBagLayout());
+                new BackgroundWorker().execute();
 
+            }
 
+        });
+		
+    }
 
-	    JLabel lblMensaje = new JLabel(messageReintento);
-	    Font font= new Font("Arial", Font.PLAIN,25);
-	    lblMensaje.setFont(font);
-	    lblMensaje.setAlignmentX(40);
-	    lblMensaje.setAlignmentY(30);
-	    
-	    add(lblMensaje);
-	    setVisible(true);
-	    /*try {
-	    	setVisible(true);
-			TimeUnit.SECONDS.sleep(5);
-			dispose();
-		} catch (InterruptedException e) {
-			 //TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-	    
-	    
-	    
-	    /*
-	    for (int i=0;i<5;i++) {
-	    	try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	lblMensaje.setText("Reintentando..");
-	    	try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	lblMensaje.setText("Reintentando...");
-	    	try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	lblMensaje.setText("Reintentando.");
-	    }
-	    */
-	    
-	    
-	    
-	    
-	    /*new Thread(){
-	          @Override
-	          public void run() {
-	               try {
-	            	   for (int i=0;i<5;i++) {
-	            		   Thread.sleep(200);
-	            		   lblMensaje.setText("Reintentando..");
-		            	   Thread.sleep(200);
-		            	   lblMensaje.setText("Reintentando...");
-		            	   Thread.sleep(200);
-		            	   lblMensaje.setText("Reintentando.");
-	            	   }
-	            	   Thread.sleep(4);
-	            	   
-	            	   dispose();
-	               } catch (InterruptedException e) {
-	                      e.printStackTrace();
-	               }
-	          };
-	    }.start();
-	    */
-	}
+    public class BackgroundWorker extends SwingWorker<Void, Void> {
+
+        private ProgressMonitor monitor;
+
+        public BackgroundWorker() {
+            addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
+                        if (monitor == null) {
+                            monitor = new ProgressMonitor(null, "Reintentando...", null, 0, 99);
+                        }
+                        monitor.setProgress(getProgress());
+                    }
+                }
+            });
+        }
+
+        @Override
+        protected void done() {
+            if (monitor != null) {
+                monitor.close();
+            }
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+            for (int index = 0; index < 100; index++) {
+                setProgress(index);
+                Thread.sleep(125);
+            }
+            return null;
+        }
+    }
 
 }

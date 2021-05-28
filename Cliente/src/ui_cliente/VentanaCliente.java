@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
+import java.util.concurrent.TimeUnit;
 
 public class VentanaCliente implements IVistaCliente {
 
@@ -35,6 +36,9 @@ public class VentanaCliente implements IVistaCliente {
 	private ActionListener actionListener;
 	private JButton btnIngresarDNI;
 	private PopUpReintentar popReintento;
+	private JPanel panel_1;
+	private JPanel panel;
+	private JPanel panel_5;
 
 	/**
 	 * Create the application.
@@ -53,12 +57,16 @@ public class VentanaCliente implements IVistaCliente {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 628, 453);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JPanel panel_1 = new JPanel();
+		panel_5=new JPanel();
+		panel_5.setBounds(0, 0, 0, 0);
+		frame.add(panel_5);
+		panel_5.setVisible(false);
+		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBorder(new CompoundBorder(new LineBorder(new Color(0, 128, 128), 2),
 				new LineBorder(new Color(255, 127, 80), 3)));
@@ -274,6 +282,7 @@ public class VentanaCliente implements IVistaCliente {
 	@Override
 	public void MuestraPopUpReintentar() {
 		// TODO Auto-generated method stub
+		//JOptionPane.showMessageDialog(null, "No hay conexion con el server, se reintentara.");
 		popReintento=new PopUpReintentar();
 	}
 

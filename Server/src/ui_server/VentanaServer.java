@@ -10,6 +10,9 @@ import interfaces.IVistaServer;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class VentanaServer implements IVistaServer {
 
@@ -31,18 +34,20 @@ public class VentanaServer implements IVistaServer {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 369, 185);
+		frame.setBounds(100, 100, 373, 197);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 261);
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
+		panel.setBounds(0, 0, 357, 158);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		lblNewLabel = new JLabel("Server Online");
+		lblNewLabel = new JLabel("Connecting...");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setBounds(46, 39, 306, 52);
+		lblNewLabel.setBounds(10, 51, 344, 55);
 		panel.add(lblNewLabel);
 	}
 

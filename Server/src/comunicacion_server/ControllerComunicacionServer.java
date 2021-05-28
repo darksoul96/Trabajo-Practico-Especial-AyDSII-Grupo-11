@@ -135,6 +135,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 
 					Socket socket = new Socket("localhost", 5000);
 					Servidor.getInstance().setSecondary();
+					//ventanaServer.setSecundario();
 					System.out.println("Soy Secundario");
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");
@@ -148,6 +149,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
+					ventanaServer.setPrimario();
 					Servidor.getInstance().setPrimary();
 					recibir();
 					System.out.println("Soy Primario");

@@ -135,7 +135,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 
 					Socket socket = new Socket("localhost", 5000);
 					Servidor.getInstance().setSecondary();
-					//ventanaServer.setSecundario();
+					ventanaServer.setSecundario();
 					System.out.println("Soy Secundario");
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");

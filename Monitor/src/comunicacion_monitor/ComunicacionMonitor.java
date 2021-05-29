@@ -6,9 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.locks.Lock;
 
-import interfaces.ComunicacionMonitor;
+import interfaces.IComunicacionMonitor;
 
-public class ControllerComunicacionMonitor implements ComunicacionMonitor {
+public class ComunicacionMonitor implements IComunicacionMonitor {
 
 	String ipServer1;
 	String ipServer2;

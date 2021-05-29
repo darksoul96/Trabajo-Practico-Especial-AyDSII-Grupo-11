@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface ComunicacionMonitor {
+public interface IComunicacionMonitor {
 
 
 	public void recibir();

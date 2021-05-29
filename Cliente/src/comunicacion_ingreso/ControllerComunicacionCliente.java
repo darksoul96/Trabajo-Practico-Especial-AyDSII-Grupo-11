@@ -76,8 +76,7 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 	public synchronized void enviarCliente(Cliente cliente) {
 		new Thread() {
 			public void run() {
-
-				boolean b = true;
+				boolean mostro=false;
 				int reconnectTime = 2;
 				int serversLeftToTest = 2;
 				boolean noPudoConectar = true;
@@ -96,9 +95,11 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 
 					} catch (Exception e1) {
 
-						// if (serversLeftToTest==2)
-
-						view.MuestraPopUpReintentar();
+						if (serversLeftToTest==2 && !mostro) {
+							view.MuestraPopUpReintentar();
+							mostro=true;
+						}
+							
 
 						// try {
 						// TimeUnit.SECONDS.sleep(1);//reconnectTime);
@@ -106,7 +107,6 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 						// e.printStackTrace();
 						// }
 
-						System.out.println("hola");
 						reconnectTime += 2;
 						if (reconnectTime >= 8) {
 							if (ipServerOnline.equals(ip1)) {
@@ -124,9 +124,9 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 
 				}
 
-				// if(noPudoConectar) {
-				// view.popUpNotConnected();
-				// }
+				if(noPudoConectar) {
+					view.popUpNotConnected();
+				}
 
 			}
 

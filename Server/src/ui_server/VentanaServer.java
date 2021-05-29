@@ -64,6 +64,6 @@ public class VentanaServer implements IVistaServer {
 	@Override
 	public void setSecundario() {
 		// TODO Auto-generated method stub
-		this.lblNewLabel.setText("Secondary Server Online");
+		this.lblNewLabel.setText("Secondary Server Ready");
 	}
 }

@@ -2,3 +2,6 @@
 5006
 5200
 localhost
+localhost
+5100
+localhost

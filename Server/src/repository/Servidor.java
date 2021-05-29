@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
 import comunicacion_ingreso.Cliente;
+import comunicacion_server.MonitorPackage;
 import interfaces.Notificacion;
 import interfaces.Registro;
 import interfaces.Resincronizacion;
@@ -18,7 +19,7 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 	Cliente lastCalledClient;
 	boolean primary = false;
 	private static Servidor instance = null;
-
+	
 	private Servidor() {
 
 	}
@@ -85,6 +86,8 @@ public class Servidor implements Registro, Notificacion, Resincronizacion {
 		if (boxes.contains(box))
 			boxes.remove(box);
 	}
+	
+
 
 	@Override
 	public boolean isPrimary() {

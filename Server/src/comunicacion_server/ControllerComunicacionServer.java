@@ -15,26 +15,32 @@ import java.net.SocketException;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionServer;
+import interfaces.Monitoreado;
 import ordenes.Orden;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
-public class ControllerComunicacionServer implements ComunicacionServer {
+public class ControllerComunicacionServer implements ComunicacionServer, Monitoreado {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
-	int portServerSecundario;
+	int portMonitor;
+	String ipMonitor;
 	String ipPantalla;
+	String ipLocalServer;
 	VentanaServer ventanaServer;
 	Socket clientSecondaryServerSocket;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
-			String ipPantalla) {
+			String ipPantalla, String ipMonitor, int portMonitor,String ipLocalServer) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;
 		this.portReceptorEmpleado = portReceptorEmpleado;
 		this.portEmisorPantalla = portEmisorPantalla;
 		this.ipPantalla = ipPantalla;
+		this.ipMonitor = ipMonitor;
+		this.portMonitor = portMonitor;
+		this.ipLocalServer = ipLocalServer;
 	}
 
 	public void ejecutarVentana() {
@@ -131,7 +137,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	}
 
 	@Override
-	public void conectarServers() { // Conectarme al server ppal, si no puede, es porque no hay principal
+	public void conectarServers() { // Conectarme al server principal, si no puede, es porque no hay principal
 		new Thread() {
 			public void run() {
 				try {
@@ -155,8 +161,7 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 					Servidor.getInstance().setPrimary();
 					recibir();
 					System.out.println("Soy Primario");
-				}
-				catch (Exception e2) {
+				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
 			}
@@ -199,8 +204,24 @@ public class ControllerComunicacionServer implements ComunicacionServer {
 	public void backup() {
 		if (clientSecondaryServerSocket != null) {
 			BackupPackage backup = new BackupPackage();
-			backup.sincronizarServer(Servidor.getInstance().getClientes(), Servidor.getInstance().getBoxes(), Servidor.getInstance().getLastCalledClient());
+			backup.sincronizarServer(Servidor.getInstance().getClientes(), Servidor.getInstance().getBoxes(),
+					Servidor.getInstance().getLastCalledClient());
 			enviarServerSecundario(clientSecondaryServerSocket, backup);
+		}
+
+	}
+
+	@Override
+	public void heartbeat(int portMonitor, String ipMonitor) {
+		try {
+			Socket socket = new Socket(ipMonitor, portMonitor);
+			OutputStream outputStream = socket.getOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			MonitorPackage paqueteMonitor = new MonitorPackage(this.ipLocalServer, Servidor.getInstance().isPrimary());
+			objectOutputStream.writeObject(paqueteMonitor);
+			socket.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 
 	}

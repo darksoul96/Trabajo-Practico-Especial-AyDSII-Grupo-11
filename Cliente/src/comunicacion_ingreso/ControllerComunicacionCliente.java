@@ -95,17 +95,15 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 
 					} catch (Exception e1) {
 
-						if (serversLeftToTest==2 && !mostro) {
+						if (!mostro) {
 							view.MuestraPopUpReintentar();
 							mostro=true;
+							try {
+								TimeUnit.SECONDS.sleep(2);//reconnectTime);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
-							
-
-						// try {
-						// TimeUnit.SECONDS.sleep(1);//reconnectTime);
-						// } catch (InterruptedException e) {
-						// e.printStackTrace();
-						// }
 
 						reconnectTime += 2;
 						if (reconnectTime >= 8) {

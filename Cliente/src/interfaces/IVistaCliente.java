@@ -13,4 +13,6 @@ public interface IVistaCliente {
 	public void popUpNotConnected();
 	
 	public void MuestraPopUpReintentar();
+	
+	public void popUpExitoRegistro();
 }

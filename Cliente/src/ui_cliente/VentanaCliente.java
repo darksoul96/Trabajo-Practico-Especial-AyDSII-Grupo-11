@@ -39,6 +39,7 @@ public class VentanaCliente implements IVistaCliente {
 	private JPanel panel_1;
 	private JPanel panel;
 	private JPanel panel_5;
+	private PopUpExito window;
 
 	/**
 	 * Create the application.
@@ -128,7 +129,7 @@ public class VentanaCliente implements IVistaCliente {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				textFieldDNI.setText(String.valueOf(0));
 			}
 		});
 
@@ -284,6 +285,12 @@ public class VentanaCliente implements IVistaCliente {
 		// TODO Auto-generated method stub
 		//JOptionPane.showMessageDialog(null, "No hay conexion con el server, se reintentara.");
 		popReintento=new PopUpReintentar();
+	}
+
+	@Override
+	public void popUpExitoRegistro() {
+		// TODO Auto-generated method stub
+		window = new PopUpExito();
 	}
 
 }

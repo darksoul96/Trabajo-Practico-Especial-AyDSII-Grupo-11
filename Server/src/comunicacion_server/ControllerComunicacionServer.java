@@ -12,6 +12,7 @@ import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.concurrent.TimeUnit;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionServer;
@@ -25,6 +26,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
 	int portMonitor;
+	int portMonitor2;
 	String ipMonitor;
 	String ipPantalla;
 	String ipLocalServer;
@@ -32,7 +34,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	Socket clientSecondaryServerSocket;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
-			String ipPantalla, String ipMonitor, int portMonitor, String ipLocalServer) {
+			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;
 		this.portReceptorEmpleado = portReceptorEmpleado;
@@ -41,6 +43,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 		this.ipMonitor = ipMonitor;
 		this.portMonitor = portMonitor;
 		this.ipLocalServer = ipLocalServer;
+		this.portMonitor2 = portMonitor2;
 	}
 
 	public void ejecutarVentana() {
@@ -148,6 +151,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					System.out.println("Soy Secundario");
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");
+					heartbeat(portMonitor2,ipMonitor);
 					while (true) {
 						InputStream inputStream = socket.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -161,6 +165,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					Servidor.getInstance().setPrimary();
 					recibir();
 					System.out.println("Soy Primario");
+					heartbeat(portMonitor,ipMonitor);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -226,6 +231,12 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 						socket.close();
 					} catch (Exception e2) {
 						e2.printStackTrace();
+					} finally {
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e3) {
+							e3.printStackTrace();
+						}
 					}
 				}
 			}

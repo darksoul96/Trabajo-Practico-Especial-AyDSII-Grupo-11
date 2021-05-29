@@ -18,6 +18,7 @@ public class MainServidor {
 		String ipMonitor = null;
 		String ipLocalServer = null;
 		int portMonitor = 0;
+		int portMonitor2 = 0;
 		try {
 			File myObj = new File("NetConfigServidor.txt");
 			Scanner myReader = new Scanner(myObj);
@@ -27,6 +28,7 @@ public class MainServidor {
 			ipPantalla = myReader.nextLine();
 			ipMonitor = myReader.nextLine();
 			portMonitor = Integer.parseInt(myReader.nextLine());
+			portMonitor2 = Integer.parseInt(myReader.nextLine());
 			ipLocalServer = myReader.nextLine();
 			myReader.close();
 		} catch (FileNotFoundException e) {
@@ -34,7 +36,7 @@ public class MainServidor {
 			e.printStackTrace();
 		}
 		ControllerComunicacionServer receptor = new ControllerComunicacionServer(portReceptorCliente,
-				portReceptorEmpleado, portEmisorPantalla, ipPantalla, ipMonitor, portMonitor, ipLocalServer);
+				portReceptorEmpleado, portEmisorPantalla, ipPantalla, ipMonitor, portMonitor, portMonitor2, ipLocalServer);
 		receptor.ejecutarVentana();
 		receptor.conectarServers();
 

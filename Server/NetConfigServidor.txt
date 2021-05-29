@@ -3,5 +3,6 @@
 5200
 localhost
 localhost
-5100
+6000
+6100
 localhost

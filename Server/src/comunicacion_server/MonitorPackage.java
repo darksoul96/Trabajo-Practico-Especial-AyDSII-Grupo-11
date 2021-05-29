@@ -1,6 +1,8 @@
 package comunicacion_server;
 
-public class MonitorPackage {
+import java.io.Serializable;
+
+public class MonitorPackage implements Serializable{
 	String ipServer;
 	Boolean serverStatus;
 

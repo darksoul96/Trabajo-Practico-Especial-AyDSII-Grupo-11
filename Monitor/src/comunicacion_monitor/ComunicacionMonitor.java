@@ -20,25 +20,20 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 	public void recibir() {
 		new Thread() {
 			public void run() {
-				try {
+				try { // Abro socket para escuchar Servidores
 					ServerSocket s = new ServerSocket(portLocal);
 					while (true) {
 						Socket soc = s.accept();
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						MonitorPackage monitorPackage = (MonitorPackage) objectInputStream.readObject();
-						
+
 					}
 				} catch (Exception e) {
 
 				}
 			}
 		}.start();
-
-	}
-
-	@Override
-	public void ping() {
 
 	}
 

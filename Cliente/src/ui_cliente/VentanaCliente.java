@@ -14,6 +14,8 @@ import javax.swing.text.NumberFormatter;
 import interfaces.IVistaCliente;
 
 import java.awt.Font;
+import java.awt.Rectangle;
+
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -283,14 +285,16 @@ public class VentanaCliente implements IVistaCliente {
 	@Override
 	public void MuestraPopUpReintentar() {
 		// TODO Auto-generated method stub
-		//JOptionPane.showMessageDialog(null, "No hay conexion con el server, se reintentara.");
 		popReintento=new PopUpReintentar();
 	}
 
 	@Override
 	public void popUpExitoRegistro() {
 		// TODO Auto-generated method stub
-		window = new PopUpExito();
+		int x, y;
+		x=frame.getLocationOnScreen().x;
+		y=frame.getLocationOnScreen().y;
+		window = new PopUpExito(x,y);
 	}
 
 }

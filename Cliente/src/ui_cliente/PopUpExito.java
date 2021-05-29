@@ -18,22 +18,22 @@ import javax.swing.WindowConstants;
 
 public class PopUpExito extends JDialog {
 
-	private String mensaje = "Cliente registrado con exito";
+	private String mensaje = "    DNI registrado con exito";
 
 
 	/**
 	 * Create the application.
 	 */
-	public PopUpExito() {
-		initialize();
+	public PopUpExito(int x, int y) {
+		initialize(x,y);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(scrSize.width/2 - 50, scrSize.height/2 - 40);
+	private void initialize(int x, int y) {
+		//Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setLocation(x + 210, y + 181);
 	    
 
 	    setSize(225,120);

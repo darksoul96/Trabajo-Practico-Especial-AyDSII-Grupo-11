@@ -32,7 +32,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	Socket clientSecondaryServerSocket;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
-			String ipPantalla, String ipMonitor, int portMonitor,String ipLocalServer) {
+			String ipPantalla, String ipMonitor, int portMonitor, String ipLocalServer) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;
 		this.portReceptorEmpleado = portReceptorEmpleado;
@@ -126,7 +126,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	@Override
 	public void enviarPantalla(Cliente cliente) { // Envio a la pantalla
 		try {
-			Socket socket = new Socket("localhost", portEmisorPantalla);
+			Socket socket = new Socket(ipPantalla, portEmisorPantalla);
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(cliente);
@@ -142,7 +142,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 			public void run() {
 				try {
 
-					Socket socket = new Socket("localhost", 5000);
+					Socket socket = new Socket(ipLocalServer, 5000);
 					Servidor.getInstance().setSecondary();
 					ventanaServer.setSecundario();
 					System.out.println("Soy Secundario");
@@ -213,16 +213,23 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 
 	@Override
 	public void heartbeat(int portMonitor, String ipMonitor) {
-		try {
-			Socket socket = new Socket(ipMonitor, portMonitor);
-			OutputStream outputStream = socket.getOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-			MonitorPackage paqueteMonitor = new MonitorPackage(this.ipLocalServer, Servidor.getInstance().isPrimary());
-			objectOutputStream.writeObject(paqueteMonitor);
-			socket.close();
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-
+		new Thread() {
+			public void run() {
+				while (true) {
+					try {
+						Socket socket = new Socket(ipMonitor, portMonitor);
+						OutputStream outputStream = socket.getOutputStream();
+						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+						MonitorPackage paqueteMonitor = new MonitorPackage(ipLocalServer,
+								Servidor.getInstance().isPrimary());
+						objectOutputStream.writeObject(paqueteMonitor);
+						socket.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		}.start();
 	}
+
 }

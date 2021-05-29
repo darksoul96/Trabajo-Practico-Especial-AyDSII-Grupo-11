@@ -25,4 +25,5 @@ public interface IVistaEmpleado {
 	
 	public void setServerOffline();
 	
+	public void muestraBarraReintentar();
 }

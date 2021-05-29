@@ -84,48 +84,58 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 
 	@Override
 	public void enviar(Orden orden) {
-		int reconnectTime = 2;
-		int serversLeftToTest = 2;
-		boolean noPudoConectar = true;
-		while (serversLeftToTest != 0 && noPudoConectar) {
-			try { // Se envia la orden al server
-				Socket socket = new Socket(ipServerOnline, serverport);
-				OutputStream outputStream = socket.getOutputStream();
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(orden);
-				noPudoConectar = false;
-				this.serverOnline=true;
-				System.out.println("Le mando mensajito al servidor");
-				socket.close();
+		new Thread() {
+			public void run() {
+				boolean mostro=false;
+				int reconnectTime = 2;
+				int serversLeftToTest = 2;
+				boolean noPudoConectar = true;
+				while (serversLeftToTest != 0 && noPudoConectar) {
+					try { // Se envia la orden al server
+						Socket socket = new Socket(ipServerOnline, serverport);
+						OutputStream outputStream = socket.getOutputStream();
+						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+						objectOutputStream.writeObject(orden);
+						noPudoConectar = false;
+						serverOnline=true;
+						System.out.println("Le mando mensajito al servidor");
+						socket.close();
 
-			} catch (Exception e1) {
-				try {
-					System.out.println("Reintenando");
-					TimeUnit.SECONDS.sleep(reconnectTime);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				reconnectTime += 2;
-				if (reconnectTime >= 8) {
-					if (this.ipServerOnline.equals(serverip1)) {
-						this.ipServerOnline = serverip2;
-						reconnectTime = 2;
-					} else {
-						if (this.ipServerOnline.equals(serverip2)) {
-							this.ipServerOnline = serverip1;
-							reconnectTime = 2;
+					} catch (Exception e1) {
+
+						if (!mostro) {
+							view.muestraBarraReintentar();
+							mostro=true;
+							try {
+								TimeUnit.SECONDS.sleep(2);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+						
+						reconnectTime += 2;
+						if (reconnectTime >= 8) {
+							if (ipServerOnline.equals(serverip1)) {
+								ipServerOnline = serverip2;
+								reconnectTime = 2;
+							} else {
+								if (ipServerOnline.equals(serverip2)) {
+									ipServerOnline = serverip1;
+									reconnectTime = 2;
+								}
+							}
+							serversLeftToTest--;
 						}
 					}
-					serversLeftToTest--;
+
+				}
+				if (noPudoConectar) {
+					serverOnline = false;
+					view.setServerOffline();
+					view.popUpNotConnected();
 				}
 			}
-
-		}
-		if (noPudoConectar) {
-			this.serverOnline = false;
-			this.view.setServerOffline();
-			this.view.popUpNotConnected();
-		}
+		}.start();
 	}
 
 	@Override

@@ -88,7 +88,6 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 						OutputStream outputStream = socket.getOutputStream();
 						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 						objectOutputStream.writeObject(new Cliente(DNI));
-						System.out.println("Me conecte al servidor");
 						view.popUpExitoRegistro();
 						noPudoConectar = false;
 						socket.close();

@@ -75,6 +75,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		}
 		if (orden != null)
 			enviar(orden);
+		System.out.println("LINEA ABAJO DE ENVIAR ORDE");
 		if (this.serverOnline && orden != null) {
 			OrdenResponsePackage respuesta = recibir();
 			handle(respuesta);
@@ -84,60 +85,51 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 
 	@Override
 	public synchronized void enviar(Orden orden) {
-		new Thread() {
-			public void run() {
-				boolean mostro = false;
-				int reconnectTime = 2;
-				int serversLeftToTest = 2;
-				boolean noPudoConectar = true;
-				while (serversLeftToTest != 0 && noPudoConectar) {
-					try { // Se envia la orden al server
-						Socket socket = new Socket(ipServerOnline, serverport);
-						OutputStream outputStream = socket.getOutputStream();
-						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-						objectOutputStream.writeObject(orden);
-						noPudoConectar = false;
-						serverOnline = true;
-						System.out.println("Le mando mensajito al servidor");
-						socket.close();
+		boolean mostro = false;
+		int reconnectTime = 2;
+		int serversLeftToTest = 2;
+		boolean noPudoConectar = true;
+		while (serversLeftToTest != 0 && noPudoConectar) {
+			try { // Se envia la orden al server
+				Socket socket = new Socket(ipServerOnline, serverport);
+				OutputStream outputStream = socket.getOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				objectOutputStream.writeObject(orden);
+				noPudoConectar = false;
+				serverOnline = true;
+				System.out.println("Le mando mensajito al servidor");
+				socket.close();
 
-					} catch (Exception e1) {
+			} catch (Exception e1) {
 
-						if (!mostro) {
-							view.muestraBarraReintentar();
-							mostro = true;
-						}
-						//try {
-							System.out.println("Reintentando");
-							//TimeUnit.SECONDS.sleep(2);
-						//} catch (InterruptedException e) {
-							//e.printStackTrace();
-						//}
-
-						reconnectTime += 2;
-						if (reconnectTime >= 8) {
-							if (ipServerOnline.equals(serverip1)) {
-								ipServerOnline = serverip2;
-								reconnectTime = 2;
-							} else {
-								if (ipServerOnline.equals(serverip2)) {
-									ipServerOnline = serverip1;
-									reconnectTime = 2;
-								}
-							}
-							serversLeftToTest--;
+				if (!mostro) {
+					view.muestraBarraReintentar();
+					mostro = true;
+				}
+				System.out.println("Reintentando");
+				reconnectTime += 2;
+				if (reconnectTime >= 8) {
+					if (ipServerOnline.equals(serverip1)) {
+						ipServerOnline = serverip2;
+						reconnectTime = 2;
+					} else {
+						if (ipServerOnline.equals(serverip2)) {
+							ipServerOnline = serverip1;
+							reconnectTime = 2;
 						}
 					}
-
-				}
-				if (noPudoConectar) {
-					System.out.println("SYSO DE NO PUDO CONECTAR");
-					serverOnline = false;
-					// view.setServerOffline();
-					view.popUpNotConnected();
+					serversLeftToTest--;
 				}
 			}
-		}.start();
+
+		}
+		if (noPudoConectar) {
+			System.out.println(" NO PUDO CONECTAR");
+			serverOnline = false;
+			// view.setServerOffline();
+			// view.popUpNotConnected();
+		}
+
 	}
 
 	@Override

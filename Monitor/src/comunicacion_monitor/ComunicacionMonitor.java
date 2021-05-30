@@ -43,7 +43,7 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						MonitorPackage monitorPackage = (MonitorPackage) objectInputStream.readObject();
-						Monitor.getInstance().conexionSocketPrimario(monitorPackage);
+						Monitor.getInstance().conexionServerPrimario(monitorPackage);
 					} catch (SocketTimeoutException e) {
 						// e.printStackTrace();
 						Monitor.getInstance().resetServerPrimario();
@@ -71,7 +71,7 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						MonitorPackage monitorPackage = (MonitorPackage) objectInputStream.readObject();
-						Monitor.getInstance().conexionSocketSecundario(monitorPackage);
+						Monitor.getInstance().conexionServerSecundario(monitorPackage);
 
 					} catch (SocketTimeoutException e2) {
 						// e2.printStackTrace();

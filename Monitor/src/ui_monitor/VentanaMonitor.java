@@ -7,14 +7,23 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.border.SoftBevelBorder;
+
+import interfaces.IVistaMonitor;
+
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 
-public class VentanaMonitor {
+public class VentanaMonitor implements IVistaMonitor {
 
 	private JFrame frame;
+	private JLabel lblNewLabel;
+	private JLabel lblStatus1;
+	private JLabel lblip1;
+	private JLabel lblNewLabel_1;
+	private JLabel lblStatus2;
+	private JLabel lblip2;
 
 	/**
 	 * Launch the application.
@@ -61,18 +70,20 @@ public class VentanaMonitor {
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Primary Server");
+		lblNewLabel = new JLabel("Primary Server");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNewLabel.setBounds(23, 11, 111, 14);
 		panel_2.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(20, 36, 111, 30);
-		panel_2.add(lblNewLabel_2);
+		lblStatus1 = new JLabel("OFFLINE");
+		lblStatus1.setForeground(Color.RED);
+		lblStatus1.setFont(new Font("Arial", Font.BOLD, 15));
+		lblStatus1.setBounds(23, 36, 100, 30);
+		panel_2.add(lblStatus1);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(20, 77, 114, 30);
-		panel_2.add(lblNewLabel_4);
+		lblip1 = new JLabel("IP:");
+		lblip1.setBounds(20, 77, 114, 30);
+		panel_2.add(lblip1);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -80,18 +91,20 @@ public class VentanaMonitor {
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Secondary Server");
+		lblNewLabel_1 = new JLabel("Secondary Server");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(20, 11, 135, 14);
 		panel_3.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(20, 35, 111, 30);
-		panel_3.add(lblNewLabel_3);
+		lblStatus2 = new JLabel("OFFLINE");
+		lblStatus2.setForeground(Color.RED);
+		lblStatus2.setFont(new Font("Arial", Font.BOLD, 15));
+		lblStatus2.setBounds(20, 35, 111, 30);
+		panel_3.add(lblStatus2);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(20, 76, 111, 30);
-		panel_3.add(lblNewLabel_5);
+		lblip2 = new JLabel("IP:");
+		lblip2.setBounds(20, 76, 111, 30);
+		panel_3.add(lblip2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 6));
@@ -99,5 +112,37 @@ public class VentanaMonitor {
 		frame.getContentPane().add(panel_1);
 		
 		frame.setVisible(true);
+	}
+
+	@Override
+	public void setServerPrimarioOffline() {
+		// TODO Auto-generated method stub
+		this.lblStatus1.setText("OFFLINE");
+		this.lblStatus1.setForeground(Color.red);
+		this.lblip1.setText("IP: ");
+	}
+
+	@Override
+	public void setServerSecundarioOffline() {
+		// TODO Auto-generated method stub
+		this.lblStatus2.setText("OFFLINE");
+		this.lblStatus2.setForeground(Color.red);
+		this.lblip2.setText("IP: ");
+	}
+
+	@Override
+	public void setServerPrimarioOnline(String ipPrimario) {
+		// TODO Auto-generated method stub
+		this.lblStatus1.setText("ONLINE");
+		this.lblStatus1.setForeground(Color.green);
+		this.lblip1.setText("IP: "+ipPrimario);
+	}
+
+	@Override
+	public void setServerSecundarioOnline(String ipSecundario) {
+		// TODO Auto-generated method stub
+		this.lblStatus2.setText("ONLINE");
+		this.lblStatus2.setForeground(Color.green);
+		this.lblip2.setText("IP: "+ipSecundario);
 	}
 }

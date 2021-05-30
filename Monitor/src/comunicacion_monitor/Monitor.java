@@ -34,22 +34,25 @@ public class Monitor implements HeartBeat {
 	public void resetServerPrimario() {
 		this.serverPrimarioOnline = false;
 		this.ipServerPrimario = null;
+		controllerMonitor.resetServerPrimario();
 	}
 
 	public void resetServerSecundario() {
 		this.serverSecundarioOnline = false;
 		this.ipServerSecundario = null;
+		controllerMonitor.resetServerSecundario();
 	}
 
-	public void conexionSocketPrimario(MonitorPackage paquete) {
+	public void conexionServerPrimario(MonitorPackage paquete) {
 		this.serverPrimarioOnline = true;
 		this.ipServerPrimario = paquete.getIp();
+		controllerMonitor.conexionServerPrimario(paquete.getIp());
 	}
 
-	public void conexionSocketSecundario(MonitorPackage paquete) {
+	public void conexionServerSecundario(MonitorPackage paquete) {
 		this.serverSecundarioOnline = true;
 		this.ipServerSecundario = paquete.getIp();
-
+		controllerMonitor.conexionServerSecundario(paquete.getIp());
 	}
 
 	public void heartBeatTimerServerPrimario() {

@@ -75,7 +75,6 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		}
 		if (orden != null)
 			enviar(orden);
-		System.out.println("LINEA ABAJO DE ENVIAR ORDE");
 		if (this.serverOnline && orden != null) {
 			OrdenResponsePackage respuesta = recibir();
 			handle(respuesta);
@@ -97,15 +96,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 				objectOutputStream.writeObject(orden);
 				noPudoConectar = false;
 				serverOnline = true;
-				System.out.println("Le mando mensajito al servidor");
 				socket.close();
 
 			} catch (Exception e1) {
-
-				if (!mostro) {
-					view.muestraBarraReintentar();
-					mostro = true;
-				}
 				System.out.println("Reintentando");
 				reconnectTime += 2;
 				if (reconnectTime >= 8) {
@@ -126,8 +119,8 @@ public class ControllerComunicacionEmpleado implements ActionListener, Comunicac
 		if (noPudoConectar) {
 			System.out.println(" NO PUDO CONECTAR");
 			serverOnline = false;
-			// view.setServerOffline();
-			// view.popUpNotConnected();
+			 view.setServerOffline();
+			 view.popUpNotConnected();
 		}
 
 	}

@@ -5,7 +5,6 @@ import java.util.concurrent.locks.Lock;
 import comunicacion_server.MonitorPackage;
 import controller_monitor.ControllerMonitor;
 import interfaces.HeartBeat;
-import ui_monitor.VentanaMonitor;
 
 public class Monitor implements HeartBeat {
 	boolean serverPrimarioOnline;
@@ -34,7 +33,11 @@ public class Monitor implements HeartBeat {
 	public void resetServerPrimario() {
 		this.serverPrimarioOnline = false;
 		this.ipServerPrimario = null;
+
 		controllerMonitor.resetServerPrimario();
+
+		
+
 	}
 
 	public void resetServerSecundario() {

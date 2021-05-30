@@ -13,8 +13,9 @@ import interfaces.ComunicacionPantalla;
 import interfaces.Exhibicion;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exhibicion{
+public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exhibicion {
 	int pantallaSocket;
+	String ultimoClienteLlamado = "";
 	private VentanaPantalla view;
 
 	public ControllerComunicacionPantalla(int pantallaSocket) {
@@ -25,7 +26,7 @@ public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exh
 		this.view = new VentanaPantalla();
 		this.view.setVisibleVentana();
 	}
-	
+
 	@Override
 	public void recibir() {
 		new Thread() {
@@ -49,7 +50,10 @@ public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exh
 
 	@Override
 	public void mostrarPantalla(Cliente cliente) {
-		this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
+		if (!ultimoClienteLlamado.equals(cliente.getDNI())) {
+			this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
+			this.ultimoClienteLlamado = cliente.getDNI();
+		}
 	}
 
 }

@@ -1,6 +1,5 @@
 package repository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -8,7 +7,6 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
 import comunicacion_ingreso.Cliente;
-import comunicacion_server.MonitorPackage;
 import interfaces.Notificacion;
 import interfaces.Registro;
 import interfaces.Resincronizacion;

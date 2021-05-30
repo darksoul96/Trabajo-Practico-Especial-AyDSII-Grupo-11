@@ -16,7 +16,6 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 	String ipServer2;
 	int portLocalPrimario;
 	int portLocalSecundario;
-	private VentanaMonitor view;
 
 	public ComunicacionMonitor(String ipServer1, String ipServer2, int portLocalPrimario, int portLocalSecundario) {
 		super();
@@ -24,7 +23,6 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 		this.ipServer2 = ipServer2;
 		this.portLocalPrimario = portLocalPrimario;
 		this.portLocalSecundario = portLocalSecundario;
-		view=new VentanaMonitor();
 	}
 
 	@Override

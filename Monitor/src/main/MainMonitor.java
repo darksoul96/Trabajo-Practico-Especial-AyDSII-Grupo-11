@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import comunicacion_monitor.ComunicacionMonitor;
+import comunicacion_monitor.Monitor;
+import ui_monitor.VentanaMonitor;
 
 public class MainMonitor {
 	static String ipServer1;
@@ -13,6 +15,8 @@ public class MainMonitor {
 	static int portLocalSecundario;
 
 	public static void main(String[] args) {
+		
+		Monitor.getInstance().CreaControllerMonitor();
 		try {
 			File myObj = new File("NetConfigMonitor.txt");
 			Scanner myReader = new Scanner(myObj);
@@ -27,6 +31,8 @@ public class MainMonitor {
 		}
 		ComunicacionMonitor comunicacionMonitor = new ComunicacionMonitor(ipServer1, ipServer2, portLocalPrimario, portLocalSecundario);
 		comunicacionMonitor.recibir();
+		
+		
 	}
 
 }

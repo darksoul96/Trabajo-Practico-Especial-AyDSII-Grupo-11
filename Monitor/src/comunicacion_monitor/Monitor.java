@@ -3,7 +3,9 @@ package comunicacion_monitor;
 import java.util.concurrent.locks.Lock;
 
 import comunicacion_server.MonitorPackage;
+import controller_monitor.ControllerMonitor;
 import interfaces.HeartBeat;
+import ui_monitor.VentanaMonitor;
 
 public class Monitor implements HeartBeat {
 	boolean serverPrimarioOnline;
@@ -11,6 +13,7 @@ public class Monitor implements HeartBeat {
 	String ipServerPrimario = null;
 	String ipServerSecundario = null;
 	private static Monitor instance = null;
+	private ControllerMonitor controllerMonitor;
 
 	private Monitor() {
 
@@ -63,6 +66,10 @@ public class Monitor implements HeartBeat {
 
 			}
 		}.start();
+	}
+	
+	public void CreaControllerMonitor() {
+		controllerMonitor = new ControllerMonitor(); 
 	}
 
 }

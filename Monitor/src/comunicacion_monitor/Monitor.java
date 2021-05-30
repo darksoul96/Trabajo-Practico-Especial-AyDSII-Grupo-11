@@ -31,6 +31,7 @@ public class Monitor implements HeartBeat {
 	public void resetServerPrimario() {
 		this.serverPrimarioOnline = false;
 		this.ipServerPrimario = null;
+		
 	}
 
 	public void resetServerSecundario() {

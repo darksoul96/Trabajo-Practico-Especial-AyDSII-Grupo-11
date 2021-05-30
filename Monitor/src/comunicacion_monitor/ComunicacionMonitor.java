@@ -31,7 +31,6 @@ public class ComunicacionMonitor implements IComunicacionMonitor {
 				while (true) {
 					try { // Abro socket para escuchar Servidor Primario
 						if (!socketPrimarioCreado) {
-							System.out.println("Abro socket primario");
 							s = new ServerSocket(portLocalPrimario);
 							socketPrimarioCreado = true;
 							s.setSoTimeout(5000);

@@ -151,7 +151,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					System.out.println("Soy Secundario");
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");
-					heartbeat(portMonitor2,ipMonitor);
+					heartbeat(portMonitor2, ipMonitor);
 					while (true) {
 						InputStream inputStream = socket.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
@@ -165,7 +165,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					Servidor.getInstance().setPrimary();
 					recibir();
 					System.out.println("Soy Primario");
-					heartbeat(portMonitor,ipMonitor);
+					heartbeat(portMonitor, ipMonitor);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -220,7 +220,8 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	public void heartbeat(int portMonitor, String ipMonitor) {
 		new Thread() {
 			public void run() {
-				while (true) {
+				boolean isPrimary = Servidor.getInstance().isPrimary();
+				while (isPrimary == Servidor.getInstance().isPrimary()) {
 					try {
 						Socket socket = new Socket(ipMonitor, portMonitor);
 						OutputStream outputStream = socket.getOutputStream();
@@ -230,7 +231,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 						objectOutputStream.writeObject(paqueteMonitor);
 						socket.close();
 					} catch (Exception e2) {
-						e2.printStackTrace();
+						// e2.printStackTrace();
 					} finally {
 						try {
 							Thread.sleep(2000);

@@ -58,21 +58,6 @@ public class Monitor implements HeartBeat {
 		controllerMonitor.conexionServerSecundario(paquete.getIp());
 	}
 
-	public void heartBeatTimerServerPrimario() {
-		new Thread() {
-			public void run() {
-
-			}
-		}.start();
-	}
-
-	public void heartBeatTimerServerSecundario() {
-		new Thread() {
-			public void run() {
-
-			}
-		}.start();
-	}
 	
 	public void CreaControllerMonitor() {
 		controllerMonitor = new ControllerMonitor(); 

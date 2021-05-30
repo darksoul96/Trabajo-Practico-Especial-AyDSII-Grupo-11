@@ -4,12 +4,10 @@ import java.awt.EventQueue;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.JFrame;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
-import ui_cliente.PopUpReintentar.BackgroundWorker;
 
 public class ProgressReintentarEmpleado {
 

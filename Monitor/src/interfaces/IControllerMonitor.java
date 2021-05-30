@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface IControllerMonitor {
+public interface IControllerMonitor  {
 
 	public void resetServerPrimario();
 	

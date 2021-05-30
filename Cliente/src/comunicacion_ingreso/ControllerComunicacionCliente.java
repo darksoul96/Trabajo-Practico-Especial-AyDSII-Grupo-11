@@ -98,7 +98,7 @@ public class ControllerComunicacionCliente implements ActionListener, Comunicaci
 							view.MuestraPopUpReintentar();
 							mostro=true;
 							try {
-								TimeUnit.SECONDS.sleep(2);
+								Thread.sleep(2000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}

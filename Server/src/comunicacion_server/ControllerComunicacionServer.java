@@ -146,15 +146,13 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	}
 
 	@Override
-	public void conectarServers() { // Conectarme al server principal, si no puede, es porque no hay principal
+	public void conectarServers() { 
 		new Thread() {
 			public void run() {
-				try {
-					System.out.println(ipServer2);
+				try {				// Conectarme al server principal, si no puede, es porque no hay principal
 					Socket socket = new Socket(ipServer2, 5000);
 					Servidor.getInstance().setSecondary();
 					ventanaServer.setSecundario();
-					System.out.println("Soy Secundario");
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");
 					heartbeat(portMonitor2, ipMonitor);
@@ -170,7 +168,6 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					ventanaServer.setPrimario();
 					Servidor.getInstance().setPrimary();
 					recibir();
-					System.out.println("Soy Primario");
 					heartbeat(portMonitor, ipMonitor);
 				} catch (Exception e2) {
 					e2.printStackTrace();

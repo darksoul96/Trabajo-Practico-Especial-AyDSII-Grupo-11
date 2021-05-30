@@ -12,15 +12,12 @@ import paquetes.MonitorPackage;
 
 public class ComunicacionMonitor implements IComunicacionMonitor {
 
-	String ipServer1;
-	String ipServer2;
+
 	int portLocalPrimario;
 	int portLocalSecundario;
 
-	public ComunicacionMonitor(String ipServer1, String ipServer2, int portLocalPrimario, int portLocalSecundario) {
+	public ComunicacionMonitor(int portLocalPrimario, int portLocalSecundario) {
 		super();
-		this.ipServer1 = ipServer1;
-		this.ipServer2 = ipServer2;
 		this.portLocalPrimario = portLocalPrimario;
 		this.portLocalSecundario = portLocalSecundario;
 	}

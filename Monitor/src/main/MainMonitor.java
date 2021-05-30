@@ -22,14 +22,12 @@ public class MainMonitor {
 			Scanner myReader = new Scanner(myObj);
 			portLocalPrimario = Integer.parseInt(myReader.nextLine());
 			portLocalSecundario = Integer.parseInt(myReader.nextLine());
-			ipServer1 = myReader.nextLine();
-			ipServer2 = myReader.nextLine();
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("NetConfigMonitor.txt not found.");
 			e.printStackTrace();
 		}
-		ComunicacionMonitor comunicacionMonitor = new ComunicacionMonitor(ipServer1, ipServer2, portLocalPrimario, portLocalSecundario);
+		ComunicacionMonitor comunicacionMonitor = new ComunicacionMonitor(portLocalPrimario, portLocalSecundario);
 		comunicacionMonitor.recibir();
 		
 		

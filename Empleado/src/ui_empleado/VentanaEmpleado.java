@@ -282,7 +282,6 @@ public class VentanaEmpleado implements IVistaEmpleado {
 
 	@Override
 	public void muestraBarraReintentar() {
-		// TODO Auto-generated method stub
-		barra=new ProgressReintentarEmpleado();
+		barra = new ProgressReintentarEmpleado();
 	}
 }

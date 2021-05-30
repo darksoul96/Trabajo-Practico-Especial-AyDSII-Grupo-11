@@ -6,8 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import comunicacion_server.MonitorPackage;
 import interfaces.IComunicacionMonitor;
+import modelo_monitor.Monitor;
+import paquetes.MonitorPackage;
 import ui_monitor.VentanaMonitor;
 
 public class ComunicacionMonitor implements IComunicacionMonitor {

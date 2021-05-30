@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import comunicacion_monitor.ComunicacionMonitor;
-import comunicacion_monitor.Monitor;
+import modelo_monitor.Monitor;
 import ui_monitor.VentanaMonitor;
 
 public class MainMonitor {

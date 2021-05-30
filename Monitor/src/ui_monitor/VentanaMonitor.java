@@ -54,6 +54,7 @@ public class VentanaMonitor implements IVistaMonitor {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 474, 263);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -135,7 +136,7 @@ public class VentanaMonitor implements IVistaMonitor {
 		// TODO Auto-generated method stub
 		this.lblStatus1.setText("ONLINE");
 		this.lblStatus1.setForeground(Color.green);
-		this.lblip1.setText("IP: "+ipPrimario);
+		this.lblip1.setText("IP: "+ ipPrimario);
 	}
 
 	@Override

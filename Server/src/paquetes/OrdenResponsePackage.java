@@ -1,10 +1,10 @@
-package comunicacion_server;
+package paquetes;
 
 import java.io.Serializable;
 
 public class OrdenResponsePackage implements Serializable {
 	Boolean sucess;
-	String type;
+	public String type;
 	String info;
 
 	public OrdenResponsePackage(Boolean sucess, String type, String info) {

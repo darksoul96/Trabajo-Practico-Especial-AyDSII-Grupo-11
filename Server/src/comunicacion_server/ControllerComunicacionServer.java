@@ -18,6 +18,9 @@ import comunicacion_ingreso.Cliente;
 import interfaces.ComunicacionServer;
 import interfaces.Monitoreado;
 import ordenes.Orden;
+import paquetes.BackupPackage;
+import paquetes.MonitorPackage;
+import paquetes.OrdenResponsePackage;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
@@ -30,11 +33,12 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	String ipMonitor;
 	String ipPantalla;
 	String ipLocalServer;
+	String ipServer2;
 	VentanaServer ventanaServer;
 	Socket clientSecondaryServerSocket;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
-			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer) {
+			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer, String ipServer2) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;
 		this.portReceptorEmpleado = portReceptorEmpleado;
@@ -44,6 +48,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 		this.portMonitor = portMonitor;
 		this.ipLocalServer = ipLocalServer;
 		this.portMonitor2 = portMonitor2;
+		this.ipServer2 = ipServer2;
 	}
 
 	public void ejecutarVentana() {
@@ -100,6 +105,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 					ServerSocket s = new ServerSocket(5000);
 					while (true) {
 						Socket soc = s.accept();
+						System.out.println(soc.getLocalAddress());
 						clientSecondaryServerSocket = soc;
 						BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 						if (in.readLine().equals("connected"))
@@ -144,8 +150,8 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 		new Thread() {
 			public void run() {
 				try {
-
-					Socket socket = new Socket(ipLocalServer, 5000);
+					System.out.println(ipServer2);
+					Socket socket = new Socket(ipServer2, 5000);
 					Servidor.getInstance().setSecondary();
 					ventanaServer.setSecundario();
 					System.out.println("Soy Secundario");
@@ -180,7 +186,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 			OutputStream outputStream = socket.getOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(backup);
-			System.out.println("Envie desde el ppal");
+			System.out.println("Envie desde el principal");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

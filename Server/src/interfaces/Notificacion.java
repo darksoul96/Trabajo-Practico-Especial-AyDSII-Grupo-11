@@ -1,8 +1,8 @@
 package interfaces;
 
 import comunicacion_ingreso.Cliente;
-import comunicacion_server.OrdenResponsePackage;
 import ordenes.Orden;
+import paquetes.OrdenResponsePackage;
 
 public interface Notificacion {
 

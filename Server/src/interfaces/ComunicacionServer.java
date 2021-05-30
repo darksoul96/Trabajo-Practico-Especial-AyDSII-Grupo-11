@@ -4,9 +4,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import comunicacion_ingreso.Cliente;
-import comunicacion_server.BackupPackage;
-import comunicacion_server.OrdenResponsePackage;
 import ordenes.Orden;
+import paquetes.BackupPackage;
+import paquetes.OrdenResponsePackage;
 
 public interface ComunicacionServer {
 

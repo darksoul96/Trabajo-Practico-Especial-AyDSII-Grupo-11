@@ -1,10 +1,10 @@
-package comunicacion_monitor;
+package modelo_monitor;
 
 import java.util.concurrent.locks.Lock;
 
-import comunicacion_server.MonitorPackage;
 import controller_monitor.ControllerMonitor;
 import interfaces.HeartBeat;
+import paquetes.MonitorPackage;
 
 public class Monitor implements HeartBeat {
 	boolean serverPrimarioOnline;

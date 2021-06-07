@@ -8,7 +8,7 @@ public class PersistidorXML implements IPersistencia  {
 	public void abrirInput(String nombre) throws IOException {
 		// TODO Auto-generated method stub
 		
-	}
+	} 
 
 	@Override
 	public void abrirOutput(String nombre) throws IOException {

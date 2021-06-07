@@ -8,6 +8,7 @@ import java.util.concurrent.locks.Lock;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.INotificacion;
+import interfaces.IOrdenamientoStrategy;
 import interfaces.IRegistro;
 import interfaces.IResincronizacion;
 
@@ -17,7 +18,8 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	Cliente lastCalledClient;
 	boolean primary = false;
 	private static Servidor instance = null;
-	
+	IOrdenamientoStrategy ordenadorStrategy;
+
 	private Servidor() {
 
 	}
@@ -31,6 +33,10 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 
 		}
 		return instance;
+	}
+
+	public void setOrdenadorStrategy(IOrdenamientoStrategy ordenadorStrategy) {
+		this.ordenadorStrategy = ordenadorStrategy;
 	}
 
 	public Queue<Cliente> getClientes() {
@@ -84,8 +90,6 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 		if (boxes.contains(box))
 			boxes.remove(box);
 	}
-	
-
 
 	@Override
 	public boolean isPrimary() {

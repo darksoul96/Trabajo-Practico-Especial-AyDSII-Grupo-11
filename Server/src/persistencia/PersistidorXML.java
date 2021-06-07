@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import comunicacion_ingreso.Cliente;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IPersistencia;
 
@@ -55,6 +56,12 @@ public class PersistidorXML implements IPersistencia, IAccesoBaseDatos  {
 		if (xmlDecoder != null)
 			objeto = xmlDecoder.readObject();
 		return objeto;
+	}
+
+	@Override
+	public String accesoNombreCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

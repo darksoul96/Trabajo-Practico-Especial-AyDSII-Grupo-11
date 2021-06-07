@@ -2,6 +2,7 @@ package persistencia;
 
 import java.io.IOException;
 
+import comunicacion_ingreso.Cliente;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IPersistencia;
 
@@ -39,6 +40,12 @@ public class PersistidorXML implements IPersistencia, IAccesoBaseDatos  {
 
 	@Override
 	public Object leer() throws IOException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String accesoNombreCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		return null;
 	}

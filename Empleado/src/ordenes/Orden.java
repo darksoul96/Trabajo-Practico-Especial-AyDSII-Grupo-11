@@ -2,9 +2,9 @@ package ordenes;
 
 import java.io.Serializable;
 
-import interfaces.OrdenEmpleado;
+import interfaces.IOrdenEmpleado;
 
-public abstract class Orden implements Serializable, OrdenEmpleado {
+public abstract class Orden implements Serializable, IOrdenEmpleado {
 
 	String nroBox;
 	String ip;

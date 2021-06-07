@@ -4,7 +4,7 @@ import comunicacion_ingreso.Cliente;
 import ordenes.Orden;
 import paquetes.OrdenResponsePackage;
 
-public interface Notificacion {
+public interface INotificacion {
 
 	public int consultarTurnosRestantes();
 

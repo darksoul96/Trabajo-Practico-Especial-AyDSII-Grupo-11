@@ -10,12 +10,12 @@ import java.io.PrintWriter;
 import java.net.*;
 import java.util.concurrent.TimeUnit;
 
-import interfaces.ComunicacionCliente;
+import interfaces.IComunicacionCliente;
 import interfaces.IVistaCliente;
 import ui_cliente.PopUpReintentar;
 import ui_cliente.VentanaCliente;
 
-public class ControllerComunicacionCliente implements ActionListener, ComunicacionCliente {
+public class ControllerComunicacionCliente implements ActionListener, IComunicacionCliente {
 
 	private IVistaCliente view;
 	private String DNI;

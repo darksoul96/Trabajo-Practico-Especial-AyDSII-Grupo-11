@@ -2,7 +2,7 @@ package interfaces;
 
 import paquetes.MonitorPackage;
 
-public interface HeartBeat {
+public interface IHeartBeat {
 
 	public void resetServerPrimario();
 

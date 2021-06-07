@@ -5,7 +5,7 @@ import java.util.Set;
 
 import comunicacion_ingreso.Cliente;
 
-public interface Resincronizacion {
+public interface IResincronizacion {
 
 	boolean isPrimary();
 

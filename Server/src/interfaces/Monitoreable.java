@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface Monitoreado {
+public interface Monitoreable {
 
 	public void heartbeat(int portMonitor, String ipMonitor);
 }

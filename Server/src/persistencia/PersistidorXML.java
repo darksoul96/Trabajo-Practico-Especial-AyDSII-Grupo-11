@@ -45,10 +45,11 @@ public class PersistidorXML implements IPersistencia, IAccesoBaseDatos  {
 	}
 
 	@Override
-	public String accesoNombreCliente(Cliente cliente) {
+	public Cliente completaCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 }

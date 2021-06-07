@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface OrdenEmpleado {
+public interface IOrdenEmpleado {
 	public String executeOrder();
 }

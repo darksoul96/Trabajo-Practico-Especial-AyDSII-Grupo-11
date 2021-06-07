@@ -3,10 +3,10 @@ package modelo_monitor;
 import java.util.concurrent.locks.Lock;
 
 import controller_monitor.ControllerMonitor;
-import interfaces.HeartBeat;
+import interfaces.IHeartBeat;
 import paquetes.MonitorPackage;
 
-public class Monitor implements HeartBeat {
+public class Monitor implements IHeartBeat {
 	boolean serverPrimarioOnline;
 	boolean serverSecundarioOnline;
 	String ipServerPrimario = null;

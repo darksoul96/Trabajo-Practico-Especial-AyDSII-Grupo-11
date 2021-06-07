@@ -15,16 +15,18 @@ import java.net.SocketException;
 import java.util.concurrent.TimeUnit;
 
 import comunicacion_ingreso.Cliente;
-import interfaces.ComunicacionServer;
-import interfaces.Monitoreado;
+import interfaces.IComunicacionServer;
+import interfaces.IAccesoBaseDatos;
+import interfaces.Monitoreable;
 import ordenes.Orden;
 import paquetes.BackupPackage;
 import paquetes.MonitorPackage;
 import paquetes.OrdenResponsePackage;
+import persistencia.PersistidorXML;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
-public class ControllerComunicacionServer implements ComunicacionServer, Monitoreado {
+public class ControllerComunicacionServer implements IComunicacionServer, Monitoreable {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
@@ -36,6 +38,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 	String ipServer2;
 	VentanaServer ventanaServer;
 	Socket clientSecondaryServerSocket;
+	IAccesoBaseDatos persistidor;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer, String ipServer2) {
@@ -49,6 +52,7 @@ public class ControllerComunicacionServer implements ComunicacionServer, Monitor
 		this.ipLocalServer = ipLocalServer;
 		this.portMonitor2 = portMonitor2;
 		this.ipServer2 = ipServer2;
+		this.persistidor = new PersistidorXML();
 	}
 
 	public void ejecutarVentana() {

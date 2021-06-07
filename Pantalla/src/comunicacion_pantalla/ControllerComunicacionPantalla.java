@@ -9,11 +9,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import comunicacion_ingreso.Cliente;
-import interfaces.ComunicacionPantalla;
-import interfaces.Exhibicion;
+import interfaces.IComunicacionPantalla;
+import interfaces.IExhibicion;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerComunicacionPantalla implements ComunicacionPantalla, Exhibicion {
+public class ControllerComunicacionPantalla implements IComunicacionPantalla, IExhibicion {
 	int pantallaSocket;
 	String ultimoClienteLlamado = "";
 	private VentanaPantalla view;

@@ -17,14 +17,14 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 
-import interfaces.ComunicacionEmpleado;
+import interfaces.IComunicacionEmpleado;
 import interfaces.IVistaEmpleado;
 import ordenes.Orden;
 import ordenes.OrdenFactory;
 import paquetes.OrdenResponsePackage;
 import ui_empleado.VentanaEmpleado;
 
-public class ControllerComunicacionEmpleado implements ActionListener, ComunicacionEmpleado {
+public class ControllerComunicacionEmpleado implements ActionListener, IComunicacionEmpleado {
 
 	private String nroBox;
 	private IVistaEmpleado view;

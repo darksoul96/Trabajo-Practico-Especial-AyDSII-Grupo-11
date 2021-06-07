@@ -8,7 +8,7 @@ import ordenes.Orden;
 import paquetes.BackupPackage;
 import paquetes.OrdenResponsePackage;
 
-public interface ComunicacionServer {
+public interface IComunicacionServer {
 
 	public void recibir();
 

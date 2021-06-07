@@ -7,11 +7,11 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
 import comunicacion_ingreso.Cliente;
-import interfaces.Notificacion;
-import interfaces.Registro;
-import interfaces.Resincronizacion;
+import interfaces.INotificacion;
+import interfaces.IRegistro;
+import interfaces.IResincronizacion;
 
-public class Servidor implements Registro, Notificacion, Resincronizacion {
+public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	Queue<Cliente> clientes = new LinkedList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;

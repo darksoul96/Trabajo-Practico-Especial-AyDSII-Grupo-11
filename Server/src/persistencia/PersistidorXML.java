@@ -2,6 +2,8 @@ package persistencia;
 
 import java.io.IOException;
 
+import interfaces.IPersistencia;
+
 public class PersistidorXML implements IPersistencia  {
 
 	@Override

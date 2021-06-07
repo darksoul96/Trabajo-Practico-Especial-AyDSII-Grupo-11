@@ -1,4 +1,4 @@
-package persistencia;
+package interfaces;
 
 import java.io.IOException;
 

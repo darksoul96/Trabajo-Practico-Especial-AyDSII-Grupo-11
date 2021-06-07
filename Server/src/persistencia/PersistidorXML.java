@@ -2,9 +2,10 @@ package persistencia;
 
 import java.io.IOException;
 
+import interfaces.IAccesoBaseDatos;
 import interfaces.IPersistencia;
 
-public class PersistidorXML implements IPersistencia  {
+public class PersistidorXML implements IPersistencia, IAccesoBaseDatos  {
 
 	@Override
 	public void abrirInput(String nombre) throws IOException {

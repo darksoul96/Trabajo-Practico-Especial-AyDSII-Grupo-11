@@ -1,28 +1,25 @@
 package comunicacion_server;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.concurrent.TimeUnit;
 
 import comunicacion_ingreso.Cliente;
-import interfaces.IComunicacionServer;
 import interfaces.IAccesoBaseDatos;
+import interfaces.IComunicacionServer;
 import interfaces.Monitoreable;
 import ordenes.Orden;
 import paquetes.BackupPackage;
 import paquetes.MonitorPackage;
 import paquetes.OrdenResponsePackage;
-import persistencia.PersistidorXML;
+import persistencia.PersistenciaFacade;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
@@ -41,7 +38,8 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 	IAccesoBaseDatos persistidor;
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
-			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer, String ipServer2) {
+			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer,
+			String ipServer2) {
 		super();
 		this.portReceptorCliente = portReceptorCliente;
 		this.portReceptorEmpleado = portReceptorEmpleado;
@@ -52,7 +50,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 		this.ipLocalServer = ipLocalServer;
 		this.portMonitor2 = portMonitor2;
 		this.ipServer2 = ipServer2;
-		this.persistidor = new PersistidorXML();
+		this.persistidor = new PersistenciaFacade();
 	}
 
 	public void ejecutarVentana() {
@@ -72,8 +70,15 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						backup(client);
-						packageHandler.handle(client);
+						Cliente clientePersistido = persistidor.completaCliente(client);
+						if (clientePersistido != null) {
+							backup(clientePersistido);
+							packageHandler.handle(persistidor.completaCliente(clientePersistido));
+						}
+						OutputStream outputStream = soc.getOutputStream();
+						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+						objectOutputStream.writeObject(clientePersistido);
+
 					}
 				} catch (Exception e) {
 
@@ -150,10 +155,10 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 	}
 
 	@Override
-	public void conectarServers() { 
+	public void conectarServers() {
 		new Thread() {
 			public void run() {
-				try {				// Conectarme al server principal, si no puede, es porque no hay principal
+				try { // Conectarme al server principal, si no puede, es porque no hay principal
 					Socket socket = new Socket(ipServer2, 5000);
 					Servidor.getInstance().setSecondary();
 					ventanaServer.setSecundario();

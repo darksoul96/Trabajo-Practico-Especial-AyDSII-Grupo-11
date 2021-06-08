@@ -11,8 +11,10 @@ public interface IVistaCliente {
 	public void setVisibleVentana();
 
 	public void popUpNotConnected();
-	
+
 	public void MuestraPopUpReintentar();
-	
-	public void popUpExitoRegistro();
+
+	public void popUpExitoRegistro(String nombre);
+
+	public void popUpNoRegistrado();
 }

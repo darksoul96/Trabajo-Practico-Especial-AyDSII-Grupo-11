@@ -3,7 +3,9 @@ package comunicacion_ingreso;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -73,7 +75,7 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 
 	}
 
-	public synchronized void enviarCliente(Cliente cliente) {
+	public void enviarCliente(Cliente cliente) {
 		boolean mostro = false;
 		int reconnectTime = 2;
 		int serversLeftToTest = 2;
@@ -86,7 +88,14 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 				OutputStream outputStream = socket.getOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 				objectOutputStream.writeObject(new Cliente(DNI));
-				view.popUpExitoRegistro();
+				InputStream inputStream = socket.getInputStream();
+				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+				Cliente client = (Cliente) objectInputStream.readObject();
+				if (client == null) {
+					view.popUpNoRegistrado();
+				} else {
+					view.popUpExitoRegistro(client.getNombre());
+				}
 				noPudoConectar = false;
 				socket.close();
 
@@ -99,7 +108,7 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 				}
 
 				reconnectTime += 2;
-				if (reconnectTime >= 8) {
+				if (reconnectTime >= 4) {
 					if (ipServerOnline.equals(ip1)) {
 						ipServerOnline = ip2;
 						reconnectTime = 2;

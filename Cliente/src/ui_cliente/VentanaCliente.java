@@ -65,7 +65,7 @@ public class VentanaCliente implements IVistaCliente {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		panel_5=new JPanel();
+		panel_5 = new JPanel();
 		panel_5.setBounds(0, 0, 0, 0);
 		frame.add(panel_5);
 		panel_5.setVisible(false);
@@ -108,7 +108,6 @@ public class VentanaCliente implements IVistaCliente {
 		lblNewLabel_1.setBounds(29, 24, 139, 23);
 		panel_2.add(lblNewLabel_1);
 
-		
 		NumberFormat format = NumberFormat.getInstance();
 		NumberFormatter formateador = new NumberFormatter(format);
 		formateador.setValueClass(Integer.class);
@@ -141,107 +140,107 @@ public class VentanaCliente implements IVistaCliente {
 		btnIngresarDNI.setFont(new Font("Cambria", Font.PLAIN, 15));
 		btnIngresarDNI.setBounds(171, 142, 139, 47);
 		panel_2.add(btnIngresarDNI);
-		
+
 		JButton btn1 = new JButton("1");
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"1");
+				textFieldDNI.setText(textFieldDNI.getText() + "1");
 			}
 		});
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn1.setBounds(36, 193, 42, 23);
 		panel_1.add(btn1);
-		
+
 		JButton btn2 = new JButton("2");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"2");
+				textFieldDNI.setText(textFieldDNI.getText() + "2");
 			}
 		});
 		btn2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn2.setBounds(82, 193, 42, 23);
 		panel_1.add(btn2);
-		
+
 		JButton btn3 = new JButton("3");
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"3");
+				textFieldDNI.setText(textFieldDNI.getText() + "3");
 			}
 		});
 		btn3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn3.setBounds(128, 193, 42, 23);
 		panel_1.add(btn3);
-		
+
 		JButton btn4 = new JButton("4");
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"4");
+				textFieldDNI.setText(textFieldDNI.getText() + "4");
 			}
 		});
 		btn4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn4.setBounds(36, 221, 42, 23);
 		panel_1.add(btn4);
-		
+
 		JButton btn5 = new JButton("5");
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"5");
+				textFieldDNI.setText(textFieldDNI.getText() + "5");
 			}
 		});
 		btn5.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn5.setBounds(82, 221, 42, 23);
 		panel_1.add(btn5);
-		
+
 		JButton btn6 = new JButton("6");
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"6");
+				textFieldDNI.setText(textFieldDNI.getText() + "6");
 			}
 		});
 		btn6.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn6.setBounds(128, 221, 42, 23);
 		panel_1.add(btn6);
-		
+
 		JButton btn7 = new JButton("7");
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"7");
+				textFieldDNI.setText(textFieldDNI.getText() + "7");
 			}
 		});
 		btn7.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn7.setBounds(36, 248, 42, 23);
 		panel_1.add(btn7);
-		
+
 		JButton btn8 = new JButton("8");
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"8");
+				textFieldDNI.setText(textFieldDNI.getText() + "8");
 			}
 		});
 		btn8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn8.setBounds(82, 248, 42, 23);
 		panel_1.add(btn8);
-		
+
 		JButton btn9 = new JButton("9");
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"9");
+				textFieldDNI.setText(textFieldDNI.getText() + "9");
 			}
 		});
 		btn9.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn9.setBounds(128, 248, 42, 23);
 		panel_1.add(btn9);
-		
+
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldDNI.setText(textFieldDNI.getText()+"0");
+				textFieldDNI.setText(textFieldDNI.getText() + "0");
 			}
 		});
 		btn0.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btn0.setBounds(82, 273, 42, 23);
 		panel_1.add(btn0);
-		
+
 		JButton btnBorrarDNI = new JButton("Borrar");
 		btnBorrarDNI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -285,16 +284,21 @@ public class VentanaCliente implements IVistaCliente {
 	@Override
 	public void MuestraPopUpReintentar() {
 		// TODO Auto-generated method stub
-		popReintento=new PopUpReintentar();
+		popReintento = new PopUpReintentar();
 	}
 
 	@Override
-	public void popUpExitoRegistro() {
+	public void popUpExitoRegistro(String nombre) {
 		// TODO Auto-generated method stub
 		int x, y;
-		x=frame.getLocationOnScreen().x;
-		y=frame.getLocationOnScreen().y;
-		window = new PopUpExito(x,y);
+		x = frame.getLocationOnScreen().x;
+		y = frame.getLocationOnScreen().y;
+		window = new PopUpExito(x, y, nombre);
+	}
+
+	@Override
+	public void popUpNoRegistrado() {
+		JOptionPane.showMessageDialog(null, "DNI no registrado en el sistema");
 	}
 
 }

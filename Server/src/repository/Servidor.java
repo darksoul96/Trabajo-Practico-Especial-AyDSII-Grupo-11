@@ -53,13 +53,12 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	}
 
 	public void registrarPedidoDeTurno(Cliente cliente) {
-		if (!clientes.contains(cliente)) {
-			clientes.add(cliente);
-		}
+		this.ordenadorStrategy.agregarCliente(cliente, this.clientes);
 	}
 
 	public Cliente llamarSiguiente(String box) {
-		return null;
+		this.lastCalledClient = this.clientes.remove(0);
+		return this.lastCalledClient;
 	}
 
 	public Cliente getLastCalledClient() {

@@ -9,8 +9,8 @@ public class OrdenamientoLlegadaStrategy implements IOrdenamientoStrategy {
 
 	@Override
 	public void agregarCliente(Cliente cliente, ArrayList<Cliente> lista) {
-		// TODO Auto-generated method stub
-		
+		lista.add(cliente);
+
 	}
 
 }

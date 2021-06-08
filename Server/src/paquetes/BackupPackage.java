@@ -1,6 +1,7 @@
 package paquetes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +14,7 @@ import repository.Servidor;
 public class BackupPackage implements Serializable {
 	Orden orden = null;
 	Cliente cliente = null;
-	Queue<Cliente> clientes = null;
+	ArrayList<Cliente> clientes = null;
 	Set<String> boxes = null;
 	Cliente lastCalledClient = null;
 	String packageType = null;
@@ -36,18 +37,18 @@ public class BackupPackage implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public void sincronizarServer(Queue<Cliente> clientes, Set<String> boxes, Cliente lastCalledClient) {
+	public void sincronizarServer(ArrayList<Cliente> clientes, Set<String> boxes, Cliente lastCalledClient) {
 		this.packageType = "SINCRONIZAR";
 		this.clientes = Servidor.getInstance().getClientes();
 		this.boxes = Servidor.getInstance().getBoxes();
 		this.lastCalledClient = Servidor.getInstance().getLastCalledClient();
 	}
-	
+
 	public String getPackageType() {
 		return this.packageType;
 	}
 
-	public Queue<Cliente> getClientes() {
+	public ArrayList<Cliente> getClientes() {
 		return clientes;
 	}
 
@@ -58,9 +59,5 @@ public class BackupPackage implements Serializable {
 	public Cliente getLastCalledClient() {
 		return lastCalledClient;
 	}
-
-	
-	
-	
 
 }

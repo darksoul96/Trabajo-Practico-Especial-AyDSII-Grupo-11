@@ -1,5 +1,6 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +14,7 @@ import interfaces.IRegistro;
 import interfaces.IResincronizacion;
 
 public class Servidor implements IRegistro, INotificacion, IResincronizacion {
-	Queue<Cliente> clientes = new LinkedList<Cliente>();
+	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;
 	boolean primary = false;
@@ -39,7 +40,7 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 		this.ordenadorStrategy = ordenadorStrategy;
 	}
 
-	public Queue<Cliente> getClientes() {
+	public ArrayList<Cliente> getClientes() {
 		return clientes;
 	}
 
@@ -58,13 +59,7 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	}
 
 	public Cliente llamarSiguiente(String box) {
-		Cliente nextClient = null;
-		if (!clientes.isEmpty()) {
-			nextClient = clientes.remove();
-			nextClient.setBox(box);
-			this.lastCalledClient = nextClient;
-		}
-		return nextClient;
+		return null;
 	}
 
 	public Cliente getLastCalledClient() {
@@ -109,7 +104,7 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	}
 
 	@Override
-	public void sincronizar(Cliente lastCalledClient, Set<String> boxes, Queue<Cliente> clientes) {
+	public void sincronizar(Cliente lastCalledClient, Set<String> boxes, ArrayList<Cliente> clientes) {
 		this.lastCalledClient = lastCalledClient;
 		this.boxes = boxes;
 		this.clientes = clientes;

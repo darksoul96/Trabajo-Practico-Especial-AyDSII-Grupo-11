@@ -26,6 +26,7 @@ public class PackageHandler {
 	}
 
 	public void handle(Cliente cliente) { // Maneja lo recibido desde Cliente
+		System.out.println("handle cliente");
 		Servidor.getInstance().registrarPedidoDeTurno(cliente);
 	}
 

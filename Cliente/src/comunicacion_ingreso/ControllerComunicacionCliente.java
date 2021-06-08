@@ -70,6 +70,7 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 
 		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI = (view.getTextoDNI());
+			this.DNI = DNI.replaceAll("[^0-9]", "");
 			enviarCliente(new Cliente(DNI));
 		}
 
@@ -87,7 +88,8 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 				socket.connect(sa);
 				OutputStream outputStream = socket.getOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-				objectOutputStream.writeObject(new Cliente(DNI));
+				objectOutputStream.writeObject(cliente);
+				System.out.println("Envie el objeto");
 				InputStream inputStream = socket.getInputStream();
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 				Cliente client = (Cliente) objectInputStream.readObject();

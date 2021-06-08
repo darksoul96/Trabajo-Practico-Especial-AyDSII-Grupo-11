@@ -3,13 +3,25 @@ package comunicacion_ingreso;
 import java.io.Serializable;
 
 public class Cliente implements Serializable{
-	String DNI;
-	String box;
-	String nombre;
+	String DNI = null;
+	String box = null;
+	String nombre = null;
 	int prioridad;
 	
-	public Cliente(String dNI) {
+	
+	
+	public Cliente() {
 		super();
+
+	}
+
+	public Cliente(String DNI) {
+		super();
+		this.DNI = DNI;
+	}
+
+	
+	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
 

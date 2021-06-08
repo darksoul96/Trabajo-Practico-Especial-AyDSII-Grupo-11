@@ -45,7 +45,7 @@ public class PersistidorXML implements IPersistencia {
 	}
 
 	@Override
-	public Object leer() throws IOException, ClassNotFoundException {
+	public Object leer() throws IOException,IndexOutOfBoundsException,ClassNotFoundException {
 		Object objeto = null;
 		if (xmlDecoder != null)
 			objeto = xmlDecoder.readObject();

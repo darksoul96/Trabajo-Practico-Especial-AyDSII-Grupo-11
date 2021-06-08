@@ -36,6 +36,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 	VentanaServer ventanaServer;
 	Socket clientSecondaryServerSocket;
 	IAccesoBaseDatos persistidor;
+	PersistenciaFacade facade = new PersistenciaFacade();
 
 	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer,
@@ -51,6 +52,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 		this.portMonitor2 = portMonitor2;
 		this.ipServer2 = ipServer2;
 		this.persistidor = new PersistenciaFacade();
+		this.facade.generaLista();
 	}
 
 	public void ejecutarVentana() {
@@ -73,7 +75,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 						Cliente clientePersistido = persistidor.completaCliente(client);
 						if (clientePersistido != null) {
 							backup(clientePersistido);
-							packageHandler.handle(persistidor.completaCliente(clientePersistido));
+							packageHandler.handle(clientePersistido);
 						}
 						OutputStream outputStream = soc.getOutputStream();
 						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);

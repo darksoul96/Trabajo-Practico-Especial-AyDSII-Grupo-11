@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import comunicacion_server.ControllerComunicacionServer;
+import repository.OrdenamientoPrioridadStrategy;
 import repository.Servidor;
 
 public class MainServidor {
@@ -41,6 +42,7 @@ public class MainServidor {
 				portReceptorEmpleado, portEmisorPantalla, ipPantalla, ipMonitor, portMonitor, portMonitor2, ipLocalServer, ipServer2);
 		receptor.ejecutarVentana();
 		receptor.conectarServers();
+		Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoPrioridadStrategy());
 
 		System.out.println("SERVIDOR ANDANDO");
 

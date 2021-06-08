@@ -74,60 +74,50 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 	}
 
 	public synchronized void enviarCliente(Cliente cliente) {
-		new Thread() {
-			public void run() {
-				boolean mostro=false;
-				int reconnectTime = 2;
-				int serversLeftToTest = 2;
-				boolean noPudoConectar = true;
-				while (serversLeftToTest != 0 && noPudoConectar) {
-					try {
-						SocketAddress sa = new InetSocketAddress(ipServerOnline, 5005);
-						Socket socket = new Socket();
-						socket.connect(sa);
-						OutputStream outputStream = socket.getOutputStream();
-						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-						objectOutputStream.writeObject(new Cliente(DNI));
-						view.popUpExitoRegistro();
-						noPudoConectar = false;
-						socket.close();
+		boolean mostro = false;
+		int reconnectTime = 2;
+		int serversLeftToTest = 2;
+		boolean noPudoConectar = true;
+		while (serversLeftToTest != 0 && noPudoConectar) {
+			try {
+				SocketAddress sa = new InetSocketAddress(ipServerOnline, 5005);
+				Socket socket = new Socket();
+				socket.connect(sa);
+				OutputStream outputStream = socket.getOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+				objectOutputStream.writeObject(new Cliente(DNI));
+				view.popUpExitoRegistro();
+				noPudoConectar = false;
+				socket.close();
 
-					} catch (Exception e1) {
+			} catch (Exception e1) {
 
-						if (!mostro) {
-							view.MuestraPopUpReintentar();
-							mostro=true;
-							try {
-								Thread.sleep(2000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
-						reconnectTime += 2;
-						if (reconnectTime >= 8) {
-							if (ipServerOnline.equals(ip1)) {
-								ipServerOnline = ip2;
-								reconnectTime = 2;
-							} else {
-								if (ipServerOnline.equals(ip2)) {
-									ipServerOnline = ip1;
-									reconnectTime = 2;
-								}
-							}
-							serversLeftToTest--;
+				reconnectTime += 2;
+				if (reconnectTime >= 8) {
+					if (ipServerOnline.equals(ip1)) {
+						ipServerOnline = ip2;
+						reconnectTime = 2;
+					} else {
+						if (ipServerOnline.equals(ip2)) {
+							ipServerOnline = ip1;
+							reconnectTime = 2;
 						}
 					}
-
+					serversLeftToTest--;
 				}
-
-				if(noPudoConectar) {
-					view.popUpNotConnected();
-				}
-
 			}
 
-		}.start();
+		}
+
+		if (noPudoConectar) {
+			view.popUpNotConnected();
+		}
 
 	}
 

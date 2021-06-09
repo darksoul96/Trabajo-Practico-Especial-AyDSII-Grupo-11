@@ -51,7 +51,7 @@ public class ControllerComunicacionPantalla implements IComunicacionPantalla, IE
 	@Override
 	public void mostrarPantalla(Cliente cliente) {
 		if (!ultimoClienteLlamado.equals(cliente.getDNI())) {
-			this.view.escribeTurno(cliente.getDNI(), cliente.getBox());
+			this.view.escribeTurno(cliente.getNombre(), cliente.getBox());
 			this.ultimoClienteLlamado = cliente.getDNI();
 		}
 	}

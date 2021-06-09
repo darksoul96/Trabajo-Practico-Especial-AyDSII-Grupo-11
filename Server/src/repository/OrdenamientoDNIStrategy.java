@@ -18,6 +18,7 @@ public class OrdenamientoDNIStrategy implements IOrdenamientoStrategy {
 			clienteActual = (Cliente) it.next();
 			if (clienteActual.getDNI().compareTo(cliente.getDNI()) > 0) {
 				lista.add(index, cliente);
+				menor = true;
 			}
 			index++;
 		}

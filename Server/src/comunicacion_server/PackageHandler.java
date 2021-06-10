@@ -42,14 +42,10 @@ public class PackageHandler {
 			}
 		} else if (orden.executeOrder().equals("LLAMAR")) {
 			Cliente nextClient = Servidor.getInstance().llamarSiguiente(orden.getNroBox());
-			if (nextClient != null) {
-				DNI = nextClient.getDNI();
-			} else
-				DNI = null;
-			if (DNI != null)
-				response = new OrdenResponsePackage(true, "LLAMAR", DNI);
+			if (nextClient != null)
+				response = new OrdenResponsePackage(true, "LLAMAR", nextClient);
 			else
-				response = new OrdenResponsePackage(false, "LLAMAR", DNI);
+				response = new OrdenResponsePackage(false, "LLAMAR", nextClient);
 		} else if (orden.executeOrder().equals("CONSULTAR")) {
 			response = new OrdenResponsePackage(true, "CONSULTAR",
 					Integer.toString(Servidor.getInstance().consultarTurnosRestantes()));

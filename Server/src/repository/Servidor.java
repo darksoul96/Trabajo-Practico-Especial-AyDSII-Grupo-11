@@ -55,7 +55,7 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	}
 
 	public Cliente llamarSiguiente(String box) {
-		if (this.clientes != null) {
+		if (this.clientes.size() != 0) {
 			this.lastCalledClient = this.clientes.remove(0);
 			this.lastCalledClient.setBox(box);
 		}

@@ -1,6 +1,10 @@
 package persistencia;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.IAccesoBaseDatos;
@@ -9,13 +13,15 @@ import interfaces.IPersistencia;
 public class PersistenciaFacade implements IAccesoBaseDatos {
 
 	IPersistencia persistencia;
-
+	private ArrayList<Cliente> clientesEnDB = new ArrayList<Cliente>();
+	
 	public PersistenciaFacade() {
 		super();
 		this.persistencia = new PersistidorXML();
 	}
 
 	public void generaLista() {
+		/*
 		Cliente cliente1 = new Cliente();
 		cliente1.setNombre("Seba");
 		cliente1.setPrioridad(1);
@@ -28,18 +34,58 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 		cliente3.setNombre("Jorge");
 		cliente3.setPrioridad(3);
 		cliente3.setDNI("1");
-
+		*/
+		
+		
 		try {
 			persistencia.abrirOutput("clientes.xml");
-			persistencia.escribir(cliente1);
-			persistencia.escribir(cliente2);
-			persistencia.escribir(cliente3);
+			this.llenarBaseDeDatos();
+			for (int i=0;i<clientesEnDB.size();i++) {
+				persistencia.escribir(clientesEnDB.remove(i));
+			}
 			persistencia.cerrarOutput();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Ta creando");
 
+	}
+
+	private void llenarBaseDeDatos() {
+		// TODO Auto-generated method stub
+		Cliente actual;
+		String lineaTotal, linea2 = "", nombre, apellido, dni;
+		int prioridad, index;
+		
+		try {
+			File archivo=new File("clientes.txt");
+			Scanner scan = new Scanner(archivo);
+			while (scan.hasNextLine()) {
+				lineaTotal=scan.nextLine();
+				prioridad=Integer.parseInt(lineaTotal.substring(0, 1));
+				linea2=lineaTotal.substring(2);
+				index=linea2.indexOf(' ');
+				nombre=linea2.substring(0, index);
+				linea2=linea2.substring(index);
+				index=linea2.indexOf(' ');
+				apellido=linea2.substring(0, index);
+				linea2=linea2.substring(index);
+				dni=linea2;
+				dni.replaceAll("\\s+","");
+				
+				actual=new Cliente();
+				actual.setDNI(dni);
+				actual.setNombre(nombre+apellido);
+				actual.setPrioridad(prioridad);
+				clientesEnDB.add(actual);
+			}
+			scan.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	@Override

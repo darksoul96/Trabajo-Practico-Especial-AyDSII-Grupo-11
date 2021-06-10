@@ -2,6 +2,8 @@ package ui_server;
 
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,11 +12,17 @@ import interfaces.IVistaServer;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 
 public class VentanaServer implements IVistaServer {
@@ -25,6 +33,7 @@ public class VentanaServer implements IVistaServer {
 	private JRadioButton rdbtnPrioridad;
 	private JRadioButton rdbtnLlegada;
 	private JRadioButton rdbtnIntercalado;
+	private JLabel lblFotito;
 	
 
 	/**
@@ -53,7 +62,7 @@ public class VentanaServer implements IVistaServer {
 		lblNewLabel = new JLabel("Connecting...");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setBounds(10, 40, 344, 55);
+		lblNewLabel.setBounds(10, 11, 344, 55);
 		panel.add(lblNewLabel);
 		
 		rdbtnDNI = new JRadioButton("Llamar por DNI (ascendente)");
@@ -103,6 +112,25 @@ public class VentanaServer implements IVistaServer {
 		});
 		rdbtnIntercalado.setBounds(21, 217, 282, 23);
 		panel.add(rdbtnIntercalado);
+		
+
+		lblFotito = new JLabel("");
+		lblFotito.setBounds(20, 67, 316, 214);
+		
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File("res/serverphoto.png"));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
+		Image dimg = img.getScaledInstance(this.lblFotito.getWidth(), this.lblFotito.getHeight(),
+		        Image.SCALE_SMOOTH);
+		
+		ImageIcon imageIcon = new ImageIcon(dimg);
+		this.lblFotito.setIcon(imageIcon);
+		this.lblFotito.setVisible(false);
+		panel.add(lblFotito);
 	}
 
 	public void setVisibleVentana() {
@@ -113,12 +141,22 @@ public class VentanaServer implements IVistaServer {
 	public void setPrimario() {
 		// TODO Auto-generated method stub
 		this.lblNewLabel.setText("Primary Server Online");
+		this.rdbtnDNI.setVisible(true);
+		this.rdbtnPrioridad.setVisible(true);
+		this.rdbtnLlegada.setVisible(true);
+		this.rdbtnIntercalado.setVisible(true);
+		this.lblFotito.setVisible(false);
 	}
 
 	@Override
 	public void setSecundario() {
 		// TODO Auto-generated method stub
 		this.lblNewLabel.setText("Secondary Server Ready");
+		this.rdbtnDNI.setVisible(false);
+		this.rdbtnPrioridad.setVisible(false);
+		this.rdbtnLlegada.setVisible(false);
+		this.rdbtnIntercalado.setVisible(false);
+		this.lblFotito.setVisible(true);
 	}
 
 	@Override

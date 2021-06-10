@@ -113,7 +113,7 @@ public class ComunicacionEmpleado implements IComunicacionEmpleado {
 
 			}
 		} catch (Exception e2) {
-			e2.getStackTrace();
+			e2.getStackTrace(); 
 		}
 		return respuesta;
 	}

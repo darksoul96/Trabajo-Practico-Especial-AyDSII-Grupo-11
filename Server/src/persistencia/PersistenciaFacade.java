@@ -40,8 +40,8 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 		try {
 			persistencia.abrirOutput("clientes.xml");
 			this.llenarBaseDeDatos();
-			for (int i=0;i<clientesEnDB.size();i++) {
-				persistencia.escribir(clientesEnDB.remove(i));
+			while(clientesEnDB.size()!=0) {
+				persistencia.escribir(clientesEnDB.remove(0));
 			}
 			persistencia.cerrarOutput();
 		} catch (IOException e) {

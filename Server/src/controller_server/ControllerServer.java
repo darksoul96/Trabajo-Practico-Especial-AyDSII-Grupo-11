@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import interfaces.IComunicacionServer;
 import interfaces.IVistaServer;
 import repository.OrdenamientoDNIStrategy;
+import repository.OrdenamientoIntercaladoStrategy;
 import repository.OrdenamientoLlegadaStrategy;
 import repository.OrdenamientoPrioridadStrategy;
 import repository.Servidor;
@@ -37,7 +38,8 @@ public class ControllerServer implements ActionListener {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoLlegadaStrategy());
 		} else if (command.equalsIgnoreCase("STRATEGY_DNI")) {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoDNIStrategy());
-
+		} else if (command.equalsIgnoreCase("STRATEGY_INTERCALADO")) {
+			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoIntercaladoStrategy());
 		}
 	}
 

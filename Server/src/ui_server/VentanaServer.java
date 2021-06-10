@@ -24,6 +24,7 @@ public class VentanaServer implements IVistaServer {
 	private JRadioButton rdbtnDNI;
 	private JRadioButton rdbtnPrioridad;
 	private JRadioButton rdbtnLlegada;
+	private JRadioButton rdbtnIntercalado;
 	
 
 	/**
@@ -39,7 +40,7 @@ public class VentanaServer implements IVistaServer {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 365, 320);
+		frame.setBounds(100, 100, 374, 329);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -52,7 +53,7 @@ public class VentanaServer implements IVistaServer {
 		lblNewLabel = new JLabel("Connecting...");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setBounds(10, 51, 344, 55);
+		lblNewLabel.setBounds(10, 40, 344, 55);
 		panel.add(lblNewLabel);
 		
 		rdbtnDNI = new JRadioButton("Llamar por DNI (ascendente)");
@@ -61,9 +62,10 @@ public class VentanaServer implements IVistaServer {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnPrioridad.setSelected(false);
 				rdbtnLlegada.setSelected(false);
+				rdbtnIntercalado.setSelected(false);
 			}
 		});
-		rdbtnDNI.setBounds(26, 128, 215, 23);
+		rdbtnDNI.setBounds(20, 113, 215, 23);
 		panel.add(rdbtnDNI);
 		
 		rdbtnPrioridad = new JRadioButton("Llamar por prioridad");
@@ -72,9 +74,10 @@ public class VentanaServer implements IVistaServer {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnDNI.setSelected(false);
 				rdbtnLlegada.setSelected(false);
+				rdbtnIntercalado.setSelected(false);
 			}
 		});
-		rdbtnPrioridad.setBounds(26, 173, 215, 23);
+		rdbtnPrioridad.setBounds(20, 147, 215, 23);
 		panel.add(rdbtnPrioridad);
 		
 		rdbtnLlegada = new JRadioButton("Llamar por orden de llegada");
@@ -83,10 +86,23 @@ public class VentanaServer implements IVistaServer {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnDNI.setSelected(false);
 				rdbtnPrioridad.setSelected(false);
+				rdbtnIntercalado.setSelected(false);
 			}
 		});
-		rdbtnLlegada.setBounds(26, 218, 215, 23);
+		rdbtnLlegada.setBounds(20, 183, 215, 23);
 		panel.add(rdbtnLlegada);
+		
+		rdbtnIntercalado = new JRadioButton("Llamar por prioridad intercalada (cada 2)");
+		rdbtnLlegada.setActionCommand("STRATEGY_INTERCALADO");
+		rdbtnIntercalado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtnDNI.setSelected(false);
+				rdbtnPrioridad.setSelected(false);
+				rdbtnLlegada.setSelected(false);
+			}
+		});
+		rdbtnIntercalado.setBounds(21, 217, 282, 23);
+		panel.add(rdbtnIntercalado);
 	}
 
 	public void setVisibleVentana() {
@@ -111,5 +127,6 @@ public class VentanaServer implements IVistaServer {
 		this.rdbtnDNI.addActionListener(actionListener);
 		this.rdbtnPrioridad.addActionListener(actionListener);
 		this.rdbtnLlegada.addActionListener(actionListener);
+		this.rdbtnIntercalado.addActionListener(actionListener);
 	}
 }

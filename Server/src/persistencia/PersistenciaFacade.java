@@ -36,7 +36,6 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 	}
 
 	private void llenarBaseDeDatos() {
-		// TODO Auto-generated method stub
 		Cliente actual;
 		String lineaTotal, linea2 = "", nombre, apellido, dni;
 		int prioridad, index;
@@ -79,6 +78,7 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 			persistencia.abrirInput("clientes.xml");
 			try {
 				clienteActual = (Cliente) persistencia.leer();
+				clienteActual.setHorarioRegistro(horaDeRegistro);
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			}
@@ -103,13 +103,23 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 	}
 
 	@Override
-	public void persistirHorarioRegistro() {
-		// TODO Auto-generated method stub
+	public void persistirHorarioRegistro(Cliente cliente) {
+		System.out.println(cliente.getHorarioRegistro());
+		HorarioRegistro registro = new HorarioRegistro(cliente.getHorarioRegistro(), cliente.getDNI());
+
+		try {
+			persistencia.abrirOutput("registros.xml");
+			persistencia.escribir(registro);
+			persistencia.cerrarOutput();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
-	public void persistirHorarioDeAtencion() {
+	public void persistirHorarioDeAtencion(Cliente cliente) {
 		// TODO Auto-generated method stub
 
 	}

@@ -6,7 +6,7 @@ public interface IAccesoBaseDatos {
 	
 	public Cliente completaCliente(Cliente cliente);
 	
-	public void persistirHorarioRegistro();
+	public void persistirHorarioRegistro(Cliente cliente);
 	
-	public void persistirHorarioDeAtencion();
+	public void persistirHorarioDeAtencion(Cliente cliente);
 }

@@ -30,11 +30,11 @@ public class ControllerServer implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		if (command.equalsIgnoreCase("Prioridad")) {
+		if (command.equalsIgnoreCase("STRATEGY_PRIORIDAD")) {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoPrioridadStrategy());
-		} else if (command.equalsIgnoreCase("Llegada")) {
+		} else if (command.equalsIgnoreCase("STRATEGY_LLEGADA")) {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoLlegadaStrategy());
-		} else if (command.equalsIgnoreCase("DNI")) {
+		} else if (command.equalsIgnoreCase("STRATEGY_DNI")) {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoDNIStrategy());
 
 		}

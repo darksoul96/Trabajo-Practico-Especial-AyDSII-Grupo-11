@@ -1,6 +1,9 @@
 package main;
 
 import java.io.File;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -25,10 +28,8 @@ public class MainCliente {
 			System.out.println("NetConfigCliente.txt not found.");
 			e.printStackTrace();
 		}
-		ControllerComunicacionCliente emisor = new ControllerComunicacionCliente(ip1,ip2, port);
+		ControllerComunicacionCliente emisor = new ControllerComunicacionCliente(ip1, ip2, port);
 		emisor.crearVentana();
-
-		
 	}
 
 }

@@ -10,6 +10,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.*;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 import interfaces.IComunicacionCliente;
@@ -71,7 +74,10 @@ public class ControllerComunicacionCliente implements ActionListener, IComunicac
 		if (command.equalsIgnoreCase("INGRESAR")) {
 			this.DNI = (view.getTextoDNI());
 			this.DNI = DNI.replaceAll("[^0-9]", "");
-			enviarCliente(new Cliente(DNI));
+			Cliente client = new Cliente(DNI);
+			client.setHorarioRegistro(ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + " "
+					+ ZonedDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(DateTimeFormatter.ISO_LOCAL_TIME));
+			enviarCliente(client);
 		}
 
 	}

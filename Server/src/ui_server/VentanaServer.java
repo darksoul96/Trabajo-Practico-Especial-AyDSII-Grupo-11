@@ -93,7 +93,7 @@ public class VentanaServer implements IVistaServer {
 		panel.add(rdbtnLlegada);
 		
 		rdbtnIntercalado = new JRadioButton("Llamar por prioridad intercalada (cada 2)");
-		rdbtnLlegada.setActionCommand("STRATEGY_INTERCALADO");
+		rdbtnIntercalado.setActionCommand("STRATEGY_INTERCALADO");
 		rdbtnIntercalado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnDNI.setSelected(false);

@@ -2,17 +2,65 @@
 <java version="15.0.2" class="java.beans.XMLDecoder">
  <object class="persistencia.HorarioRegistro">
   <void property="dni">
-<<<<<<< HEAD
-   <string>111</string>
-  </void>
-  <void property="horaDeRegistro">
-   <string>2021-06-10 17:17:00</string>
-=======
    <string>555</string>
   </void>
   <void property="horaDeRegistro">
-   <string>2021-06-10 17:18:00</string>
->>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
+   <string>2021-06-10 20:11:32</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 20:11:38</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 20:11:46</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 20:12:04</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 20:12:08</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 20:12:10</string>
   </void>
  </object>
 </java>

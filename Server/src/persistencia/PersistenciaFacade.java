@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import comunicacion_ingreso.Cliente;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IPersistencia;
@@ -104,9 +103,7 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 
 	@Override
 	public void persistirHorarioRegistro(Cliente cliente) {
-		System.out.println(cliente.getHorarioRegistro());
 		HorarioRegistro registro = new HorarioRegistro(cliente.getHorarioRegistro(), cliente.getDNI());
-
 		try {
 			persistencia.abrirOutput("registros.xml");
 			persistencia.escribir(registro);
@@ -120,7 +117,20 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 
 	@Override
 	public void persistirHorarioDeAtencion(Cliente cliente) {
-		// TODO Auto-generated method stub
+		System.out.println(cliente.getBox());
+		System.out.println(cliente.getDNI());
+		System.out.println(cliente.getHorarioAtencion());
+		HorarioAtencion atencion = new HorarioAtencion(cliente.getHorarioAtencion(), cliente.getDNI(),
+				cliente.getBox());
+		try {
+			persistencia.abrirOutput("atenciones.xml");
+			persistencia.escribir(atencion);
+			persistencia.cerrarOutput();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

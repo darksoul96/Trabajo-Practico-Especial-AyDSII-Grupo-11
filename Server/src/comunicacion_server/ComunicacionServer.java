@@ -96,7 +96,9 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 						OrdenResponsePackage response = packageHandler.handle(orden);
 						enviarBox(orden, response);
 						if (response.type.equals("LLAMAR")) {
-							enviarPantalla(Servidor.getInstance().getLastCalledClient());
+							Cliente lastCalledclient = Servidor.getInstance().getLastCalledClient();
+							enviarPantalla(lastCalledclient);
+							persistidor.persistirHorarioDeAtencion(lastCalledclient);
 						}
 
 					}

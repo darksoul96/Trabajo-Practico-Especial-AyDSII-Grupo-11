@@ -1,5 +1,9 @@
 package comunicacion_server;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import comunicacion_ingreso.Cliente;
 import ordenes.Orden;
 import paquetes.BackupPackage;
@@ -41,9 +45,11 @@ public class PackageHandler {
 			}
 		} else if (orden.executeOrder().equals("LLAMAR")) {
 			Cliente nextClient = Servidor.getInstance().llamarSiguiente(orden.getNroBox());
-			if (nextClient != null)
+			if (nextClient != null) {
+				nextClient.setHorarioAtencion(ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + " "
+						+ ZonedDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(DateTimeFormatter.ISO_LOCAL_TIME));
 				response = new OrdenResponsePackage(true, "LLAMAR", nextClient);
-			else
+			} else
 				response = new OrdenResponsePackage(false, "LLAMAR", nextClient);
 		} else if (orden.executeOrder().equals("CONSULTAR")) {
 			response = new OrdenResponsePackage(true, "CONSULTAR",

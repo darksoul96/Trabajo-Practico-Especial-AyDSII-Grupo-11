@@ -37,7 +37,7 @@ public class ControllerCliente implements ActionListener {
 			this.DNI = DNI.replaceAll("[^0-9]", "");
 			Cliente client = new Cliente(DNI);
 			client.setHorarioRegistro(ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + " "
-					+ ZonedDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(DateTimeFormatter.ISO_LOCAL_TIME));
+					+ ZonedDateTime.now().truncatedTo(ChronoUnit.SECONDS).format(DateTimeFormatter.ISO_LOCAL_TIME));
 			comunicador.enviarCliente(client);
 		}
 

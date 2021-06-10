@@ -15,5 +15,5 @@ public interface IPersistencia<E> {
     void escribir(E objeto) throws IOException;
 
     E leer() throws IOException, IndexOutOfBoundsException,ClassNotFoundException;
-
+    
 }

@@ -25,7 +25,7 @@ public class PersistidorXML implements IPersistencia {
 
 	@Override
 	public void abrirOutput(String nombre) throws IOException {
-		fileoutput = new FileOutputStream(nombre);
+		fileoutput = new FileOutputStream(nombre, true);
 		xmlEncoder = new XMLEncoder(fileoutput);
 	}
 
@@ -45,7 +45,7 @@ public class PersistidorXML implements IPersistencia {
 	}
 
 	@Override
-	public Object leer() throws IOException,IndexOutOfBoundsException,ClassNotFoundException {
+	public Object leer() throws IOException, IndexOutOfBoundsException, ClassNotFoundException {
 		Object objeto = null;
 		if (xmlDecoder != null)
 			objeto = xmlDecoder.readObject();

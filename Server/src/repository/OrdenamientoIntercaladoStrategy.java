@@ -9,8 +9,8 @@ import interfaces.IOrdenamientoStrategy;
 
 public class OrdenamientoIntercaladoStrategy implements IOrdenamientoStrategy, Serializable {
 
-	private static int contador=0;
-	
+	private int contador = 0;
+
 	@Override
 	public void agregarCliente(Cliente cliente, ArrayList<Cliente> lista) {
 		// TODO Auto-generated method stub
@@ -22,30 +22,27 @@ public class OrdenamientoIntercaladoStrategy implements IOrdenamientoStrategy, S
 		if (!it.hasNext()) {
 			lista.add(index, cliente);
 			asignado = true;
-			contador++;
+			this.contador++;
 		} else {
-			if ((lista.size() % 2) == 0) {
-				aux=lista.remove(lista.size());
-				lista.add(0,aux);
-			}
 			while (it.hasNext() && !menor) {
 				clienteActual = (Cliente) it.next();
-				if (contador == 2) {
-					aux=lista.remove(lista.size());
-					lista.add(0,aux);
-					contador=0;
-				}
 				if (cliente.getPrioridad() < clienteActual.getPrioridad()) {
 					lista.add(index, cliente);
 					menor = true;
 					asignado = true;
-					contador++;
+					this.contador++;
 				}
 				index++;
 			}
 			if (!asignado) {
 				lista.add(index, cliente);
 				asignado = true;
+				this.contador++;
+			}
+			if (this.contador == 3) {
+				aux = lista.remove(lista.size()-1);
+				lista.add(0, aux);
+				this.contador = 0;
 			}
 		}
 	}

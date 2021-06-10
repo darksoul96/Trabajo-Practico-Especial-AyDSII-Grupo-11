@@ -72,7 +72,6 @@ public class ComunicacionCliente implements IComunicacionCliente {
 				OutputStream outputStream = socket.getOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 				objectOutputStream.writeObject(cliente);
-				System.out.println("Envie el objeto");
 				InputStream inputStream = socket.getInputStream();
 				ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 				Cliente client = (Cliente) objectInputStream.readObject();

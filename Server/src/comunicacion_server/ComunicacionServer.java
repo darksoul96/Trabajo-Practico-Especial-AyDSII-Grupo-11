@@ -55,8 +55,6 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 		this.facade.generaLista();
 	}
 
-
-
 	@Override
 	public void recibir() { // Abro el server para recibir peticiones de Cliente y Empleado
 		PackageHandler packageHandler = new PackageHandler();
@@ -73,6 +71,7 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 						if (clientePersistido != null) {
 							backup(clientePersistido);
 							packageHandler.handle(clientePersistido);
+							persistidor.persistirHorarioRegistro(clientePersistido);
 						}
 						OutputStream outputStream = soc.getOutputStream();
 						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -255,14 +254,10 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 		}.start();
 	}
 
-
-
 	@Override
 	public void setController(ControllerServer controllerServer) {
 		this.controller = controllerServer;
-		
+
 	}
-
-
 
 }

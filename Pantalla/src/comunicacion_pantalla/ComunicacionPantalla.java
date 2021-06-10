@@ -9,23 +9,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import comunicacion_ingreso.Cliente;
+import controller_pantalla.ControllerPantalla;
 import interfaces.IComunicacionPantalla;
 import interfaces.IExhibicion;
 import vista_pantalla.VentanaPantalla;
 
-public class ControllerComunicacionPantalla implements IComunicacionPantalla, IExhibicion {
+public class ComunicacionPantalla implements IComunicacionPantalla{
 	int pantallaSocket;
 	String ultimoClienteLlamado = "";
-	private VentanaPantalla view;
+	private ControllerPantalla controller;
 
-	public ControllerComunicacionPantalla(int pantallaSocket) {
+	public ComunicacionPantalla(int pantallaSocket) {
 		this.pantallaSocket = pantallaSocket;
 	}
 
-	public void crearVentana() {
-		this.view = new VentanaPantalla();
-		this.view.setVisibleVentana();
-	}
+
 
 	@Override
 	public void recibir() {
@@ -38,7 +36,7 @@ public class ControllerComunicacionPantalla implements IComunicacionPantalla, IE
 						InputStream inputStream = soc.getInputStream();
 						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 						Cliente client = (Cliente) objectInputStream.readObject();
-						mostrarPantalla(client);
+						controller.mostrarPantalla(client);
 					}
 
 				} catch (Exception e) {
@@ -49,11 +47,22 @@ public class ControllerComunicacionPantalla implements IComunicacionPantalla, IE
 	}
 
 	@Override
-	public void mostrarPantalla(Cliente cliente) {
-		if (!ultimoClienteLlamado.equals(cliente.getDNI())) {
-			this.view.escribeTurno(cliente.getNombre(), cliente.getBox());
-			this.ultimoClienteLlamado = cliente.getDNI();
-		}
+	public String getUltimoClienteLlamado() {
+		return this.ultimoClienteLlamado;
+	}
+
+	@Override
+	public void setUltimoClienteLlamado(String clienteDni) {
+		this.ultimoClienteLlamado = clienteDni;
+		
+	}
+
+
+
+	@Override
+	public void setController(ControllerPantalla controller) {
+		this.controller = controller;
+		
 	}
 
 }

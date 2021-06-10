@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import comunicacion_server.ControllerComunicacionServer;
+import comunicacion_server.ComunicacionServer;
+import controller_server.ControllerServer;
 import repository.OrdenamientoPrioridadStrategy;
 import repository.Servidor;
 
@@ -38,10 +39,11 @@ public class MainServidor {
 			System.out.println("NetConfigServidor.txt not found.");
 			e.printStackTrace();
 		}
-		ControllerComunicacionServer receptor = new ControllerComunicacionServer(portReceptorCliente,
+		ComunicacionServer comunicador = new ComunicacionServer(portReceptorCliente,
 				portReceptorEmpleado, portEmisorPantalla, ipPantalla, ipMonitor, portMonitor, portMonitor2, ipLocalServer, ipServer2);
-		receptor.ejecutarVentana();
-		receptor.conectarServers();
+		ControllerServer controller = new ControllerServer(comunicador);
+		controller.ejecutarVentana();
+		comunicador.conectarServers();
 		Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoPrioridadStrategy());
 
 		System.out.println("SERVIDOR ANDANDO");

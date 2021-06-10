@@ -1,7 +1,5 @@
 package comunicacion_server;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +12,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 import comunicacion_ingreso.Cliente;
+import controller_server.ControllerServer;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IComunicacionServer;
 import interfaces.Monitoreable;
@@ -22,13 +21,9 @@ import paquetes.BackupPackage;
 import paquetes.MonitorPackage;
 import paquetes.OrdenResponsePackage;
 import persistencia.PersistenciaFacade;
-import repository.OrdenamientoDNIStrategy;
-import repository.OrdenamientoLlegadaStrategy;
-import repository.OrdenamientoPrioridadStrategy;
 import repository.Servidor;
-import ui_server.VentanaServer;
 
-public class ControllerComunicacionServer implements IComunicacionServer, Monitoreable, ActionListener {
+public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
@@ -38,12 +33,12 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 	String ipPantalla;
 	String ipLocalServer;
 	String ipServer2;
-	VentanaServer ventanaServer;
 	Socket clientSecondaryServerSocket;
 	IAccesoBaseDatos persistidor;
 	PersistenciaFacade facade = new PersistenciaFacade();
+	private ControllerServer controller;
 
-	public ControllerComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
+	public ComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
 			String ipPantalla, String ipMonitor, int portMonitor, int portMonitor2, String ipLocalServer,
 			String ipServer2) {
 		super();
@@ -60,10 +55,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 		this.facade.generaLista();
 	}
 
-	public void ejecutarVentana() {
-		ventanaServer = new VentanaServer();
-		this.ventanaServer.setVisibleVentana();
-	}
+
 
 	@Override
 	public void recibir() { // Abro el server para recibir peticiones de Cliente y Empleado
@@ -168,7 +160,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 				try { // Conectarme al server principal, si no puede, es porque no hay principal
 					Socket socket = new Socket(ipServer2, 5000);
 					Servidor.getInstance().setSecondary();
-					ventanaServer.setSecundario();
+					controller.setSecundario();
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					out.println("connected");
 					heartbeat(portMonitor2, ipMonitor);
@@ -181,7 +173,7 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 						System.out.println("Me llego msj del server");
 					}
 				} catch (SocketException e1) {
-					ventanaServer.setPrimario();
+					controller.setPrimario();
 					Servidor.getInstance().setPrimary();
 					recibir();
 					heartbeat(portMonitor, ipMonitor);
@@ -263,17 +255,14 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 		}.start();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String command = e.getActionCommand();
-		if (command.equalsIgnoreCase("Prioridad")) {
-			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoPrioridadStrategy());
-		} else if (command.equalsIgnoreCase("Llegada")) {
-			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoLlegadaStrategy());
-		} else if (command.equalsIgnoreCase("DNI")) {
-			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoDNIStrategy());
 
-		}
+
+	@Override
+	public void setController(ControllerServer controllerServer) {
+		this.controller = controllerServer;
+		
 	}
+
+
 
 }

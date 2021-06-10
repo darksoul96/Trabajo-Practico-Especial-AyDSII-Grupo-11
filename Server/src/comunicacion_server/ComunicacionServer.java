@@ -27,7 +27,7 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
-	int portMonitor;
+	int portMonitor; 
 	int portMonitor2;
 	String ipMonitor;
 	String ipPantalla;

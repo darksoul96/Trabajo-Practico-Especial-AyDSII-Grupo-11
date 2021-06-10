@@ -25,6 +25,7 @@ public class ControllerServer implements ActionListener {
 	public void ejecutarVentana() {
 		ventanaServer = new VentanaServer();
 		this.ventanaServer.setVisibleVentana();
+		this.ventanaServer.setActionListener(this);
 	}
 
 	@Override
@@ -47,6 +48,5 @@ public class ControllerServer implements ActionListener {
 
 	public void setPrimario() {
 		ventanaServer.setPrimario();
-
 	}
 }

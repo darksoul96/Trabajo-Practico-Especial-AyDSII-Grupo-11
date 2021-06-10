@@ -104,4 +104,12 @@ public class VentanaServer implements IVistaServer {
 		// TODO Auto-generated method stub
 		this.lblNewLabel.setText("Secondary Server Ready");
 	}
+
+	@Override
+	public void setActionListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		this.rdbtnDNI.addActionListener(actionListener);
+		this.rdbtnPrioridad.addActionListener(actionListener);
+		this.rdbtnLlegada.addActionListener(actionListener);
+	}
 }

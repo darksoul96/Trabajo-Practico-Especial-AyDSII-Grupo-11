@@ -154,7 +154,7 @@ public class ControllerComunicacionEmpleado implements ActionListener, IComunica
 				this.view.popUpFailureRegistro();
 		} else if (respuesta.getType().equals("LLAMAR")) {
 			if (respuesta.getSucess() == true) {
-				this.view.popUpLlamadaExitosa(respuesta.getInfo());
+				this.view.popUpLlamadaExitosa(respuesta.getCliente().getNombre()+"\n"+respuesta.getCliente().getDNI());
 			} else
 				this.view.popUpLlamadaVacia();
 

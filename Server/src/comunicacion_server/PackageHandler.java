@@ -18,7 +18,7 @@ public class PackageHandler {
 				} else {
 					if (backup.getPackageType().equals("SINCRONIZAR")) {
 						Servidor.getInstance().sincronizar(backup.getLastCalledClient(), backup.getBoxes(),
-								backup.getClientes());
+								backup.getClientes(), backup.getOrdenadorStrategy());
 					}
 				}
 			}

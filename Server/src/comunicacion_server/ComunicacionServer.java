@@ -220,7 +220,7 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 		if (clientSecondaryServerSocket != null) {
 			BackupPackage backup = new BackupPackage();
 			backup.sincronizarServer(Servidor.getInstance().getClientes(), Servidor.getInstance().getBoxes(),
-					Servidor.getInstance().getLastCalledClient());
+					Servidor.getInstance().getLastCalledClient(),Servidor.getInstance().getOrdenadorStrategy());
 			enviarServerSecundario(clientSecondaryServerSocket, backup);
 		}
 

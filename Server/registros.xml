@@ -2,10 +2,17 @@
 <java version="15.0.2" class="java.beans.XMLDecoder">
  <object class="persistencia.HorarioRegistro">
   <void property="dni">
+<<<<<<< HEAD
    <string>111</string>
   </void>
   <void property="horaDeRegistro">
    <string>2021-06-10 17:17:00</string>
+=======
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-10 17:18:00</string>
+>>>>>>> branch 'master' of https://github.com/darksoul96/Trabajo-Practico-Especial-AyDSII-Grupo-11
   </void>
  </object>
 </java>

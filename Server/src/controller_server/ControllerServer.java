@@ -41,6 +41,7 @@ public class ControllerServer implements ActionListener {
 		} else if (command.equalsIgnoreCase("STRATEGY_INTERCALADO")) {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoIntercaladoStrategy());
 		}
+		comunicador.backup();
 	}
 
 	public void setSecundario() {

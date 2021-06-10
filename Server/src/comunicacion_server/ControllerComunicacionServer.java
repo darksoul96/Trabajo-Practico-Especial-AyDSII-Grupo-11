@@ -1,5 +1,7 @@
 package comunicacion_server;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,10 +22,13 @@ import paquetes.BackupPackage;
 import paquetes.MonitorPackage;
 import paquetes.OrdenResponsePackage;
 import persistencia.PersistenciaFacade;
+import repository.OrdenamientoDNIStrategy;
+import repository.OrdenamientoLlegadaStrategy;
+import repository.OrdenamientoPrioridadStrategy;
 import repository.Servidor;
 import ui_server.VentanaServer;
 
-public class ControllerComunicacionServer implements IComunicacionServer, Monitoreable {
+public class ControllerComunicacionServer implements IComunicacionServer, Monitoreable, ActionListener {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
@@ -256,6 +261,19 @@ public class ControllerComunicacionServer implements IComunicacionServer, Monito
 				}
 			}
 		}.start();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		if (command.equalsIgnoreCase("Prioridad")) {
+			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoPrioridadStrategy());
+		} else if (command.equalsIgnoreCase("Llegada")) {
+			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoLlegadaStrategy());
+		} else if (command.equalsIgnoreCase("DNI")) {
+			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoDNIStrategy());
+
+		}
 	}
 
 }

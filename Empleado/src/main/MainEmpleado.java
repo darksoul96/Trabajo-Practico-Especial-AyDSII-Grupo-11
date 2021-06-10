@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import comunicacion_empleado.ControllerComunicacionEmpleado;
+import comunicacion_empleado.ComunicacionEmpleado;
+import controller_empleado.ControllerEmpleado;
 
 public class MainEmpleado {
 
@@ -29,7 +30,8 @@ public class MainEmpleado {
 			e.printStackTrace();
 		}
 		
-		ControllerComunicacionEmpleado controllerEmpleado = new ControllerComunicacionEmpleado(serverport,serverip1,serverip2,localip,localport);
+		ComunicacionEmpleado comunicacionEmpleado = new ComunicacionEmpleado(serverport,serverip1,serverip2,localip,localport);
+		ControllerEmpleado controllerEmpleado = new ControllerEmpleado(comunicacionEmpleado);
 		controllerEmpleado.crearVentana();
 		
 	}

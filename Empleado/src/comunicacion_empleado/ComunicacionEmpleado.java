@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 
+import controller_empleado.ControllerEmpleado;
 import interfaces.IComunicacionEmpleado;
 import interfaces.IVistaEmpleado;
 import ordenes.Orden;
@@ -24,10 +25,9 @@ import ordenes.OrdenFactory;
 import paquetes.OrdenResponsePackage;
 import ui_empleado.VentanaEmpleado;
 
-public class ControllerComunicacionEmpleado implements ActionListener, IComunicacionEmpleado {
+public class ComunicacionEmpleado implements IComunicacionEmpleado {
 
 	private String nroBox;
-	private IVistaEmpleado view;
 	private String localip;
 	private String serverip1;
 	private String serverip2;
@@ -36,9 +36,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, IComunica
 	private int localport;
 	private boolean serverOnline = true;
 	private boolean registrado;
+	private ControllerEmpleado controller;
 
-	public ControllerComunicacionEmpleado(int serverport, String serverip1, String serverip2, String localip,
-			int localport) {
+	public ComunicacionEmpleado(int serverport, String serverip1, String serverip2, String localip, int localport) {
 		super();
 		this.serverport = serverport;
 		this.serverip1 = serverip1;
@@ -50,35 +50,9 @@ public class ControllerComunicacionEmpleado implements ActionListener, IComunica
 
 	}
 
-	public void crearVentana() {
-		this.view = new VentanaEmpleado();
-		this.view.setVisibleVentana();
-		this.view.setActionListener(this);
-	}
-
 	@Override
-	public void actionPerformed(ActionEvent e) { // Se crea la orden a enviar al server
-		OrdenFactory factory = new OrdenFactory();
-		Orden orden = null;
-		String command = e.getActionCommand();
-		if (command.equalsIgnoreCase("SeleccionBox")) {
-			orden = factory.createOrden("SeleccionBox", view.getNroBox(), localip, localport);
-		} else if (this.registrado) {
-			if (command.equalsIgnoreCase("LLAMAR")) {
-				orden = factory.createOrden("LLAMAR", nroBox, localip, localport);
-			} else if (command.equalsIgnoreCase("CONSULTAR")) {
-				orden = factory.createOrden("CONSULTAR", nroBox, localip, localport);
-			} else if (command.equalsIgnoreCase("CerrarSesion")) {
-				orden = factory.createOrden("BAJA", nroBox, localip, localport);
-				this.registrado = false;
-			}
-		}
-		if (orden != null)
-			enviar(orden);
-		if (this.serverOnline && orden != null) {
-			OrdenResponsePackage respuesta = recibir();
-			handle(respuesta);
-		}
+	public void setController(ControllerEmpleado controller) {
+		this.controller = controller;
 
 	}
 
@@ -119,8 +93,8 @@ public class ControllerComunicacionEmpleado implements ActionListener, IComunica
 		if (noPudoConectar) {
 			System.out.println(" NO PUDO CONECTAR");
 			serverOnline = false;
-			 view.setServerOffline();
-			 view.popUpNotConnected();
+			controller.setServerOffline();
+			controller.popUpNotConnected();
 		}
 
 	}
@@ -149,18 +123,59 @@ public class ControllerComunicacionEmpleado implements ActionListener, IComunica
 			if (respuesta.getSucess() == true) {
 				this.nroBox = respuesta.getInfo();
 				this.registrado = true;
-				this.view.popUpSuccessRegistro();
+				controller.popUpSuccessRegistro();
 			} else
-				this.view.popUpFailureRegistro();
+				controller.popUpFailureRegistro();
 		} else if (respuesta.getType().equals("LLAMAR")) {
 			if (respuesta.getSucess() == true) {
-				this.view.popUpLlamadaExitosa(respuesta.getCliente().getNombre()+"\nDNI: "+respuesta.getCliente().getDNI());
+				controller.popUpLlamadaExitosa(
+						respuesta.getCliente().getNombre() + "\nDNI: " + respuesta.getCliente().getDNI());
 			} else
-				this.view.popUpLlamadaVacia();
+				controller.popUpLlamadaVacia();
 
 		} else if (respuesta.getType().equals("CONSULTAR")) {
-			this.view.poUpConsultaExitosa(respuesta.getInfo());
+			controller.poUpConsultaExitosa(respuesta.getInfo());
 		}
+	}
+
+	public String getNroBox() {
+		return nroBox;
+	}
+
+	public String getLocalip() {
+		return localip;
+	}
+
+	public String getServerip1() {
+		return serverip1;
+	}
+
+	public String getServerip2() {
+		return serverip2;
+	}
+
+	public String getIpServerOnline() {
+		return ipServerOnline;
+	}
+
+	public int getServerport() {
+		return serverport;
+	}
+
+	public int getLocalport() {
+		return localport;
+	}
+
+	public boolean isServerOnline() {
+		return serverOnline;
+	}
+
+	public boolean isRegistrado() {
+		return registrado;
+	}
+
+	public void setRegistrado(boolean b) {
+		this.registrado = b;
 	}
 
 }

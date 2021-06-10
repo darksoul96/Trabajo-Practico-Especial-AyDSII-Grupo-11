@@ -66,16 +66,16 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 				linea2=lineaTotal.substring(2);
 				index=linea2.indexOf(' ');
 				nombre=linea2.substring(0, index);
-				linea2=linea2.substring(index);
+				linea2=linea2.substring(index+1);
 				index=linea2.indexOf(' ');
 				apellido=linea2.substring(0, index);
 				linea2=linea2.substring(index);
 				dni=linea2;
-				dni.replaceAll("\\s+","");
+				dni = dni.replaceAll("\\s","");
 				
 				actual=new Cliente();
 				actual.setDNI(dni);
-				actual.setNombre(nombre+apellido);
+				actual.setNombre(nombre+" "+apellido);
 				actual.setPrioridad(prioridad);
 				clientesEnDB.add(actual);
 			}

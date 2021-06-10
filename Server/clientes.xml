@@ -2,10 +2,10 @@
 <java version="15.0.2" class="java.beans.XMLDecoder">
  <object class="comunicacion_ingreso.Cliente">
   <void property="DNI">
-   <string> Perez           555</string>
+   <string>555</string>
   </void>
   <void property="nombre">
-   <string>Enzo</string>
+   <string>Enzo Perez</string>
   </void>
   <void property="prioridad">
    <int>1</int>
@@ -13,10 +13,10 @@
  </object>
  <object class="comunicacion_ingreso.Cliente">
   <void property="DNI">
-   <string> Perez          333</string>
+   <string>333</string>
   </void>
   <void property="nombre">
-   <string>Pedro</string>
+   <string>Pedro Perez</string>
   </void>
   <void property="prioridad">
    <int>2</int>
@@ -24,10 +24,10 @@
  </object>
  <object class="comunicacion_ingreso.Cliente">
   <void property="DNI">
-   <string> Jorge          111</string>
+   <string>111</string>
   </void>
   <void property="nombre">
-   <string>Lopez</string>
+   <string>Lopez Jorge</string>
   </void>
   <void property="prioridad">
    <int>2</int>
@@ -35,10 +35,10 @@
  </object>
  <object class="comunicacion_ingreso.Cliente">
   <void property="DNI">
-   <string> Bernal     38828813</string>
+   <string>38828813</string>
   </void>
   <void property="nombre">
-   <string>Sebastian</string>
+   <string>Sebastian Bernal</string>
   </void>
   <void property="prioridad">
    <int>1</int>

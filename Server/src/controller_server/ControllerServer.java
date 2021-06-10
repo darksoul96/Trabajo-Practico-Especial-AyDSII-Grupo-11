@@ -39,6 +39,7 @@ public class ControllerServer implements ActionListener {
 			Servidor.getInstance().setOrdenadorStrategy(new OrdenamientoDNIStrategy());
 
 		}
+		comunicador.backup();
 	}
 
 	public void setSecundario() {

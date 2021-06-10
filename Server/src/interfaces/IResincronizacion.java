@@ -13,5 +13,5 @@ public interface IResincronizacion {
 
 	void setSecondary();
 
-	void sincronizar(Cliente lastCalledClient, Set<String> boxes, ArrayList<Cliente> clientes);
+	void sincronizar(Cliente lastCalledClient, Set<String> boxes, ArrayList<Cliente> clientes, IOrdenamientoStrategy strategy);
 }

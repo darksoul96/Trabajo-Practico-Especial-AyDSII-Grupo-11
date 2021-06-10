@@ -86,6 +86,10 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 			boxes.remove(box);
 	}
 
+	public IOrdenamientoStrategy getOrdenadorStrategy() {
+		return ordenadorStrategy;
+	}
+
 	@Override
 	public boolean isPrimary() {
 		return primary;
@@ -104,10 +108,12 @@ public class Servidor implements IRegistro, INotificacion, IResincronizacion {
 	}
 
 	@Override
-	public void sincronizar(Cliente lastCalledClient, Set<String> boxes, ArrayList<Cliente> clientes) {
+	public void sincronizar(Cliente lastCalledClient, Set<String> boxes, ArrayList<Cliente> clientes,
+			IOrdenamientoStrategy strategy) {
 		this.lastCalledClient = lastCalledClient;
 		this.boxes = boxes;
 		this.clientes = clientes;
+		this.ordenadorStrategy = strategy;
 
 	}
 

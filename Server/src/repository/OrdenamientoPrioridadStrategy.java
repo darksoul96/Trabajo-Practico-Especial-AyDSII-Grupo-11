@@ -1,12 +1,13 @@
  package repository;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import comunicacion_ingreso.Cliente;
 import interfaces.IOrdenamientoStrategy;
 
-public class OrdenamientoPrioridadStrategy implements IOrdenamientoStrategy {
+public class OrdenamientoPrioridadStrategy implements IOrdenamientoStrategy,Serializable {
 
 	@Override
 	public void agregarCliente(Cliente cliente, ArrayList<Cliente> lista) {
@@ -19,7 +20,7 @@ public class OrdenamientoPrioridadStrategy implements IOrdenamientoStrategy {
 			lista.add(index, cliente);
 			asignado = true;
 		} else {
-			while (it.hasNext() && !menor) {
+			while (it.hasNext() && !menor && !asignado) {
 				clienteActual = (Cliente) it.next();
 				if (cliente.getPrioridad() < clienteActual.getPrioridad()) {
 					lista.add(index, cliente);

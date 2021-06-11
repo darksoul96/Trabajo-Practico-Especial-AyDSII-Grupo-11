@@ -146,6 +146,7 @@ public class VentanaServer implements IVistaServer {
 		this.rdbtnLlegada.setVisible(true);
 		this.rdbtnIntercalado.setVisible(true);
 		this.lblFotito.setVisible(false);
+		
 	}
 
 	@Override

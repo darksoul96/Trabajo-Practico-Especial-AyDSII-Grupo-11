@@ -15,6 +15,9 @@ import comunicacion_ingreso.Cliente;
 import controller_server.ControllerServer;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IComunicacionServer;
+import interfaces.IComunicacionServerCliente;
+import interfaces.IComunicacionServerEmpleado;
+import interfaces.IComunicacionServerPantalla;
 import interfaces.Monitoreable;
 import ordenes.Orden;
 import paquetes.BackupPackage;
@@ -23,11 +26,12 @@ import paquetes.OrdenResponsePackage;
 import persistencia.PersistenciaFacade;
 import repository.Servidor;
 
-public class ComunicacionServer implements IComunicacionServer, Monitoreable {
+public class ComunicacionServer implements IComunicacionServer, IComunicacionServerCliente, IComunicacionServerEmpleado,
+		IComunicacionServerPantalla, Monitoreable {
 	int portReceptorCliente;
 	int portReceptorEmpleado;
 	int portEmisorPantalla;
-	int portMonitor; 
+	int portMonitor;
 	int portMonitor2;
 	String ipMonitor;
 	String ipPantalla;
@@ -56,58 +60,8 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 	}
 
 	@Override
-	public void recibir() { // Abro el server para recibir peticiones de Cliente y Empleado
+	public void recibirServer() { 
 		PackageHandler packageHandler = new PackageHandler();
-		new Thread() {
-			public void run() { // Puerto para recibir peticiones desde la Estacion Cliente
-				try {
-					ServerSocket s = new ServerSocket(portReceptorCliente);
-					while (true) {
-						Socket soc = s.accept();
-						InputStream inputStream = soc.getInputStream();
-						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-						Cliente client = (Cliente) objectInputStream.readObject();
-						Cliente clientePersistido = persistidor.completaCliente(client);
-						if (clientePersistido != null) {
-							backup(clientePersistido);
-							packageHandler.handle(clientePersistido);
-							persistidor.persistirHorarioRegistro(clientePersistido);
-						}
-						OutputStream outputStream = soc.getOutputStream();
-						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-						objectOutputStream.writeObject(clientePersistido);
-
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		}.start();
-		new Thread() {
-			public void run() { // Puerto para recibir peticiones desde los Boxes
-				try {
-					ServerSocket s = new ServerSocket(portReceptorEmpleado);
-					while (true) {
-						Socket soc = s.accept();
-						InputStream inputStream = soc.getInputStream();
-						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-						Orden orden = (Orden) objectInputStream.readObject();
-						backup(orden);
-						OrdenResponsePackage response = packageHandler.handle(orden);
-						enviarBox(orden, response);
-						if (response.type.equals("LLAMAR")) {
-							Cliente lastCalledclient = Servidor.getInstance().getLastCalledClient();
-							enviarPantalla(lastCalledclient);
-							persistidor.persistirHorarioDeAtencion(lastCalledclient);
-						}
-
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}.start();
 		new Thread() {
 			public void run() { // Puerto para conectar Server Primario y Secundario
 				try {
@@ -176,7 +130,9 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 				} catch (SocketException e1) {
 					controller.setPrimario();
 					Servidor.getInstance().setPrimary();
-					recibir();
+					recibirServer();
+					recibirEmpleado();
+					recibirCliente();
 					heartbeat(portMonitor, ipMonitor);
 				} catch (Exception e2) {
 					e2.printStackTrace();
@@ -222,7 +178,7 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 		if (clientSecondaryServerSocket != null) {
 			BackupPackage backup = new BackupPackage();
 			backup.sincronizarServer(Servidor.getInstance().getClientes(), Servidor.getInstance().getBoxes(),
-					Servidor.getInstance().getLastCalledClient(),Servidor.getInstance().getOrdenadorStrategy());
+					Servidor.getInstance().getLastCalledClient(), Servidor.getInstance().getOrdenadorStrategy());
 			enviarServerSecundario(clientSecondaryServerSocket, backup);
 		}
 
@@ -259,6 +215,68 @@ public class ComunicacionServer implements IComunicacionServer, Monitoreable {
 	@Override
 	public void setController(ControllerServer controllerServer) {
 		this.controller = controllerServer;
+
+	}
+
+	@Override
+	public void recibirEmpleado() {
+		PackageHandler packageHandler = new PackageHandler();
+		new Thread() {
+			public void run() { // Puerto para recibir peticiones desde los Boxes
+				try {
+					ServerSocket s = new ServerSocket(portReceptorEmpleado);
+					while (true) {
+						Socket soc = s.accept();
+						InputStream inputStream = soc.getInputStream();
+						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+						Orden orden = (Orden) objectInputStream.readObject();
+						backup(orden);
+						OrdenResponsePackage response = packageHandler.handle(orden);
+						enviarBox(orden, response);
+						if (response.type.equals("LLAMAR")) {
+							Cliente lastCalledclient = Servidor.getInstance().getLastCalledClient();
+							enviarPantalla(lastCalledclient);
+							persistidor.persistirHorarioDeAtencion(lastCalledclient);
+						}
+
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
+
+	}
+
+	@Override
+	public void recibirCliente() {
+		PackageHandler packageHandler = new PackageHandler();
+		new Thread() {
+			public void run() { // Puerto para recibir peticiones desde la Estacion Cliente
+				try {
+					ServerSocket s = new ServerSocket(portReceptorCliente);
+					while (true) {
+						Socket soc = s.accept();
+						InputStream inputStream = soc.getInputStream();
+						ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+						Cliente client = (Cliente) objectInputStream.readObject();
+						Cliente clientePersistido = persistidor.completaCliente(client);
+						if (clientePersistido != null) {
+							backup(clientePersistido);
+							packageHandler.handle(clientePersistido);
+							persistidor.persistirHorarioRegistro(clientePersistido);
+						}
+						OutputStream outputStream = soc.getOutputStream();
+						ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+						objectOutputStream.writeObject(clientePersistido);
+
+					}
+				} catch (Exception e) {
+
+				}
+			}
+		}.start();
 
 	}
 

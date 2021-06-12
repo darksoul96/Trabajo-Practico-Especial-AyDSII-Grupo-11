@@ -64,3 +64,102 @@
   </void>
  </object>
 </java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:07:39</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:07:41</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>333</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:07:43</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>39555671</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:10:03</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:10:16</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:10:21</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:10:51</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:11:02</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-12 18:11:11</string>
+  </void>
+ </object>
+</java>

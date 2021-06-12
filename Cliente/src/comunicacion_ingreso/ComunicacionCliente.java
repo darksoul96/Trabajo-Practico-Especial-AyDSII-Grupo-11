@@ -14,7 +14,6 @@ import interfaces.IComunicacionCliente;
 public class ComunicacionCliente implements IComunicacionCliente {
 
 	private ControllerCliente controller;
-
 	private String ip1;
 	private String ip2;
 	private String ipServerOnline;

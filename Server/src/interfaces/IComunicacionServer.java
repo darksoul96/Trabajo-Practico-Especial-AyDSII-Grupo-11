@@ -11,12 +11,8 @@ import paquetes.OrdenResponsePackage;
 
 public interface IComunicacionServer {
 
-	public void recibir();
+	public void recibirServer();
 
-	public void enviarBox(Orden orden, OrdenResponsePackage response);
-
-	public void enviarPantalla(Cliente cliente);
-	
 	public void conectarServers();
 
 	public void enviarServerSecundario(Socket socket, BackupPackage backup);

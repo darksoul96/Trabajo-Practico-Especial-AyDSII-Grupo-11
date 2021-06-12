@@ -6,12 +6,11 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
 import comunicacion_ingreso.Cliente;
-import interfaces.INotificacion;
 import interfaces.IOrdenamientoStrategy;
 import interfaces.IRegistro;
 import interfaces.IResincronizacion;
 
-public class Servidor implements IRegistro, INotificacion, IResincronizacion {
+public class Servidor implements IRegistro,IResincronizacion {
 	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;

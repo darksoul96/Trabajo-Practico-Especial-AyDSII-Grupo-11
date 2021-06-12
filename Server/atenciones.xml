@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:09:45</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>333</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:09:47</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:09:49</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>39555671</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:11:23</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:11:34</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>1</string>
+  </void>
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:11:36</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>2</string>
+  </void>
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-12 18:11:56</string>
+  </void>
+ </object>
+</java>

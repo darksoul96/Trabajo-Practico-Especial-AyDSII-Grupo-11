@@ -8,6 +8,7 @@ import java.util.Scanner;
 import comunicacion_ingreso.Cliente;
 import interfaces.IAccesoBaseDatos;
 import interfaces.IPersistencia;
+import repository.Servidor;
 
 public class PersistenciaFacade implements IAccesoBaseDatos {
 
@@ -117,19 +118,21 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 
 	@Override
 	public void persistirHorarioDeAtencion(Cliente cliente) {
-		System.out.println(cliente.getBox());
-		System.out.println(cliente.getDNI());
-		System.out.println(cliente.getHorarioAtencion());
-		HorarioAtencion atencion = new HorarioAtencion(cliente.getHorarioAtencion(), cliente.getDNI(),
-				cliente.getBox());
-		try {
-			persistencia.abrirOutput("atenciones.xml");
-			persistencia.escribir(atencion);
-			persistencia.cerrarOutput();
+		if (cliente != null && cliente != Servidor.getInstance().getLastCalledClient()) {
+			System.out.println(cliente.getBox());
+			System.out.println(cliente.getDNI());
+			System.out.println(cliente.getHorarioAtencion());
+			HorarioAtencion atencion = new HorarioAtencion(cliente.getHorarioAtencion(), cliente.getDNI(),
+					cliente.getBox());
+			try {
+				persistencia.abrirOutput("atenciones.xml");
+				persistencia.escribir(atencion);
+				persistencia.cerrarOutput();
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

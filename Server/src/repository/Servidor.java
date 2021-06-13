@@ -10,7 +10,7 @@ import interfaces.IOrdenamientoStrategy;
 import interfaces.IRegistro;
 import interfaces.IResincronizacion;
 
-public class Servidor implements IRegistro,IResincronizacion {
+public class Servidor implements IRegistro, IResincronizacion {
 	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	Set<String> boxes = new HashSet<>();
 	Cliente lastCalledClient;
@@ -58,8 +58,11 @@ public class Servidor implements IRegistro,IResincronizacion {
 		if (this.clientes.size() != 0) {
 			this.lastCalledClient = this.clientes.remove(0);
 			this.lastCalledClient.setBox(box);
+			return this.lastCalledClient;
+		} else {
+			return null;
 		}
-		return this.lastCalledClient;
+
 	}
 
 	public Cliente getLastCalledClient() {

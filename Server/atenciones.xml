@@ -96,3 +96,87 @@
   </void>
  </object>
 </java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:11</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:13</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:14</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:16</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:17</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioAtencion">
+  <void property="boxAtencion">
+   <string>3</string>
+  </void>
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeAtencion">
+   <string>2021-06-13 16:14:18</string>
+  </void>
+ </object>
+</java>

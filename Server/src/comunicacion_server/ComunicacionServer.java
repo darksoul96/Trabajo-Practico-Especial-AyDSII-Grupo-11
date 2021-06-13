@@ -39,7 +39,6 @@ public class ComunicacionServer implements IComunicacionServer, IComunicacionSer
 	String ipServer2;
 	Socket clientSecondaryServerSocket;
 	IAccesoBaseDatos persistidor;
-	PersistenciaFacade facade = new PersistenciaFacade();
 	private ControllerServer controller;
 
 	public ComunicacionServer(int portReceptorCliente, int portReceptorEmpleado, int portEmisorPantalla,
@@ -56,11 +55,11 @@ public class ComunicacionServer implements IComunicacionServer, IComunicacionSer
 		this.portMonitor2 = portMonitor2;
 		this.ipServer2 = ipServer2;
 		this.persistidor = new PersistenciaFacade();
-		this.facade.generaLista();
+		this.persistidor.generaLista();
 	}
 
 	@Override
-	public void recibirServer() { 
+	public void recibirServer() {
 		PackageHandler packageHandler = new PackageHandler();
 		new Thread() {
 			public void run() { // Puerto para conectar Server Primario y Secundario

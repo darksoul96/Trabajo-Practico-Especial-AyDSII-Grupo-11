@@ -9,4 +9,6 @@ public interface IAccesoBaseDatos {
 	public void persistirHorarioRegistro(Cliente cliente);
 	
 	public void persistirHorarioDeAtencion(Cliente cliente);
+	
+	public void generaLista();
 }

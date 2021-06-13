@@ -1,8 +1,5 @@
 package comunicacion_pantalla;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -11,8 +8,6 @@ import java.net.Socket;
 import comunicacion_ingreso.Cliente;
 import controller_pantalla.ControllerPantalla;
 import interfaces.IComunicacionPantalla;
-import interfaces.IExhibicion;
-import vista_pantalla.VentanaPantalla;
 
 public class ComunicacionPantalla implements IComunicacionPantalla{
 	int pantallaSocket;

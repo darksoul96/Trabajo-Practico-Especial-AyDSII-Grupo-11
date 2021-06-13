@@ -39,7 +39,6 @@ public class VentanaEmpleado implements IVistaEmpleado {
 	private JMenu menuBox;
 	private ActionListener actionListener;
 	private JLabel labelBox;
-	private ProgressReintentarEmpleado barra;
 
 	/**
 	 * Create the application.
@@ -276,8 +275,4 @@ public class VentanaEmpleado implements IVistaEmpleado {
 		JOptionPane.showMessageDialog(null, "Clientes restantes: " + cantidad);
 	}
 
-	@Override
-	public void muestraBarraReintentar() {
-		barra = new ProgressReintentarEmpleado();
-	}
 }

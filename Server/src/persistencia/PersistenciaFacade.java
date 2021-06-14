@@ -21,16 +21,20 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 	}
 
 	public void generaLista() {
+		File arch = new File("clientes.xml");
+		boolean existe = arch.exists();
 
-		try {
-			persistencia.abrirOutput("clientes.xml");
-			this.llenarBaseDeDatos();
-			while (clientesEnDB.size() != 0) {
-				persistencia.escribir(clientesEnDB.remove(0));
+		if (!existe) {
+			try {
+				persistencia.abrirOutput("clientes.xml");
+				this.llenarBaseDeDatos();
+				while (clientesEnDB.size() != 0) {
+					persistencia.escribir(clientesEnDB.remove(0));
+				}
+				persistencia.cerrarOutput();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			persistencia.cerrarOutput();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 
 	}

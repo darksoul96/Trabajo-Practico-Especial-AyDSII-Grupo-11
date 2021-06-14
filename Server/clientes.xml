@@ -3198,3 +3198,83 @@
   </void>
  </object>
 </java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>555</string>
+  </void>
+  <void property="nombre">
+   <string>Enzo Perez</string>
+  </void>
+  <void property="prioridad">
+   <int>1</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>444</string>
+  </void>
+  <void property="nombre">
+   <string>Mayra Rodriguez</string>
+  </void>
+  <void property="prioridad">
+   <int>3</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>333</string>
+  </void>
+  <void property="nombre">
+   <string>Pedro Perez</string>
+  </void>
+  <void property="prioridad">
+   <int>2</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>222</string>
+  </void>
+  <void property="nombre">
+   <string>Nicolas Agustin</string>
+  </void>
+  <void property="prioridad">
+   <int>3</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>111</string>
+  </void>
+  <void property="nombre">
+   <string>Lopez Jorge</string>
+  </void>
+  <void property="prioridad">
+   <int>2</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>39555671</string>
+  </void>
+  <void property="nombre">
+   <string>Agustin Ruiz</string>
+  </void>
+  <void property="prioridad">
+   <int>1</int>
+  </void>
+ </object>
+ <object class="comunicacion_ingreso.Cliente">
+  <void property="DNI">
+   <string>38828813</string>
+  </void>
+  <void property="nombre">
+   <string>Sebastian Bernal</string>
+  </void>
+  <void property="prioridad">
+   <int>1</int>
+  </void>
+ </object>
+</java>

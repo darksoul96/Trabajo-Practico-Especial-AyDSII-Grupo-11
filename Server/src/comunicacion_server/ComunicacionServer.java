@@ -235,7 +235,8 @@ public class ComunicacionServer implements IComunicacionServer, IComunicacionSer
 						if (response.type.equals("LLAMAR")) {
 							Cliente lastCalledclient = Servidor.getInstance().getLastCalledClient();
 							enviarPantalla(lastCalledclient);
-							persistidor.persistirHorarioDeAtencion(lastCalledclient);
+							if (response.getSucess())
+								persistidor.persistirHorarioDeAtencion(lastCalledclient);
 						}
 
 					}

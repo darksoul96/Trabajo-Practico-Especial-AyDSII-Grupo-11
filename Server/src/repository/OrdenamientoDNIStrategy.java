@@ -22,7 +22,7 @@ public class OrdenamientoDNIStrategy implements IOrdenamientoStrategy, Serializa
 		} else {
 			while (it.hasNext() && !menor && !asignado) {
 				clienteActual = (Cliente) it.next();
-				if (clienteActual.getDNI().compareTo(cliente.getDNI()) > 0) {
+				if (Integer.parseInt(clienteActual.getDNI()) > Integer.parseInt(cliente.getDNI())) {
 					lista.add(index, cliente);
 					menor = true;
 					asignado = true;

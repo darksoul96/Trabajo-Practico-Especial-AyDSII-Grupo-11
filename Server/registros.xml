@@ -196,3 +196,333 @@
   </void>
  </object>
 </java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:41:58</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:42:01</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:42:17</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:42:19</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:43:54</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:43:56</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:44:27</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:44:29</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:45:27</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 20:45:37</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 21:20:28</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 21:20:31</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>38828813</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 21:20:48</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-13 21:20:50</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:25:18</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:26:14</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:28:04</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:28:33</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:35:14</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:35:17</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:36:24</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>444</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:36:26</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:36:51</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:36:52</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:38:42</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:38:44</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:41:16</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>555</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:41:18</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>111</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:48:06</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="15.0.2" class="java.beans.XMLDecoder">
+ <object class="persistencia.HorarioRegistro">
+  <void property="dni">
+   <string>222</string>
+  </void>
+  <void property="horaDeRegistro">
+   <string>2021-06-14 13:48:10</string>
+  </void>
+ </object>
+</java>

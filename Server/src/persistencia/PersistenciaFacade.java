@@ -122,7 +122,7 @@ public class PersistenciaFacade implements IAccesoBaseDatos {
 
 	@Override
 	public void persistirHorarioDeAtencion(Cliente cliente) {
-		if (cliente != null && cliente != Servidor.getInstance().getLastCalledClient()) {
+		if (cliente != null) {
 			System.out.println(cliente.getBox());
 			System.out.println(cliente.getDNI());
 			System.out.println(cliente.getHorarioAtencion());
